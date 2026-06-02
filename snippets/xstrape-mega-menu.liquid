@@ -1,0 +1,467 @@
+<style>
+  @media screen and (min-width: 1150px) {
+    #shopify-section-{{ section.id }} .header {
+      background: transparent;
+      padding-block: 8px;
+    }
+
+    #shopify-section-{{ section.id }} .header__wrapper {
+      width: min(1480px, calc(100vw - 32px));
+      margin-inline: auto;
+      padding: 0.55rem 1.35rem;
+      border-radius: 999px;
+      background: rgb(var(--header-background));
+      box-shadow: 0 16px 40px rgb(0 0 0 / 0.12);
+      position: relative;
+    }
+
+    #shopify-section-{{ section.id }} .header__main-nav > .header__icon-list > .header__link-list {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .header__logo {
+      min-width: 132px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-mega-nav {
+    display: none;
+  }
+
+  @media screen and (min-width: 1150px) {
+    #shopify-section-{{ section.id }} .xstrape-mega-nav {
+      display: block;
+      min-width: 0;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-nav__list {
+      display: flex;
+      align-items: center;
+      gap: clamp(18px, 2.15vw, 42px);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-nav__item {
+      position: static;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-nav__summary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0;
+      color: rgb(var(--header-text));
+      font-size: 0.94rem;
+      font-weight: 800;
+      line-height: 1.05;
+      text-align: center;
+      cursor: pointer;
+      list-style: none;
+      white-space: normal;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-nav__summary::-webkit-details-marker {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-nav__item[open] .xstrape-mega-nav__summary,
+    #shopify-section-{{ section.id }} .xstrape-mega-nav__summary:hover {
+      color: #0048ff;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-panel {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      right: 0;
+      z-index: 30;
+      display: none;
+      padding: 18px;
+      border: 1px solid rgb(0 0 0 / 0.06);
+      border-radius: 30px;
+      background: #fff;
+      color: #111;
+      box-shadow: 0 24px 70px rgb(0 0 0 / 0.18);
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-nav__item[open] .xstrape-mega-panel {
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-panel__inner {
+      display: grid;
+      grid-template-columns: minmax(340px, 0.9fr) minmax(0, 1.45fr) minmax(250px, 0.7fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-category-list,
+    #shopify-section-{{ section.id }} .xstrape-mega-link-grid {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-card {
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      min-height: 92px;
+      padding: 10px 12px 10px 10px;
+      border-radius: 18px;
+      background: #f5f5f5;
+      text-decoration: none;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-card:hover {
+      transform: translateY(-1px);
+      background: #ececec;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-card__thumb {
+      position: relative;
+      width: 76px;
+      height: 76px;
+      border-radius: 16px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 24%, rgb(255 255 255 / 0.95), rgb(255 255 255 / 0) 35%),
+        linear-gradient(145deg, #fafafa, #d7d7d7 62%, #9a9a9a);
+      box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.06);
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-card__thumb::before,
+    #shopify-section-{{ section.id }} .xstrape-mega-card__thumb::after {
+      content: "";
+      position: absolute;
+      border: 2px solid rgb(17 17 17 / 0.55);
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-card__thumb::before {
+      width: 42px;
+      height: 28px;
+      left: 17px;
+      top: 28px;
+      border-radius: 7px;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-card__thumb::after {
+      width: 18px;
+      height: 18px;
+      left: 29px;
+      top: 15px;
+      border-radius: 999px;
+      border-bottom-color: transparent;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-card__thumb--power::before {
+      width: 46px;
+      height: 18px;
+      left: 15px;
+      top: 30px;
+      border-radius: 999px;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-card__thumb--power::after {
+      width: 9px;
+      height: 22px;
+      left: 56px;
+      top: 28px;
+      border-radius: 2px;
+      border-bottom-color: rgb(17 17 17 / 0.55);
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-card__thumb--mount::before {
+      width: 42px;
+      height: 42px;
+      left: 17px;
+      top: 18px;
+      border-radius: 999px;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-card__thumb--mount::after {
+      width: 30px;
+      height: 8px;
+      left: 23px;
+      top: 52px;
+      border-radius: 999px;
+      border-bottom-color: rgb(17 17 17 / 0.55);
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-card__content {
+      min-width: 0;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-card__title {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin: 0 0 4px;
+      font-size: 0.98rem;
+      font-weight: 850;
+      line-height: 1.15;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-card__subtitle {
+      margin: 0;
+      color: rgb(0 0 0 / 0.58);
+      font-size: 0.82rem;
+      font-weight: 650;
+      line-height: 1.25;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 18px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: #0048ff;
+      color: #fff;
+      font-size: 0.58rem;
+      font-weight: 850;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-badge--hot {
+      background: #ff4f46;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-card__arrow {
+      font-size: 1.2rem;
+      font-weight: 800;
+      opacity: 0.42;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-link-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      padding: 8px 6px;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-link-group {
+      min-width: 0;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-link-group__title {
+      margin: 0 0 12px;
+      font-size: 0.82rem;
+      font-weight: 850;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-link-group__links {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-link-group__links a {
+      color: rgb(0 0 0 / 0.64);
+      font-size: 0.91rem;
+      font-weight: 650;
+      line-height: 1.2;
+      text-decoration: none;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-link-group__links a:hover {
+      color: #111;
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-feature {
+      position: relative;
+      min-height: 100%;
+      display: flex;
+      align-items: end;
+      overflow: hidden;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 26% 20%, rgb(255 255 255 / 0.82), rgb(255 255 255 / 0) 30%),
+        linear-gradient(145deg, #ececec, #b9b9b9 58%, #252525);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-feature::before {
+      content: "";
+      position: absolute;
+      inset: 22px 24px auto auto;
+      width: 118px;
+      height: 82px;
+      border: 2px solid rgb(0 0 0 / 0.45);
+      border-radius: 14px;
+      transform: rotate(-8deg);
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-feature::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgb(0 0 0 / 0) 32%, rgb(0 0 0 / 0.72));
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-feature__body {
+      position: relative;
+      z-index: 1;
+      padding: 22px;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-feature__kicker {
+      margin: 0 0 8px;
+      color: rgb(255 255 255 / 0.76);
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-feature__title {
+      margin: 0;
+      font-size: clamp(1.45rem, 1.7vw, 2.1rem);
+      font-weight: 850;
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-feature__cta {
+      display: inline-flex;
+      margin-top: 14px;
+      padding: 0.65rem 0.9rem;
+      border-radius: 999px;
+      background: #fff;
+      color: #111;
+      font-size: 0.78rem;
+      font-weight: 850;
+      line-height: 1;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-mega-nav__sale {
+      color: #0048ff;
+    }
+  }
+</style>
+
+<nav class="xstrape-mega-nav" aria-label="Primary mega menu">
+  <ul class="xstrape-mega-nav__list" role="list">
+    <li>
+      <details class="xstrape-mega-nav__item" data-xstrape-mega-item>
+        <summary class="xstrape-mega-nav__summary">Best<br>Sellers</summary>
+        <div class="xstrape-mega-panel">
+          <div class="xstrape-mega-panel__inner">
+            <ul class="xstrape-mega-category-list" role="list">
+              <li><a class="xstrape-mega-card" href="/products/starlink-mini-suction-cup-car-mount"><span class="xstrape-mega-card__thumb xstrape-mega-card__thumb--mount"></span><span class="xstrape-mega-card__content"><span class="xstrape-mega-card__title">Suction Cup Mount <span class="xstrape-mega-badge">New</span></span><span class="xstrape-mega-card__subtitle">Secure Mini setup for vehicles</span></span><span class="xstrape-mega-card__arrow">›</span></a></li>
+              <li><a class="xstrape-mega-card" href="/products/starlink-mini-30v-step-up-car-adapter-with-usb-c-port"><span class="xstrape-mega-card__thumb xstrape-mega-card__thumb--power"></span><span class="xstrape-mega-card__content"><span class="xstrape-mega-card__title">30V Step-Up Adapter <span class="xstrape-mega-badge xstrape-mega-badge--hot">Hot</span></span><span class="xstrape-mega-card__subtitle">Stable vehicle power</span></span><span class="xstrape-mega-card__arrow">›</span></a></li>
+              <li><a class="xstrape-mega-card" href="/collections/for-starlink-mini"><span class="xstrape-mega-card__thumb"></span><span class="xstrape-mega-card__content"><span class="xstrape-mega-card__title">Mini Essentials</span><span class="xstrape-mega-card__subtitle">Top picks for Starlink Mini</span></span><span class="xstrape-mega-card__arrow">›</span></a></li>
+            </ul>
+            <div class="xstrape-mega-link-grid">
+              <div class="xstrape-mega-link-group"><p class="xstrape-mega-link-group__title">Shop Best Sellers</p><ul class="xstrape-mega-link-group__links"><li><a href="/collections/for-starlink-mini">For Starlink Mini</a></li><li><a href="/collections/for-starlink-gen-3">For Gen 3</a></li><li><a href="/collections/mini-for-car-travel">Car Travel</a></li><li><a href="/collections/mini-for-camping">Camping</a></li></ul></div>
+              <div class="xstrape-mega-link-group"><p class="xstrape-mega-link-group__title">Popular Gear</p><ul class="xstrape-mega-link-group__links"><li><a href="/products/starlink-mini-suction-cup-car-mount">Mounts</a></li><li><a href="/products/10ft-cigarette-lighter-to-dc-power-cable-for-starlink-mini">Power Cables</a></li><li><a href="/products/starlink-mini-30v-step-up-car-adapter-with-usb-c-port">Adapters</a></li><li><a href="/collections/mini-storage-protection">Protection</a></li></ul></div>
+              <div class="xstrape-mega-link-group"><p class="xstrape-mega-link-group__title">Use Cases</p><ul class="xstrape-mega-link-group__links"><li><a href="/collections/mini-for-car-travel">Road Trips</a></li><li><a href="/collections/mini-for-camping">Off-Grid Camping</a></li><li><a href="/collections/mini-for-home-backup">Home Backup</a></li><li><a href="/collections/all">All Products</a></li></ul></div>
+            </div>
+            <a class="xstrape-mega-feature" href="/collections/for-starlink-mini"><span class="xstrape-mega-feature__body"><span class="xstrape-mega-feature__kicker">Starter setup</span><span class="xstrape-mega-feature__title">Build your Mini travel kit</span><span class="xstrape-mega-feature__cta">Shop Now</span></span></a>
+          </div>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <details class="xstrape-mega-nav__item" data-xstrape-mega-item>
+        <summary class="xstrape-mega-nav__summary">Models</summary>
+        <div class="xstrape-mega-panel">
+          <div class="xstrape-mega-panel__inner">
+            <ul class="xstrape-mega-category-list" role="list">
+              <li><a class="xstrape-mega-card" href="/collections/for-starlink-mini"><span class="xstrape-mega-card__thumb"></span><span class="xstrape-mega-card__content"><span class="xstrape-mega-card__title">Mini <span class="xstrape-mega-badge">New</span></span><span class="xstrape-mega-card__subtitle">Compact travel accessories</span></span><span class="xstrape-mega-card__arrow">›</span></a></li>
+              <li><a class="xstrape-mega-card" href="/collections/for-starlink-gen-3"><span class="xstrape-mega-card__thumb"></span><span class="xstrape-mega-card__content"><span class="xstrape-mega-card__title">Gen 3</span><span class="xstrape-mega-card__subtitle">Home and mobile upgrades</span></span><span class="xstrape-mega-card__arrow">›</span></a></li>
+              <li><a class="xstrape-mega-card" href="/collections/for-starlink-gen-3-performance"><span class="xstrape-mega-card__thumb"></span><span class="xstrape-mega-card__content"><span class="xstrape-mega-card__title">Gen 3 Performance</span><span class="xstrape-mega-card__subtitle">For high-demand setups</span></span><span class="xstrape-mega-card__arrow">›</span></a></li>
+              <li><a class="xstrape-mega-card" href="/collections/for-starlink-gen-2"><span class="xstrape-mega-card__thumb"></span><span class="xstrape-mega-card__content"><span class="xstrape-mega-card__title">Gen 2</span><span class="xstrape-mega-card__subtitle">Legacy support gear</span></span><span class="xstrape-mega-card__arrow">›</span></a></li>
+            </ul>
+            <div class="xstrape-mega-link-grid">
+              <div class="xstrape-mega-link-group"><p class="xstrape-mega-link-group__title">By Model</p><ul class="xstrape-mega-link-group__links"><li><a href="/collections/for-starlink-mini">Starlink Mini</a></li><li><a href="/collections/for-starlink-gen-3">Starlink Gen 3</a></li><li><a href="/collections/for-starlink-gen-3-performance">Gen 3 Performance</a></li><li><a href="/collections/for-starlink-gen-2">Starlink Gen 2</a></li></ul></div>
+              <div class="xstrape-mega-link-group"><p class="xstrape-mega-link-group__title">Mini Kits</p><ul class="xstrape-mega-link-group__links"><li><a href="/collections/mini-for-car-travel">For Car Travel</a></li><li><a href="/collections/mini-for-camping">For Camping</a></li><li><a href="/collections/mini-for-home-backup">For Home Backup</a></li><li><a href="/collections/mini-storage-protection">Storage & Protection</a></li></ul></div>
+              <div class="xstrape-mega-link-group"><p class="xstrape-mega-link-group__title">Quick Links</p><ul class="xstrape-mega-link-group__links"><li><a href="/collections/all">All Products</a></li><li><a href="/pages/contact">Compatibility Help</a></li><li><a href="/search">Search Store</a></li><li><a href="/cart">Cart</a></li></ul></div>
+            </div>
+            <a class="xstrape-mega-feature" href="/collections/mini-for-car-travel"><span class="xstrape-mega-feature__body"><span class="xstrape-mega-feature__kicker">Model finder</span><span class="xstrape-mega-feature__title">Shop by your Starlink</span><span class="xstrape-mega-feature__cta">Browse Models</span></span></a>
+          </div>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <details class="xstrape-mega-nav__item" data-xstrape-mega-item>
+        <summary class="xstrape-mega-nav__summary">Power</summary>
+        <div class="xstrape-mega-panel">
+          <div class="xstrape-mega-panel__inner">
+            <ul class="xstrape-mega-category-list" role="list">
+              <li><a class="xstrape-mega-card" href="/products/10ft-cigarette-lighter-to-dc-power-cable-for-starlink-mini"><span class="xstrape-mega-card__thumb xstrape-mega-card__thumb--power"></span><span class="xstrape-mega-card__content"><span class="xstrape-mega-card__title">DC Power Cable</span><span class="xstrape-mega-card__subtitle">Vehicle-ready Mini power</span></span><span class="xstrape-mega-card__arrow">›</span></a></li>
+              <li><a class="xstrape-mega-card" href="/products/starlink-mini-30v-step-up-car-adapter-with-usb-c-port"><span class="xstrape-mega-card__thumb xstrape-mega-card__thumb--power"></span><span class="xstrape-mega-card__content"><span class="xstrape-mega-card__title">30V Adapter <span class="xstrape-mega-badge xstrape-mega-badge--hot">Hot</span></span><span class="xstrape-mega-card__subtitle">No power drops</span></span><span class="xstrape-mega-card__arrow">›</span></a></li>
+              <li><a class="xstrape-mega-card" href="/collections/for-starlink-mini"><span class="xstrape-mega-card__thumb xstrape-mega-card__thumb--power"></span><span class="xstrape-mega-card__content"><span class="xstrape-mega-card__title">Power Accessories</span><span class="xstrape-mega-card__subtitle">Complete your setup</span></span><span class="xstrape-mega-card__arrow">›</span></a></li>
+            </ul>
+            <div class="xstrape-mega-link-grid">
+              <div class="xstrape-mega-link-group"><p class="xstrape-mega-link-group__title">Power Type</p><ul class="xstrape-mega-link-group__links"><li><a href="/products/10ft-cigarette-lighter-to-dc-power-cable-for-starlink-mini">DC Cables</a></li><li><a href="/products/starlink-mini-30v-step-up-car-adapter-with-usb-c-port">Step-Up Adapters</a></li><li><a href="/collections/for-starlink-mini">Mini Power</a></li><li><a href="/collections/all">All Power Gear</a></li></ul></div>
+              <div class="xstrape-mega-link-group"><p class="xstrape-mega-link-group__title">Where You Use It</p><ul class="xstrape-mega-link-group__links"><li><a href="/collections/mini-for-car-travel">Vehicles</a></li><li><a href="/collections/mini-for-camping">Camping</a></li><li><a href="/collections/mini-for-home-backup">Home Backup</a></li><li><a href="/pages/contact">Need Help?</a></li></ul></div>
+              <div class="xstrape-mega-link-group"><p class="xstrape-mega-link-group__title">Support</p><ul class="xstrape-mega-link-group__links"><li><a href="/pages/contact">Compatibility</a></li><li><a href="/policies/shipping-policy">Shipping</a></li><li><a href="/policies/refund-policy">Returns</a></li><li><a href="/search">Search</a></li></ul></div>
+            </div>
+            <a class="xstrape-mega-feature" href="/products/starlink-mini-30v-step-up-car-adapter-with-usb-c-port"><span class="xstrape-mega-feature__body"><span class="xstrape-mega-feature__kicker">Stable power</span><span class="xstrape-mega-feature__title">Run Mini from your vehicle</span><span class="xstrape-mega-feature__cta">Shop Adapter</span></span></a>
+          </div>
+        </div>
+      </details>
+    </li>
+
+    <li><a class="xstrape-mega-nav__summary" href="/collections/mini-for-car-travel">Travel<br>Kits</a></li>
+    <li><a class="xstrape-mega-nav__summary" href="/collections/mini-storage-protection">Protection</a></li>
+    <li><a class="xstrape-mega-nav__summary" href="/pages/contact">Support</a></li>
+    <li><a class="xstrape-mega-nav__summary xstrape-mega-nav__sale" href="/collections/all">Sale</a></li>
+  </ul>
+</nav>
+
+<script>
+  (() => {
+    const root = document.getElementById('shopify-section-{{ section.id }}');
+    if (!root) return;
+
+    const items = root.querySelectorAll('[data-xstrape-mega-item]');
+    const desktopQuery = window.matchMedia('(min-width: 1150px)');
+
+    const closeSiblings = (activeItem) => {
+      items.forEach((item) => {
+        if (item !== activeItem) item.removeAttribute('open');
+      });
+    };
+
+    items.forEach((item) => {
+      item.addEventListener('mouseenter', () => {
+        if (!desktopQuery.matches) return;
+        closeSiblings(item);
+        item.setAttribute('open', '');
+      });
+
+      item.addEventListener('mouseleave', () => {
+        if (!desktopQuery.matches) return;
+        item.removeAttribute('open');
+      });
+
+      item.querySelector('summary')?.addEventListener('click', () => {
+        if (!desktopQuery.matches) return;
+        closeSiblings(item);
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      items.forEach((item) => item.removeAttribute('open'));
+    });
+  })();
+</script>
