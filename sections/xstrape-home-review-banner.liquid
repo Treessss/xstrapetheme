@@ -37,23 +37,71 @@
 
 {% schema %}
 {
-  "name": "Xstrape review banner",
+  "name": "评价横幅",
   "class": "shopify-section--xstrape-review-banner",
   "tag": "section",
   "settings": [
-    { "type": "image_picker", "id": "review_image", "label": "Image" },
-    { "type": "text", "id": "review_stars", "label": "Stars", "default": "★★★★★" },
-    { "type": "text", "id": "review_title", "label": "Heading", "default": "Trusted Daily by Starlink Travelers" },
-    { "type": "text", "id": "review_text", "label": "Text", "default": "Reliable mounts, smart power, and rugged protection for real trips, remote work, and off-grid weekends." },
-    { "type": "text", "id": "review_button_text", "label": "Button text", "default": "Shop Best Sellers" },
-    { "type": "url", "id": "review_link", "label": "Link" },
-    { "type": "header", "content": "Colors" },
-    { "type": "color", "id": "page_background", "label": "Background", "default": "#ffffff" },
-    { "type": "color", "id": "text_color", "label": "Text", "default": "#111111" },
-    { "type": "color", "id": "muted_text_color", "label": "Muted text", "default": "#6c6c6c" }
+    {
+      "type": "image_picker",
+      "id": "review_image",
+      "label": "图片"
+    },
+    {
+      "type": "text",
+      "id": "review_stars",
+      "label": "星级",
+      "default": "★★★★★"
+    },
+    {
+      "type": "text",
+      "id": "review_title",
+      "label": "标题",
+      "default": "Trusted Daily by Starlink Travelers"
+    },
+    {
+      "type": "text",
+      "id": "review_text",
+      "label": "文字",
+      "default": "Reliable mounts, smart power, and rugged protection for real trips, remote work, and off-grid weekends."
+    },
+    {
+      "type": "text",
+      "id": "review_button_text",
+      "label": "按钮文字",
+      "default": "Shop Best Sellers"
+    },
+    {
+      "type": "url",
+      "id": "review_link",
+      "label": "链接"
+    },
+    {
+      "type": "header",
+      "content": "颜色"
+    },
+    {
+      "type": "color",
+      "id": "page_background",
+      "label": "背景",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "文字",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "muted_text_color",
+      "label": "次要文字",
+      "default": "#6c6c6c"
+    }
   ],
   "presets": [
-    { "name": "Xstrape review banner" }
+    {
+      "name": "评价横幅"
+    }
   ]
 }
 {% endschema %}

@@ -9,7 +9,7 @@
  */
 {
   "type": "header",
-  "name": "Header group",
+  "name": "顶部导航组",
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
@@ -288,7 +288,8 @@
         "text_color": "#050505",
         "accent_color": "#0048ff",
         "shadow_opacity": 18
-      }
+      },
+      "name": "自定义顶部导航"
     },
     "header": {
       "type": "header",

@@ -1013,130 +1013,722 @@
 
 {% schema %}
 {
-  "name": "Xstrape header",
+  "name": "自定义顶部导航",
   "class": "shopify-section--xstrape-header",
   "tag": "header",
   "enabled_on": {
-    "groups": ["header"]
+    "groups": [
+      "header"
+    ]
   },
   "settings": [
-    { "type": "checkbox", "id": "overlay_on_homepage", "label": "Overlay on homepage hero", "default": true },
-    { "type": "checkbox", "id": "enable_sticky", "label": "Sticky on non-home pages", "default": true },
-    { "type": "header", "content": "Logo" },
-    { "type": "image_picker", "id": "logo", "label": "Logo image" },
-    { "type": "text", "id": "logo_text", "label": "Logo text", "default": "XSTRAPETM" },
-    { "type": "range", "id": "logo_width", "min": 80, "max": 320, "step": 5, "unit": "px", "label": "Desktop logo width", "default": 190 },
-    { "type": "range", "id": "logo_mobile_width", "min": 80, "max": 220, "step": 5, "unit": "px", "label": "Mobile logo width", "default": 150 },
-    { "type": "header", "content": "Desktop navigation" },
-    { "type": "text", "id": "desktop_menu_label", "label": "Navigation label", "default": "Primary menu" },
-    { "type": "range", "id": "nav_gap", "min": 12, "max": 54, "step": 2, "unit": "px", "label": "Navigation gap", "default": 34 },
-    { "type": "range", "id": "nav_font_size", "min": 12, "max": 22, "step": 1, "unit": "px", "label": "Navigation font size", "default": 16 },
-    { "type": "header", "content": "Announcement" },
-    { "type": "checkbox", "id": "show_announcement", "label": "Show announcement", "default": false },
-    { "type": "text", "id": "announcement_text", "label": "Text", "default": "Free Shipping on Orders $50+" },
-    { "type": "url", "id": "announcement_link", "label": "Link" },
-    { "type": "color", "id": "announcement_background", "label": "Background", "default": "#111111" },
-    { "type": "color", "id": "announcement_text_color", "label": "Text color", "default": "#ffffff" },
-    { "type": "header", "content": "Actions" },
-    { "type": "checkbox", "id": "show_search", "label": "Show search", "default": true },
-    { "type": "checkbox", "id": "show_cart", "label": "Show cart", "default": true },
-    { "type": "checkbox", "id": "show_account", "label": "Show account", "default": true },
-    { "type": "link_list", "id": "customer_account_menu", "label": "Customer account menu", "default": "customer-account-main-menu" },
-    { "type": "checkbox", "id": "show_country_selector", "label": "Show country/region selector", "default": true },
-    { "type": "checkbox", "id": "show_country_flag", "label": "Show country flag", "default": true },
-    { "type": "checkbox", "id": "show_country_name", "label": "Show country name", "default": false },
-    { "type": "header", "content": "Layout" },
-    { "type": "range", "id": "max_width", "min": 1200, "max": 2000, "step": 20, "unit": "px", "label": "Max width", "default": 1920 },
-    { "type": "range", "id": "side_gap", "min": 8, "max": 48, "step": 2, "unit": "px", "label": "Side gap", "default": 16 },
-    { "type": "range", "id": "desktop_top_gap", "min": 0, "max": 40, "step": 1, "unit": "px", "label": "Desktop top gap", "default": 21 },
-    { "type": "range", "id": "mobile_top_gap", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Mobile top gap", "default": 10 },
-    { "type": "range", "id": "desktop_height", "min": 64, "max": 110, "step": 2, "unit": "px", "label": "Desktop bar height", "default": 80 },
-    { "type": "range", "id": "mobile_height", "min": 58, "max": 92, "step": 2, "unit": "px", "label": "Mobile bar height", "default": 72 },
-    { "type": "range", "id": "bar_radius", "min": 18, "max": 80, "step": 2, "unit": "px", "label": "Bar radius", "default": 60 },
-    { "type": "range", "id": "mobile_panel_radius", "min": 18, "max": 42, "step": 1, "unit": "px", "label": "Mobile panel radius", "default": 30 },
-    { "type": "header", "content": "Colors" },
-    { "type": "color", "id": "bar_background", "label": "Bar background", "default": "#ffffff" },
-    { "type": "color", "id": "panel_background", "label": "Mega/mobile panel background", "default": "#f5f5f5" },
-    { "type": "color", "id": "card_background", "label": "Mega card background", "default": "#f5f5f5" },
-    { "type": "color", "id": "text_color", "label": "Text color", "default": "#050505" },
-    { "type": "color", "id": "accent_color", "label": "Accent color", "default": "#0048ff" },
-    { "type": "range", "id": "shadow_opacity", "min": 0, "max": 35, "step": 1, "unit": "%", "label": "Shadow opacity", "default": 18 }
+    {
+      "type": "checkbox",
+      "id": "overlay_on_homepage",
+      "label": "叠加在首页主视觉上",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky",
+      "label": "非首页启用吸顶",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "标志"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "标志图片"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "标志文字",
+      "default": "XSTRAPETM"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 80,
+      "max": 320,
+      "step": 5,
+      "unit": "px",
+      "label": "桌面标志宽度",
+      "default": 190
+    },
+    {
+      "type": "range",
+      "id": "logo_mobile_width",
+      "min": 80,
+      "max": 220,
+      "step": 5,
+      "unit": "px",
+      "label": "移动端标志宽度",
+      "default": 150
+    },
+    {
+      "type": "header",
+      "content": "桌面导航"
+    },
+    {
+      "type": "text",
+      "id": "desktop_menu_label",
+      "label": "导航无障碍标签",
+      "default": "Primary menu"
+    },
+    {
+      "type": "range",
+      "id": "nav_gap",
+      "min": 12,
+      "max": 54,
+      "step": 2,
+      "unit": "px",
+      "label": "导航间距",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "nav_font_size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "导航字号",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "公告栏"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "显示公告栏",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "文字",
+      "default": "Free Shipping on Orders $50+"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "链接"
+    },
+    {
+      "type": "color",
+      "id": "announcement_background",
+      "label": "背景",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "announcement_text_color",
+      "label": "文字颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "操作按钮"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "显示搜索",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "label": "显示购物车",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "显示账户",
+      "default": true
+    },
+    {
+      "type": "link_list",
+      "id": "customer_account_menu",
+      "label": "账户菜单",
+      "default": "customer-account-main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_selector",
+      "label": "显示国家/地区选择器",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_flag",
+      "label": "显示国旗",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_name",
+      "label": "显示国家名称",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "布局"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 1200,
+      "max": 2000,
+      "step": 20,
+      "unit": "px",
+      "label": "最大宽度",
+      "default": 1920
+    },
+    {
+      "type": "range",
+      "id": "side_gap",
+      "min": 8,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "两侧间距",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "desktop_top_gap",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "桌面顶部间距",
+      "default": 21
+    },
+    {
+      "type": "range",
+      "id": "mobile_top_gap",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "移动端顶部间距",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 64,
+      "max": 110,
+      "step": 2,
+      "unit": "px",
+      "label": "桌面导航高度",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 58,
+      "max": 92,
+      "step": 2,
+      "unit": "px",
+      "label": "移动端导航高度",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "bar_radius",
+      "min": 18,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "导航圆角",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "mobile_panel_radius",
+      "min": 18,
+      "max": 42,
+      "step": 1,
+      "unit": "px",
+      "label": "移动端面板圆角",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "颜色"
+    },
+    {
+      "type": "color",
+      "id": "bar_background",
+      "label": "导航背景",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "panel_background",
+      "label": "超级菜单/移动面板背景",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "超级菜单卡片背景",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "文字颜色",
+      "default": "#050505"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "强调色",
+      "default": "#0048ff"
+    },
+    {
+      "type": "range",
+      "id": "shadow_opacity",
+      "min": 0,
+      "max": 35,
+      "step": 1,
+      "unit": "%",
+      "label": "阴影透明度",
+      "default": 18
+    }
   ],
   "blocks": [
     {
       "type": "desktop_item",
-      "name": "Desktop menu item",
+      "name": "桌面菜单项",
       "settings": [
-        { "type": "text", "id": "title", "label": "Title", "default": "Menu item" },
-        { "type": "url", "id": "link", "label": "Link" },
-        { "type": "checkbox", "id": "split_title", "label": "Split title onto two lines", "default": false },
-        { "type": "checkbox", "id": "highlight", "label": "Highlight link", "default": false },
-        { "type": "checkbox", "id": "enable_dropdown", "label": "Show mega menu", "default": false },
-        { "type": "header", "content": "Card 1" },
-        { "type": "image_picker", "id": "card_1_image", "label": "Image" },
-        { "type": "text", "id": "card_1_title", "label": "Title" },
-        { "type": "text", "id": "card_1_text", "label": "Subtitle" },
-        { "type": "url", "id": "card_1_link", "label": "Link" },
-        { "type": "text", "id": "card_1_badge", "label": "Badge" },
-        { "type": "select", "id": "card_1_badge_style", "label": "Badge style", "options": [{ "value": "new", "label": "Blue" }, { "value": "hot", "label": "Red" }, { "value": "sale", "label": "Sale" }], "default": "new" },
-        { "type": "header", "content": "Card 2" },
-        { "type": "image_picker", "id": "card_2_image", "label": "Image" },
-        { "type": "text", "id": "card_2_title", "label": "Title" },
-        { "type": "text", "id": "card_2_text", "label": "Subtitle" },
-        { "type": "url", "id": "card_2_link", "label": "Link" },
-        { "type": "text", "id": "card_2_badge", "label": "Badge" },
-        { "type": "select", "id": "card_2_badge_style", "label": "Badge style", "options": [{ "value": "new", "label": "Blue" }, { "value": "hot", "label": "Red" }, { "value": "sale", "label": "Sale" }], "default": "hot" },
-        { "type": "header", "content": "Card 3" },
-        { "type": "image_picker", "id": "card_3_image", "label": "Image" },
-        { "type": "text", "id": "card_3_title", "label": "Title" },
-        { "type": "text", "id": "card_3_text", "label": "Subtitle" },
-        { "type": "url", "id": "card_3_link", "label": "Link" },
-        { "type": "text", "id": "card_3_badge", "label": "Badge" },
-        { "type": "select", "id": "card_3_badge_style", "label": "Badge style", "options": [{ "value": "new", "label": "Blue" }, { "value": "hot", "label": "Red" }, { "value": "sale", "label": "Sale" }], "default": "new" },
-        { "type": "header", "content": "Link columns" },
-        { "type": "text", "id": "link_heading_1", "label": "Column 1 heading" },
-        { "type": "link_list", "id": "link_list_1", "label": "Column 1 menu" },
-        { "type": "text", "id": "link_heading_2", "label": "Column 2 heading" },
-        { "type": "link_list", "id": "link_list_2", "label": "Column 2 menu" },
-        { "type": "text", "id": "link_heading_3", "label": "Column 3 heading" },
-        { "type": "link_list", "id": "link_list_3", "label": "Column 3 menu" },
-        { "type": "header", "content": "Feature tile" },
-        { "type": "image_picker", "id": "feature_image", "label": "Image" },
-        { "type": "text", "id": "feature_kicker", "label": "Kicker", "default": "Starter setup" },
-        { "type": "text", "id": "feature_title", "label": "Title", "default": "Build your setup" },
-        { "type": "text", "id": "feature_button_text", "label": "Button text", "default": "Shop Now" },
-        { "type": "url", "id": "feature_link", "label": "Link" }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "标题",
+          "default": "Menu item"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接"
+        },
+        {
+          "type": "checkbox",
+          "id": "split_title",
+          "label": "标题分两行显示",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight",
+          "label": "高亮链接",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_dropdown",
+          "label": "显示超级菜单",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "卡片 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_1_image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "card_1_title",
+          "label": "标题"
+        },
+        {
+          "type": "text",
+          "id": "card_1_text",
+          "label": "副标题"
+        },
+        {
+          "type": "url",
+          "id": "card_1_link",
+          "label": "链接"
+        },
+        {
+          "type": "text",
+          "id": "card_1_badge",
+          "label": "标签"
+        },
+        {
+          "type": "select",
+          "id": "card_1_badge_style",
+          "label": "标签样式",
+          "options": [
+            {
+              "value": "new",
+              "label": "蓝色"
+            },
+            {
+              "value": "hot",
+              "label": "红色"
+            },
+            {
+              "value": "sale",
+              "label": "促销"
+            }
+          ],
+          "default": "new"
+        },
+        {
+          "type": "header",
+          "content": "卡片 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_2_image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "card_2_title",
+          "label": "标题"
+        },
+        {
+          "type": "text",
+          "id": "card_2_text",
+          "label": "副标题"
+        },
+        {
+          "type": "url",
+          "id": "card_2_link",
+          "label": "链接"
+        },
+        {
+          "type": "text",
+          "id": "card_2_badge",
+          "label": "标签"
+        },
+        {
+          "type": "select",
+          "id": "card_2_badge_style",
+          "label": "标签样式",
+          "options": [
+            {
+              "value": "new",
+              "label": "蓝色"
+            },
+            {
+              "value": "hot",
+              "label": "红色"
+            },
+            {
+              "value": "sale",
+              "label": "促销"
+            }
+          ],
+          "default": "hot"
+        },
+        {
+          "type": "header",
+          "content": "卡片 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_3_image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "card_3_title",
+          "label": "标题"
+        },
+        {
+          "type": "text",
+          "id": "card_3_text",
+          "label": "副标题"
+        },
+        {
+          "type": "url",
+          "id": "card_3_link",
+          "label": "链接"
+        },
+        {
+          "type": "text",
+          "id": "card_3_badge",
+          "label": "标签"
+        },
+        {
+          "type": "select",
+          "id": "card_3_badge_style",
+          "label": "标签样式",
+          "options": [
+            {
+              "value": "new",
+              "label": "蓝色"
+            },
+            {
+              "value": "hot",
+              "label": "红色"
+            },
+            {
+              "value": "sale",
+              "label": "促销"
+            }
+          ],
+          "default": "new"
+        },
+        {
+          "type": "header",
+          "content": "链接列"
+        },
+        {
+          "type": "text",
+          "id": "link_heading_1",
+          "label": "第 1 列标题"
+        },
+        {
+          "type": "link_list",
+          "id": "link_list_1",
+          "label": "第 1 列菜单"
+        },
+        {
+          "type": "text",
+          "id": "link_heading_2",
+          "label": "第 2 列标题"
+        },
+        {
+          "type": "link_list",
+          "id": "link_list_2",
+          "label": "第 2 列菜单"
+        },
+        {
+          "type": "text",
+          "id": "link_heading_3",
+          "label": "第 3 列标题"
+        },
+        {
+          "type": "link_list",
+          "id": "link_list_3",
+          "label": "第 3 列菜单"
+        },
+        {
+          "type": "header",
+          "content": "特色卡片"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "feature_kicker",
+          "label": "小标题",
+          "default": "Starter setup"
+        },
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "标题",
+          "default": "Build your setup"
+        },
+        {
+          "type": "text",
+          "id": "feature_button_text",
+          "label": "按钮文字",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "feature_link",
+          "label": "链接"
+        }
       ]
     },
     {
       "type": "mobile_card",
-      "name": "Mobile menu card",
+      "name": "移动菜单卡片",
       "settings": [
-        { "type": "text", "id": "title", "label": "Title", "default": "Menu card" },
-        { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Add a short description" },
-        { "type": "url", "id": "link", "label": "Link" },
-        { "type": "image_picker", "id": "image", "label": "Image" },
-        { "type": "text", "id": "badge", "label": "Badge" },
-        { "type": "select", "id": "badge_style", "label": "Badge style", "options": [{ "value": "new", "label": "Blue" }, { "value": "hot", "label": "Red" }, { "value": "sale", "label": "Sale" }], "default": "new" }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "标题",
+          "default": "Menu card"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "副标题",
+          "default": "Add a short description"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "标签"
+        },
+        {
+          "type": "select",
+          "id": "badge_style",
+          "label": "标签样式",
+          "options": [
+            {
+              "value": "new",
+              "label": "蓝色"
+            },
+            {
+              "value": "hot",
+              "label": "红色"
+            },
+            {
+              "value": "sale",
+              "label": "促销"
+            }
+          ],
+          "default": "new"
+        }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Xstrape header",
+      "name": "自定义顶部导航",
       "blocks": [
-        { "type": "desktop_item", "settings": { "title": "Best Sellers", "split_title": true, "enable_dropdown": true, "card_1_title": "Suction Cup Mount", "card_1_text": "Secure Mini setup for vehicles", "card_1_badge": "New", "card_2_title": "30V Step-Up Adapter", "card_2_text": "Stable vehicle power", "card_2_badge": "Hot", "card_2_badge_style": "hot", "card_3_title": "Mini Essentials", "card_3_text": "Top picks for Starlink Mini", "feature_title": "Build your Mini travel kit" } },
-        { "type": "desktop_item", "settings": { "title": "Models", "enable_dropdown": true, "card_1_title": "Mini", "card_1_text": "Compact travel accessories", "card_1_badge": "New", "card_2_title": "Gen 3", "card_2_text": "Home and mobile upgrades", "card_3_title": "Gen 3 Performance", "card_3_text": "For high-demand setups", "feature_title": "Shop by your Starlink" } },
-        { "type": "desktop_item", "settings": { "title": "Power", "enable_dropdown": true, "card_1_title": "DC Power Cable", "card_1_text": "Vehicle-ready Mini power", "card_2_title": "30V Adapter", "card_2_text": "No power drops", "card_2_badge": "Hot", "card_2_badge_style": "hot", "card_3_title": "Power Accessories", "card_3_text": "Complete your setup", "feature_title": "Run Mini from your vehicle" } },
-        { "type": "desktop_item", "settings": { "title": "Travel Kits", "split_title": true } },
-        { "type": "desktop_item", "settings": { "title": "Protection" } },
-        { "type": "desktop_item", "settings": { "title": "Support" } },
-        { "type": "desktop_item", "settings": { "title": "Sale", "highlight": true } },
-        { "type": "mobile_card", "settings": { "title": "Starlink Mini", "subtitle": "Travel-ready kits and accessories", "badge": "New" } },
-        { "type": "mobile_card", "settings": { "title": "Power", "subtitle": "Adapters, cables and 30V power", "badge": "Hot", "badge_style": "hot" } },
-        { "type": "mobile_card", "settings": { "title": "Mounts", "subtitle": "Secure setup for vehicles and travel" } },
-        { "type": "mobile_card", "settings": { "title": "Cables", "subtitle": "Extension and DC power cables" } },
-        { "type": "mobile_card", "settings": { "title": "Sale", "subtitle": "Featured discounts", "badge": "Featured", "badge_style": "sale" } }
+        {
+          "type": "desktop_item",
+          "settings": {
+            "title": "Best Sellers",
+            "split_title": true,
+            "enable_dropdown": true,
+            "card_1_title": "Suction Cup Mount",
+            "card_1_text": "Secure Mini setup for vehicles",
+            "card_1_badge": "New",
+            "card_2_title": "30V Step-Up Adapter",
+            "card_2_text": "Stable vehicle power",
+            "card_2_badge": "Hot",
+            "card_2_badge_style": "hot",
+            "card_3_title": "Mini Essentials",
+            "card_3_text": "Top picks for Starlink Mini",
+            "feature_title": "Build your Mini travel kit"
+          }
+        },
+        {
+          "type": "desktop_item",
+          "settings": {
+            "title": "Models",
+            "enable_dropdown": true,
+            "card_1_title": "Mini",
+            "card_1_text": "Compact travel accessories",
+            "card_1_badge": "New",
+            "card_2_title": "Gen 3",
+            "card_2_text": "Home and mobile upgrades",
+            "card_3_title": "Gen 3 Performance",
+            "card_3_text": "For high-demand setups",
+            "feature_title": "Shop by your Starlink"
+          }
+        },
+        {
+          "type": "desktop_item",
+          "settings": {
+            "title": "Power",
+            "enable_dropdown": true,
+            "card_1_title": "DC Power Cable",
+            "card_1_text": "Vehicle-ready Mini power",
+            "card_2_title": "30V Adapter",
+            "card_2_text": "No power drops",
+            "card_2_badge": "Hot",
+            "card_2_badge_style": "hot",
+            "card_3_title": "Power Accessories",
+            "card_3_text": "Complete your setup",
+            "feature_title": "Run Mini from your vehicle"
+          }
+        },
+        {
+          "type": "desktop_item",
+          "settings": {
+            "title": "Travel Kits",
+            "split_title": true
+          }
+        },
+        {
+          "type": "desktop_item",
+          "settings": {
+            "title": "Protection"
+          }
+        },
+        {
+          "type": "desktop_item",
+          "settings": {
+            "title": "Support"
+          }
+        },
+        {
+          "type": "desktop_item",
+          "settings": {
+            "title": "Sale",
+            "highlight": true
+          }
+        },
+        {
+          "type": "mobile_card",
+          "settings": {
+            "title": "Starlink Mini",
+            "subtitle": "Travel-ready kits and accessories",
+            "badge": "New"
+          }
+        },
+        {
+          "type": "mobile_card",
+          "settings": {
+            "title": "Power",
+            "subtitle": "Adapters, cables and 30V power",
+            "badge": "Hot",
+            "badge_style": "hot"
+          }
+        },
+        {
+          "type": "mobile_card",
+          "settings": {
+            "title": "Mounts",
+            "subtitle": "Secure setup for vehicles and travel"
+          }
+        },
+        {
+          "type": "mobile_card",
+          "settings": {
+            "title": "Cables",
+            "subtitle": "Extension and DC power cables"
+          }
+        },
+        {
+          "type": "mobile_card",
+          "settings": {
+            "title": "Sale",
+            "subtitle": "Featured discounts",
+            "badge": "Featured",
+            "badge_style": "sale"
+          }
+        }
       ]
     }
   ]

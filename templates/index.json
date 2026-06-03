@@ -11,7 +11,7 @@
   "sections": {
     "xstrape_home_hero": {
       "type": "xstrape-home-hero",
-      "name": "Xstrape hero",
+      "name": "首页主视觉",
       "settings": {
         "hero_image": "shopify://shop_images/1.jpg",
         "hero_mobile_image": "shopify://shop_images/five_home_anner.jpg",
@@ -96,7 +96,7 @@
         "favorite_camp",
         "favorite_protect"
       ],
-      "name": "Xstrape favorites",
+      "name": "热卖推荐",
       "settings": {
         "products_kicker": "",
         "products_title": "Gear You'll Love",
@@ -112,7 +112,7 @@
     },
     "xstrape_home_review": {
       "type": "xstrape-home-review-banner",
-      "name": "Xstrape review banner",
+      "name": "评价横幅",
       "settings": {
         "review_image": "shopify://shop_images/Frame_427319025_2x_b7109a7a-1cdd-40d4-bfb8-fd1571f47b35.webp",
         "review_stars": "★★★★★",
@@ -179,7 +179,7 @@
         "category_protection",
         "category_home"
       ],
-      "name": "Xstrape categories",
+      "name": "分类入口",
       "settings": {
         "categories_kicker": "",
         "categories_title": "Shop by Category",
@@ -219,7 +219,7 @@
         "promo_mount",
         "promo_power"
       ],
-      "name": "Xstrape promo grid",
+      "name": "促销图文区",
       "settings": {
         "page_background": "#ffffff",
         "text_color": "#111111",
@@ -228,7 +228,7 @@
     },
     "xstrape_home_quote": {
       "type": "xstrape-home-quote",
-      "name": "Xstrape quote",
+      "name": "引用文案",
       "settings": {
         "quote_text": "We design practical Starlink accessories for people who need stable connectivity outside the usual places.",
         "quote_author": "Parts4Star team",
@@ -288,7 +288,7 @@
         "community_4",
         "community_5"
       ],
-      "name": "Xstrape community",
+      "name": "社区展示",
       "settings": {
         "community_kicker": "",
         "community_title": "From the Community",
@@ -299,7 +299,7 @@
     },
     "xstrape_nomad_quality_heading": {
       "type": "xstrape-home-nomad-heading",
-      "name": "Xstrape Nomad heading",
+      "name": "品牌工艺标题",
       "settings": {
         "kicker": "Quality. Character. Reliability.",
         "heading": "Starlink Mini Gear",
@@ -339,7 +339,7 @@
         "quality_image",
         "quality_story"
       ],
-      "name": "Xstrape Nomad split",
+      "name": "品牌工艺双图",
       "settings": {
         "card_height": 650,
         "card_height_mobile": 250,
@@ -388,14 +388,14 @@
         "tile_cables",
         "tile_kits"
       ],
-      "name": "Xstrape Nomad link tiles",
+      "name": "横向入口卡片",
       "settings": {
         "page_background": "#f3f3f3"
       }
     },
     "xstrape_nomad_explore_heading": {
       "type": "xstrape-home-nomad-heading",
-      "name": "Xstrape Nomad heading",
+      "name": "探索更多标题",
       "settings": {
         "kicker": "",
         "heading": "Explore More",
@@ -435,7 +435,7 @@
         "explore_brand",
         "explore_support"
       ],
-      "name": "Xstrape Nomad split",
+      "name": "探索更多双图",
       "settings": {
         "card_height": 550,
         "card_height_mobile": 250,

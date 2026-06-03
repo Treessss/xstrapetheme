@@ -9,7 +9,7 @@
  */
 {
   "type": "footer",
-  "name": "Footer group",
+  "name": "页脚组件组",
   "sections": {
     "footer": {
       "type": "footer",

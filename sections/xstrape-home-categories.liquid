@@ -68,34 +68,93 @@
 
 {% schema %}
 {
-  "name": "Xstrape categories",
+  "name": "分类入口",
   "class": "shopify-section--xstrape-categories",
   "tag": "section",
   "settings": [
-    { "type": "text", "id": "categories_kicker", "label": "Kicker" },
-    { "type": "text", "id": "categories_title", "label": "Heading", "default": "Shop by Category" },
-    { "type": "header", "content": "Colors" },
-    { "type": "color", "id": "page_background", "label": "Background", "default": "#f3f3f3" },
-    { "type": "color", "id": "text_color", "label": "Text", "default": "#111111" },
-    { "type": "color", "id": "muted_text_color", "label": "Muted text", "default": "#6c6c6c" },
-    { "type": "color", "id": "card_text_color", "label": "Card text", "default": "#ffffff" }
+    {
+      "type": "text",
+      "id": "categories_kicker",
+      "label": "小标题"
+    },
+    {
+      "type": "text",
+      "id": "categories_title",
+      "label": "标题",
+      "default": "Shop by Category"
+    },
+    {
+      "type": "header",
+      "content": "颜色"
+    },
+    {
+      "type": "color",
+      "id": "page_background",
+      "label": "背景",
+      "default": "#f3f3f3"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "文字",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "muted_text_color",
+      "label": "次要文字",
+      "default": "#6c6c6c"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "卡片文字",
+      "default": "#ffffff"
+    }
   ],
   "blocks": [
     {
       "type": "category",
-      "name": "Category card",
+      "name": "分类卡片",
       "settings": [
-        { "type": "text", "id": "badge", "label": "Badge" },
-        { "type": "text", "id": "title", "label": "Title", "default": "Category" },
-        { "type": "text", "id": "text", "label": "Text" },
-        { "type": "text", "id": "asset_image", "label": "Theme asset image filename" },
-        { "type": "image_picker", "id": "image", "label": "Image" },
-        { "type": "url", "id": "link", "label": "Link" }
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "标签"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "标题",
+          "default": "Category"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "文字"
+        },
+        {
+          "type": "text",
+          "id": "asset_image",
+          "label": "主题资源图片文件名"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "图片"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接"
+        }
       ]
     }
   ],
   "presets": [
-    { "name": "Xstrape categories" }
+    {
+      "name": "分类入口"
+    }
   ]
 }
 {% endschema %}

@@ -14,19 +14,49 @@
 
 {% schema %}
 {
-  "name": "Xstrape quote",
+  "name": "引用文案",
   "class": "shopify-section--xstrape-quote",
   "tag": "section",
   "settings": [
-    { "type": "textarea", "id": "quote_text", "label": "Quote", "default": "We design practical Starlink accessories for people who need stable connectivity outside the usual places." },
-    { "type": "text", "id": "quote_author", "label": "Author", "default": "Parts4Star team" },
-    { "type": "header", "content": "Colors" },
-    { "type": "color", "id": "page_background", "label": "Background", "default": "#ffffff" },
-    { "type": "color", "id": "text_color", "label": "Text", "default": "#111111" },
-    { "type": "color", "id": "muted_text_color", "label": "Muted text", "default": "#6c6c6c" }
+    {
+      "type": "textarea",
+      "id": "quote_text",
+      "label": "引用内容",
+      "default": "We design practical Starlink accessories for people who need stable connectivity outside the usual places."
+    },
+    {
+      "type": "text",
+      "id": "quote_author",
+      "label": "作者",
+      "default": "Parts4Star team"
+    },
+    {
+      "type": "header",
+      "content": "颜色"
+    },
+    {
+      "type": "color",
+      "id": "page_background",
+      "label": "背景",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "文字",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "muted_text_color",
+      "label": "次要文字",
+      "default": "#6c6c6c"
+    }
   ],
   "presets": [
-    { "name": "Xstrape quote" }
+    {
+      "name": "引用文案"
+    }
   ]
 }
 {% endschema %}

@@ -44,22 +44,70 @@
 
 {% schema %}
 {
-  "name": "Xstrape hero",
+  "name": "首页主视觉",
   "class": "shopify-section--xstrape-hero",
   "tag": "section",
   "settings": [
-    { "type": "image_picker", "id": "hero_image", "label": "Desktop image" },
-    { "type": "image_picker", "id": "hero_mobile_image", "label": "Mobile image" },
-    { "type": "text", "id": "hero_kicker", "label": "Kicker", "default": "Built for Starlink" },
-    { "type": "text", "id": "hero_heading", "label": "Heading", "default": "Gear That Goes The Distance" },
-    { "type": "text", "id": "hero_subheading", "label": "Subheading", "default": "Power, mount, and protect your Starlink Mini wherever the road takes you." },
-    { "type": "text", "id": "hero_button_text", "label": "Button text", "default": "Shop Travel Gear" },
-    { "type": "url", "id": "hero_button_link", "label": "Button link" },
-    { "type": "color", "id": "hero_text_color", "label": "Text color", "default": "#ffffff" },
-    { "type": "range", "id": "hero_overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 80, "step": 5, "unit": "%", "default": 45 }
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "桌面图片"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_mobile_image",
+      "label": "移动端图片"
+    },
+    {
+      "type": "text",
+      "id": "hero_kicker",
+      "label": "小标题",
+      "default": "Built for Starlink"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "标题",
+      "default": "Gear That Goes The Distance"
+    },
+    {
+      "type": "text",
+      "id": "hero_subheading",
+      "label": "副标题",
+      "default": "Power, mount, and protect your Starlink Mini wherever the road takes you."
+    },
+    {
+      "type": "text",
+      "id": "hero_button_text",
+      "label": "按钮文字",
+      "default": "Shop Travel Gear"
+    },
+    {
+      "type": "url",
+      "id": "hero_button_link",
+      "label": "按钮链接"
+    },
+    {
+      "type": "color",
+      "id": "hero_text_color",
+      "label": "文字颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "hero_overlay_opacity",
+      "label": "遮罩透明度",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 45
+    }
   ],
   "presets": [
-    { "name": "Xstrape hero" }
+    {
+      "name": "首页主视觉"
+    }
   ]
 }
 {% endschema %}
