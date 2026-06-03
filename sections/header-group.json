@@ -39,6 +39,257 @@
         "text_color": "#ffffff"
       }
     },
+    "xstrape-header": {
+      "type": "xstrape-header",
+      "blocks": {
+        "desktop_best": {
+          "type": "desktop_item",
+          "settings": {
+            "title": "Best Sellers",
+            "link": "/collections/all",
+            "split_title": true,
+            "highlight": false,
+            "enable_dropdown": true,
+            "card_1_title": "Suction Cup Mount",
+            "card_1_text": "Secure Mini setup for vehicles",
+            "card_1_link": "/products/starlink-mini-suction-cup-car-mount",
+            "card_1_badge": "New",
+            "card_1_badge_style": "new",
+            "card_2_title": "30V Step-Up Adapter",
+            "card_2_text": "Stable vehicle power",
+            "card_2_link": "/products/starlink-mini-30v-step-up-car-adapter-with-usb-c-port",
+            "card_2_badge": "Hot",
+            "card_2_badge_style": "hot",
+            "card_3_title": "Mini Essentials",
+            "card_3_text": "Top picks for Starlink Mini",
+            "card_3_link": "/collections/for-starlink-mini",
+            "card_3_badge": "",
+            "card_3_badge_style": "new",
+            "link_heading_1": "Shop Best Sellers",
+            "link_list_1": "main-menu",
+            "link_heading_2": "Popular Gear",
+            "link_list_2": "main-menu",
+            "link_heading_3": "Use Cases",
+            "link_list_3": "main-menu",
+            "feature_kicker": "Starter setup",
+            "feature_title": "Build your Mini travel kit",
+            "feature_button_text": "Shop Now",
+            "feature_link": "/collections/for-starlink-mini"
+          }
+        },
+        "desktop_models": {
+          "type": "desktop_item",
+          "settings": {
+            "title": "Models",
+            "link": "/collections/for-starlink-mini",
+            "split_title": false,
+            "highlight": false,
+            "enable_dropdown": true,
+            "card_1_title": "Mini",
+            "card_1_text": "Compact travel accessories",
+            "card_1_link": "/collections/for-starlink-mini",
+            "card_1_badge": "New",
+            "card_1_badge_style": "new",
+            "card_2_title": "Gen 3",
+            "card_2_text": "Home and mobile upgrades",
+            "card_2_link": "/collections/for-starlink-gen-3",
+            "card_2_badge": "",
+            "card_2_badge_style": "new",
+            "card_3_title": "Gen 3 Performance",
+            "card_3_text": "For high-demand setups",
+            "card_3_link": "/collections/for-starlink-gen-3-performance",
+            "card_3_badge": "",
+            "card_3_badge_style": "new",
+            "link_heading_1": "By Model",
+            "link_list_1": "main-menu",
+            "link_heading_2": "Mini Kits",
+            "link_list_2": "main-menu",
+            "link_heading_3": "Quick Links",
+            "link_list_3": "main-menu",
+            "feature_kicker": "Model finder",
+            "feature_title": "Shop by your Starlink",
+            "feature_button_text": "Browse Models",
+            "feature_link": "/collections/mini-for-car-travel"
+          }
+        },
+        "desktop_power": {
+          "type": "desktop_item",
+          "settings": {
+            "title": "Power",
+            "link": "/collections/all",
+            "split_title": false,
+            "highlight": false,
+            "enable_dropdown": true,
+            "card_1_title": "DC Power Cable",
+            "card_1_text": "Vehicle-ready Mini power",
+            "card_1_link": "/products/10ft-cigarette-lighter-to-dc-power-cable-for-starlink-mini",
+            "card_1_badge": "",
+            "card_1_badge_style": "new",
+            "card_2_title": "30V Adapter",
+            "card_2_text": "No power drops",
+            "card_2_link": "/products/starlink-mini-30v-step-up-car-adapter-with-usb-c-port",
+            "card_2_badge": "Hot",
+            "card_2_badge_style": "hot",
+            "card_3_title": "Power Accessories",
+            "card_3_text": "Complete your setup",
+            "card_3_link": "/collections/for-starlink-mini",
+            "card_3_badge": "",
+            "card_3_badge_style": "new",
+            "link_heading_1": "Power Type",
+            "link_list_1": "main-menu",
+            "link_heading_2": "Where You Use It",
+            "link_list_2": "main-menu",
+            "link_heading_3": "Support",
+            "link_list_3": "main-menu",
+            "feature_kicker": "Stable power",
+            "feature_title": "Run Mini from your vehicle",
+            "feature_button_text": "Shop Adapter",
+            "feature_link": "/products/starlink-mini-30v-step-up-car-adapter-with-usb-c-port"
+          }
+        },
+        "desktop_travel": {
+          "type": "desktop_item",
+          "settings": {
+            "title": "Travel Kits",
+            "link": "/collections/mini-for-car-travel",
+            "split_title": true,
+            "highlight": false,
+            "enable_dropdown": false
+          }
+        },
+        "desktop_protection": {
+          "type": "desktop_item",
+          "settings": {
+            "title": "Protection",
+            "link": "/collections/mini-storage-protection",
+            "split_title": false,
+            "highlight": false,
+            "enable_dropdown": false
+          }
+        },
+        "desktop_support": {
+          "type": "desktop_item",
+          "settings": {
+            "title": "Support",
+            "link": "/pages/contact",
+            "split_title": false,
+            "highlight": false,
+            "enable_dropdown": false
+          }
+        },
+        "desktop_sale": {
+          "type": "desktop_item",
+          "settings": {
+            "title": "Sale",
+            "link": "/collections/all",
+            "split_title": false,
+            "highlight": true,
+            "enable_dropdown": false
+          }
+        },
+        "mobile_mini": {
+          "type": "mobile_card",
+          "settings": {
+            "title": "Starlink Mini",
+            "subtitle": "Travel-ready kits and accessories",
+            "link": "/collections/for-starlink-mini",
+            "badge": "New",
+            "badge_style": "new"
+          }
+        },
+        "mobile_power": {
+          "type": "mobile_card",
+          "settings": {
+            "title": "Power",
+            "subtitle": "Adapters, cables and 30V power",
+            "link": "/collections/all",
+            "badge": "Hot",
+            "badge_style": "hot"
+          }
+        },
+        "mobile_mounts": {
+          "type": "mobile_card",
+          "settings": {
+            "title": "Mounts",
+            "subtitle": "Secure setup for vehicles and travel",
+            "link": "/collections/for-starlink-mini",
+            "badge": "",
+            "badge_style": "new"
+          }
+        },
+        "mobile_cables": {
+          "type": "mobile_card",
+          "settings": {
+            "title": "Cables",
+            "subtitle": "Extension and DC power cables",
+            "link": "/collections/all",
+            "badge": "",
+            "badge_style": "new"
+          }
+        },
+        "mobile_sale": {
+          "type": "mobile_card",
+          "settings": {
+            "title": "Sale",
+            "subtitle": "Featured discounts",
+            "link": "/collections/all",
+            "badge": "Featured",
+            "badge_style": "sale"
+          }
+        }
+      },
+      "block_order": [
+        "desktop_best",
+        "desktop_models",
+        "desktop_power",
+        "desktop_travel",
+        "desktop_protection",
+        "desktop_support",
+        "desktop_sale",
+        "mobile_mini",
+        "mobile_power",
+        "mobile_mounts",
+        "mobile_cables",
+        "mobile_sale"
+      ],
+      "settings": {
+        "overlay_on_homepage": true,
+        "enable_sticky": true,
+        "logo": "",
+        "logo_text": "XSTRAPETM",
+        "logo_width": 190,
+        "logo_mobile_width": 150,
+        "desktop_menu_label": "Primary menu",
+        "nav_gap": 34,
+        "nav_font_size": 16,
+        "show_announcement": false,
+        "announcement_text": "Free Shipping on Orders $50+",
+        "announcement_link": "",
+        "announcement_background": "#111111",
+        "announcement_text_color": "#ffffff",
+        "show_search": true,
+        "show_cart": true,
+        "show_account": true,
+        "customer_account_menu": "customer-account-main-menu",
+        "show_country_selector": true,
+        "show_country_flag": true,
+        "show_country_name": false,
+        "max_width": 1920,
+        "side_gap": 16,
+        "desktop_top_gap": 21,
+        "mobile_top_gap": 10,
+        "desktop_height": 80,
+        "mobile_height": 72,
+        "bar_radius": 60,
+        "mobile_panel_radius": 30,
+        "bar_background": "#ffffff",
+        "panel_background": "#f5f5f5",
+        "card_background": "#f5f5f5",
+        "text_color": "#050505",
+        "accent_color": "#0048ff",
+        "shadow_opacity": 18
+      }
+    },
     "header": {
       "type": "header",
       "blocks": {
@@ -125,11 +376,13 @@
         "reduce_padding": true,
         "background_opacity": 100,
         "background_blur_radius": 0
-      }
+      },
+      "disabled": true
     }
   },
   "order": [
     "announcement-bar",
+    "xstrape-header",
     "header"
   ]
 }

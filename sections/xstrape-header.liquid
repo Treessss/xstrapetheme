@@ -1,0 +1,1144 @@
+{%- liquid
+  assign is_home_overlay = false
+  if section.settings.overlay_on_homepage and request.page_type == 'index'
+    assign is_home_overlay = true
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --xstrape-header-max-width: {{ section.settings.max_width }}px;
+    --xstrape-header-side-gap: {{ section.settings.side_gap }}px;
+    --xstrape-header-top-gap: {{ section.settings.desktop_top_gap }}px;
+    --xstrape-header-mobile-top-gap: {{ section.settings.mobile_top_gap }}px;
+    --xstrape-header-height: {{ section.settings.desktop_height }}px;
+    --xstrape-header-mobile-height: {{ section.settings.mobile_height }}px;
+    --xstrape-header-radius: {{ section.settings.bar_radius }}px;
+    --xstrape-header-panel-radius: {{ section.settings.mobile_panel_radius }}px;
+    --xstrape-header-bg: {{ section.settings.bar_background }};
+    --xstrape-header-text: {{ section.settings.text_color }};
+    --xstrape-header-accent: {{ section.settings.accent_color }};
+    --xstrape-header-panel-bg: {{ section.settings.panel_background }};
+    --xstrape-header-card-bg: {{ section.settings.card_background }};
+    --xstrape-header-shadow: 0 18px 38px rgb(0 0 0 / {{ section.settings.shadow_opacity | divided_by: 100.0 }});
+
+    position: {% if is_home_overlay %}absolute{% elsif section.settings.enable_sticky %}sticky{% else %}relative{% endif %};
+    inset-inline: 0;
+    top: calc(var(--sticky-announcement-bar-enabled, 0) * var(--announcement-bar-height, 0px));
+    z-index: 80;
+    background: transparent;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header {
+    position: relative;
+    color: var(--xstrape-header-text);
+    padding-block: var(--xstrape-header-top-gap);
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__announcement {
+    width: min(var(--xstrape-header-max-width), calc(100vw - (var(--xstrape-header-side-gap) * 2)));
+    margin: 0 auto 8px;
+    color: {{ section.settings.announcement_text_color }};
+    font-size: 0.95rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__announcement-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: {{ section.settings.announcement_background }};
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__bar {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: minmax(150px, auto) minmax(0, 1fr) minmax(160px, auto);
+    align-items: center;
+    gap: clamp(16px, 2vw, 34px);
+    width: min(var(--xstrape-header-max-width), calc(100vw - (var(--xstrape-header-side-gap) * 2)));
+    min-height: var(--xstrape-header-height);
+    margin-inline: auto;
+    padding-inline: clamp(28px, 3.2vw, 72px);
+    border-radius: var(--xstrape-header-radius);
+    background: var(--xstrape-header-bg);
+    box-shadow: var(--xstrape-header-shadow), 0 2px 0 rgb(255 255 255 / 0.82) inset;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__logo-link {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__logo-image {
+    display: block;
+    width: {{ section.settings.logo_width }}px;
+    max-width: min({{ section.settings.logo_width }}px, 38vw);
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__logo-text {
+    color: inherit;
+    font-size: clamp(1.35rem, 2vw, 2.15rem);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__nav {
+    justify-self: center;
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__nav-list,
+  #shopify-section-{{ section.id }} .xstrape-header__actions,
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-list,
+  #shopify-section-{{ section.id }} .xstrape-header__mega-cards,
+  #shopify-section-{{ section.id }} .xstrape-header__mega-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__nav-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(16px, {{ section.settings.nav_gap | divided_by: 10.0 }}vw, {{ section.settings.nav_gap }}px);
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__nav-item {
+    position: static;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__nav-summary,
+  #shopify-section-{{ section.id }} .xstrape-header__nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--xstrape-header-text);
+    font-size: {{ section.settings.nav_font_size }}px;
+    font-weight: 850;
+    letter-spacing: 0;
+    line-height: 1.05;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__nav-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__nav-item[open] .xstrape-header__nav-summary,
+  #shopify-section-{{ section.id }} .xstrape-header__nav-summary:hover,
+  #shopify-section-{{ section.id }} .xstrape-header__nav-link:hover,
+  #shopify-section-{{ section.id }} .xstrape-header__nav-link--highlight {
+    color: var(--xstrape-header-accent);
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mega-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    z-index: 30;
+    display: none;
+    padding: 18px;
+    border: 1px solid rgb(0 0 0 / 0.06);
+    border-radius: 30px;
+    background: var(--xstrape-header-panel-bg);
+    color: #111;
+    box-shadow: 0 24px 70px rgb(0 0 0 / 0.18);
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__nav-item[open] .xstrape-header__mega-panel {
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mega-inner {
+    display: grid;
+    grid-template-columns: minmax(330px, 0.9fr) minmax(0, 1.45fr) minmax(250px, 0.7fr);
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mega-cards,
+  #shopify-section-{{ section.id }} .xstrape-header__mega-links {
+    display: grid;
+    gap: 10px;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mega-link-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mega-card {
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr) auto;
+    gap: 14px;
+    align-items: center;
+    min-height: 92px;
+    padding: 10px 12px 10px 10px;
+    border-radius: 18px;
+    background: var(--xstrape-header-card-bg);
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.18s ease, background 0.18s ease;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mega-card:hover {
+    transform: translateY(-1px);
+    background: #ececec;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__thumb,
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 30% 24%, rgb(255 255 255 / 0.95), rgb(255 255 255 / 0) 35%),
+      linear-gradient(145deg, #fafafa, #d7d7d7 62%, #9a9a9a);
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.06);
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__thumb {
+    width: 76px;
+    height: 76px;
+    border-radius: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__thumb img,
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__thumb--placeholder::before,
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb--placeholder::before,
+  #shopify-section-{{ section.id }} .xstrape-header__thumb--placeholder::after,
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb--placeholder::after {
+    content: "";
+    position: absolute;
+    border: 2px solid rgb(17 17 17 / 0.5);
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__thumb--placeholder::before,
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb--placeholder::before {
+    width: 52%;
+    height: 34%;
+    left: 24%;
+    top: 36%;
+    border-radius: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__thumb--placeholder::after,
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb--placeholder::after {
+    width: 24%;
+    height: 24%;
+    left: 38%;
+    top: 18%;
+    border-radius: 999px;
+    border-bottom-color: transparent;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mega-title,
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0;
+    font-weight: 900;
+    line-height: 1.08;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mega-title {
+    margin-bottom: 4px;
+    font-size: 0.98rem;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mega-text,
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-text {
+    margin: 0;
+    color: rgb(0 0 0 / 0.6);
+    font-weight: 700;
+    line-height: 1.28;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mega-text {
+    font-size: 0.82rem;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 24px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: var(--xstrape-header-accent);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 900;
+    line-height: 1;
+    text-transform: uppercase;
+    box-shadow: 0 8px 18px rgb(0 72 255 / 0.25);
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__badge--hot,
+  #shopify-section-{{ section.id }} .xstrape-header__badge--sale {
+    background: #f5164f;
+    box-shadow: 0 8px 18px rgb(245 22 79 / 0.25);
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__arrow {
+    color: rgb(0 0 0 / 0.42);
+    font-size: 1.7rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mega-heading {
+    margin: 8px 0 14px;
+    color: #111;
+    font-size: 0.82rem;
+    font-weight: 900;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mega-links a {
+    color: rgb(0 0 0 / 0.64);
+    font-size: 0.94rem;
+    font-weight: 750;
+    line-height: 1.25;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mega-links a:hover {
+    color: #111;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__feature {
+    position: relative;
+    display: flex;
+    align-items: end;
+    min-height: 100%;
+    overflow: hidden;
+    padding: 22px;
+    border-radius: 24px;
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.5), rgb(0 0 0 / 0.78)),
+      linear-gradient(145deg, #f2f2f2, #101010);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__feature img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__feature::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(0 0 0 / 0.02), rgb(0 0 0 / 0.72));
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__feature-body {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__feature-kicker {
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__feature-title {
+    font-size: 1.35rem;
+    font-weight: 900;
+    line-height: 1.08;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__feature-cta {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 32px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: #fff;
+    color: #111;
+    font-size: 0.78rem;
+    font-weight: 900;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__icon {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    background: transparent;
+    color: var(--xstrape-header-text);
+    line-height: 0;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2.4;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__cart-count {
+    position: absolute;
+    top: 4px;
+    right: 3px;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: var(--xstrape-header-accent);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 900;
+    line-height: 17px;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__cart-count.is-empty {
+    opacity: 0;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__menu-close {
+    display: none;
+  }
+
+  html.xstrape-mobile-menu-open #shopify-section-{{ section.id }} .xstrape-header__menu-open {
+    display: none;
+  }
+
+  html.xstrape-mobile-menu-open #shopify-section-{{ section.id }} .xstrape-header__menu-close {
+    display: inline-flex;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-scrim {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgb(0 0 0 / 0.62);
+    opacity: 0;
+    transition: opacity 0.24s ease;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-surface {
+    position: absolute;
+    top: var(--xstrape-mobile-panel-top, var(--xstrape-header-mobile-top-gap));
+    left: var(--xstrape-header-side-gap);
+    right: var(--xstrape-header-side-gap);
+    max-height: calc(100dvh - var(--xstrape-mobile-panel-top, var(--xstrape-header-mobile-top-gap)) - var(--xstrape-header-mobile-top-gap));
+    overflow: auto;
+    overscroll-behavior: contain;
+    padding: calc(var(--xstrape-header-bar-real-height, var(--xstrape-header-mobile-height)) + 12px) 14px 22px;
+    border-radius: var(--xstrape-header-panel-radius);
+    background: var(--xstrape-header-panel-bg);
+    box-shadow: 0 22px 50px rgb(0 0 0 / 0.25);
+    transform: translateY(-22px);
+    opacity: 0;
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(0 0 0 / 0.28) transparent;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-panel.is-open {
+    pointer-events: auto;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-panel.is-open .xstrape-header__mobile-scrim {
+    opacity: 1;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-panel.is-open .xstrape-header__mobile-surface {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-card {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr) auto;
+    gap: 16px;
+    align-items: center;
+    min-height: 128px;
+    padding: 10px 16px 10px 10px;
+    border-radius: 22px;
+    background: #fff;
+    color: #080808;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.14);
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb {
+    width: 112px;
+    height: 108px;
+    border-radius: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-title {
+    margin-bottom: 8px;
+    font-size: clamp(1.22rem, 6.4vw, 1.85rem);
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-text {
+    font-size: clamp(0.94rem, 4vw, 1.16rem);
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-arrow {
+    color: #050505;
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  @media screen and (max-width: 1149px) {
+    html.xstrape-mobile-menu-open {
+      overflow: hidden;
+    }
+
+    #shopify-section-{{ section.id }} {
+      --xstrape-header-side-gap: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-header {
+      padding-block: var(--xstrape-header-mobile-top-gap);
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-header__announcement {
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-header__bar {
+      grid-template-columns: minmax(0, 1fr) auto;
+      width: calc(100vw - (var(--xstrape-header-side-gap) * 2));
+      min-height: var(--xstrape-header-mobile-height);
+      padding-inline: 22px;
+      gap: 12px;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-header__logo-image {
+      width: {{ section.settings.logo_mobile_width }}px;
+      max-width: min({{ section.settings.logo_mobile_width }}px, 45vw);
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-header__logo-text {
+      font-size: clamp(1.18rem, 7vw, 1.7rem);
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-header__nav,
+    #shopify-section-{{ section.id }} .xstrape-header__desktop-only {
+      display: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-header__actions {
+      gap: 10px;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-header__icon {
+      width: 34px;
+      height: 34px;
+    }
+  }
+
+  @media screen and (min-width: 1150px) {
+    #shopify-section-{{ section.id }} .xstrape-header__mobile-only,
+    #shopify-section-{{ section.id }} .xstrape-header__mobile-panel {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 430px) {
+    #shopify-section-{{ section.id }} .xstrape-header__mobile-card {
+      grid-template-columns: minmax(88px, 30vw) minmax(0, 1fr) auto;
+      min-height: 116px;
+      gap: 12px;
+      padding-right: 12px;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+    }
+  }
+</style>
+
+<div class="xstrape-header" data-xstrape-header>
+  {%- if section.settings.show_announcement and section.settings.announcement_text != blank -%}
+    <div class="xstrape-header__announcement">
+      <a class="xstrape-header__announcement-link" href="{{ section.settings.announcement_link | default: '#' }}">
+        {{ section.settings.announcement_text | escape }}
+      </a>
+    </div>
+  {%- endif -%}
+
+  <div class="xstrape-header__bar" data-xstrape-header-bar>
+    {%- capture logo_content -%}
+      {%- if section.settings.logo != blank -%}
+        {%- assign logo_render_width = section.settings.logo_width | times: 3 -%}
+        {%- assign logo_alt = section.settings.logo.alt | default: section.settings.logo_text | default: shop.name -%}
+        {{ section.settings.logo | image_url: width: logo_render_width | image_tag: loading: 'eager', class: 'xstrape-header__logo-image', alt: logo_alt }}
+      {%- else -%}
+        <span class="xstrape-header__logo-text">{{ section.settings.logo_text | default: shop.name | escape }}</span>
+      {%- endif -%}
+    {%- endcapture -%}
+
+    {%- if request.page_type == 'index' -%}
+      <h1 class="xstrape-header__logo">
+        <a class="xstrape-header__logo-link" href="{{ routes.root_url }}">{{ logo_content }}</a>
+      </h1>
+    {%- else -%}
+      <div class="xstrape-header__logo">
+        <a class="xstrape-header__logo-link" href="{{ routes.root_url }}">{{ logo_content }}</a>
+      </div>
+    {%- endif -%}
+
+    <nav class="xstrape-header__nav" aria-label="{{ section.settings.desktop_menu_label | escape }}">
+      <ul class="xstrape-header__nav-list" role="list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'desktop_item' -%}
+            {%- liquid
+              assign item_url = block.settings.link | default: '#'
+              assign has_dropdown = block.settings.enable_dropdown
+            -%}
+
+            <li class="xstrape-header__nav-item" {{ block.shopify_attributes }}>
+              {%- if has_dropdown -%}
+                <details class="xstrape-header__nav-item" data-xstrape-mega-item>
+                  <summary class="xstrape-header__nav-summary">
+                    {%- if block.settings.split_title -%}
+                      {{ block.settings.title | escape | replace: ' ', '<br>' }}
+                    {%- else -%}
+                      {{ block.settings.title | escape }}
+                    {%- endif -%}
+                  </summary>
+
+                  <div class="xstrape-header__mega-panel">
+                    <div class="xstrape-header__mega-inner">
+                      <ul class="xstrape-header__mega-cards" role="list">
+                        {%- if block.settings.card_1_title != blank -%}
+                          <li>
+                            <a class="xstrape-header__mega-card" href="{{ block.settings.card_1_link | default: item_url }}">
+                              <span class="xstrape-header__thumb {% if block.settings.card_1_image == blank %}xstrape-header__thumb--placeholder{% endif %}">
+                                {%- if block.settings.card_1_image != blank -%}
+                                  {{ block.settings.card_1_image | image_url: width: 240 | image_tag: loading: 'lazy', sizes: '76px' }}
+                                {%- endif -%}
+                              </span>
+                              <span>
+                                <span class="xstrape-header__mega-title">
+                                  {{ block.settings.card_1_title | escape }}
+                                  {%- if block.settings.card_1_badge != blank -%}
+                                    <span class="xstrape-header__badge xstrape-header__badge--{{ block.settings.card_1_badge_style }}">{{ block.settings.card_1_badge | escape }}</span>
+                                  {%- endif -%}
+                                </span>
+                                {%- if block.settings.card_1_text != blank -%}
+                                  <span class="xstrape-header__mega-text">{{ block.settings.card_1_text | escape }}</span>
+                                {%- endif -%}
+                              </span>
+                              <span class="xstrape-header__arrow" aria-hidden="true">&rsaquo;</span>
+                            </a>
+                          </li>
+                        {%- endif -%}
+
+                        {%- if block.settings.card_2_title != blank -%}
+                          <li>
+                            <a class="xstrape-header__mega-card" href="{{ block.settings.card_2_link | default: item_url }}">
+                              <span class="xstrape-header__thumb {% if block.settings.card_2_image == blank %}xstrape-header__thumb--placeholder{% endif %}">
+                                {%- if block.settings.card_2_image != blank -%}
+                                  {{ block.settings.card_2_image | image_url: width: 240 | image_tag: loading: 'lazy', sizes: '76px' }}
+                                {%- endif -%}
+                              </span>
+                              <span>
+                                <span class="xstrape-header__mega-title">
+                                  {{ block.settings.card_2_title | escape }}
+                                  {%- if block.settings.card_2_badge != blank -%}
+                                    <span class="xstrape-header__badge xstrape-header__badge--{{ block.settings.card_2_badge_style }}">{{ block.settings.card_2_badge | escape }}</span>
+                                  {%- endif -%}
+                                </span>
+                                {%- if block.settings.card_2_text != blank -%}
+                                  <span class="xstrape-header__mega-text">{{ block.settings.card_2_text | escape }}</span>
+                                {%- endif -%}
+                              </span>
+                              <span class="xstrape-header__arrow" aria-hidden="true">&rsaquo;</span>
+                            </a>
+                          </li>
+                        {%- endif -%}
+
+                        {%- if block.settings.card_3_title != blank -%}
+                          <li>
+                            <a class="xstrape-header__mega-card" href="{{ block.settings.card_3_link | default: item_url }}">
+                              <span class="xstrape-header__thumb {% if block.settings.card_3_image == blank %}xstrape-header__thumb--placeholder{% endif %}">
+                                {%- if block.settings.card_3_image != blank -%}
+                                  {{ block.settings.card_3_image | image_url: width: 240 | image_tag: loading: 'lazy', sizes: '76px' }}
+                                {%- endif -%}
+                              </span>
+                              <span>
+                                <span class="xstrape-header__mega-title">
+                                  {{ block.settings.card_3_title | escape }}
+                                  {%- if block.settings.card_3_badge != blank -%}
+                                    <span class="xstrape-header__badge xstrape-header__badge--{{ block.settings.card_3_badge_style }}">{{ block.settings.card_3_badge | escape }}</span>
+                                  {%- endif -%}
+                                </span>
+                                {%- if block.settings.card_3_text != blank -%}
+                                  <span class="xstrape-header__mega-text">{{ block.settings.card_3_text | escape }}</span>
+                                {%- endif -%}
+                              </span>
+                              <span class="xstrape-header__arrow" aria-hidden="true">&rsaquo;</span>
+                            </a>
+                          </li>
+                        {%- endif -%}
+                      </ul>
+
+                      <div class="xstrape-header__mega-link-grid">
+                        {%- for index in (1..3) -%}
+                          {%- liquid
+                            assign heading_key = 'link_heading_' | append: index
+                            assign list_key = 'link_list_' | append: index
+                            assign link_list = block.settings[list_key]
+                            assign heading = block.settings[heading_key] | default: link_list.title
+                          -%}
+                          {%- if link_list != blank and link_list.links.size > 0 -%}
+                            <div>
+                              <p class="xstrape-header__mega-heading">{{ heading | escape }}</p>
+                              <ul class="xstrape-header__mega-links" role="list">
+                                {%- for link in link_list.links -%}
+                                  <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+                                {%- endfor -%}
+                              </ul>
+                            </div>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+
+                      <a class="xstrape-header__feature" href="{{ block.settings.feature_link | default: item_url }}">
+                        {%- if block.settings.feature_image != blank -%}
+                          {{ block.settings.feature_image | image_url: width: 700 | image_tag: loading: 'lazy', sizes: '280px' }}
+                        {%- endif -%}
+                        <span class="xstrape-header__feature-body">
+                          {%- if block.settings.feature_kicker != blank -%}
+                            <span class="xstrape-header__feature-kicker">{{ block.settings.feature_kicker | escape }}</span>
+                          {%- endif -%}
+                          <span class="xstrape-header__feature-title">{{ block.settings.feature_title | default: block.settings.title | escape }}</span>
+                          {%- if block.settings.feature_button_text != blank -%}
+                            <span class="xstrape-header__feature-cta">{{ block.settings.feature_button_text | escape }}</span>
+                          {%- endif -%}
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </details>
+              {%- else -%}
+                <a class="xstrape-header__nav-link {% if block.settings.highlight %}xstrape-header__nav-link--highlight{% endif %}" href="{{ item_url }}">
+                  {%- if block.settings.split_title -%}
+                    {{ block.settings.title | escape | replace: ' ', '<br>' }}
+                  {%- else -%}
+                    {{ block.settings.title | escape }}
+                  {%- endif -%}
+                </a>
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <ul class="xstrape-header__actions" role="list">
+      {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+        <li class="xstrape-header__desktop-only">
+          {%- render 'localization-selector', type: 'country', show_country_name: section.settings.show_country_name, show_country_flag: section.settings.show_country_flag, popover_vertical_position: 'end' -%}
+        </li>
+      {%- endif -%}
+
+      {%- if section.settings.show_search -%}
+        <li>
+          <a class="xstrape-header__icon" href="{{ routes.search_url }}" aria-controls="search-drawer">
+            <span class="sr-only">{{ 'header.general.search' | t }}</span>
+            {%- render 'icon' with 'search' -%}
+          </a>
+        </li>
+      {%- endif -%}
+
+      {%- if section.settings.show_account and shop.customer_accounts_enabled -%}
+        <li class="xstrape-header__desktop-only">
+          <shopify-account menu="{{ section.settings.customer_account_menu }}">
+            <div slot="signed-out-avatar" class="xstrape-header__icon">
+              <span class="sr-only">{{ 'header.general.login' | t }}</span>
+              {%- render 'icon' with 'account' -%}
+            </div>
+          </shopify-account>
+        </li>
+      {%- endif -%}
+
+      {%- if section.settings.show_cart -%}
+        <li>
+          <a class="xstrape-header__icon" href="{{ routes.cart_url }}" data-no-instant {% if settings.cart_type != 'page' and request.page_type != 'cart' %}aria-controls="cart-drawer"{% endif %}>
+            <span class="sr-only">{{ 'header.general.cart' | t }}</span>
+            {%- render 'icon' with 'cart' -%}
+            <span class="xstrape-header__cart-count {% if cart.item_count == 0 %}is-empty{% endif %}" aria-hidden="true">{{ cart.item_count }}</span>
+          </a>
+        </li>
+      {%- endif -%}
+
+      <li class="xstrape-header__mobile-only">
+        <button class="xstrape-header__icon" type="button" aria-controls="xstrape-mobile-panel-{{ section.id }}" aria-expanded="false" data-xstrape-mobile-menu-toggle>
+          <span class="sr-only">{{ 'header.general.menu' | t }}</span>
+          <span class="xstrape-header__menu-open">{%- render 'icon' with 'hamburger' -%}</span>
+          <span class="xstrape-header__menu-close">{%- render 'icon' with 'close', width: 25, height: 25 -%}</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div id="xstrape-mobile-panel-{{ section.id }}" class="xstrape-header__mobile-panel" hidden>
+    <button class="xstrape-header__mobile-scrim" type="button" aria-label="{{ 'general.accessibility.close' | t | escape }}" data-xstrape-mobile-menu-close></button>
+    <div class="xstrape-header__mobile-surface" role="dialog" aria-modal="true" aria-label="{{ 'header.general.menu' | t | escape }}" tabindex="-1">
+      <ul class="xstrape-header__mobile-list" role="list">
+        {%- assign has_mobile_cards = false -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'mobile_card' -%}
+            {%- assign has_mobile_cards = true -%}
+            <li {{ block.shopify_attributes }}>
+              <a class="xstrape-header__mobile-card" href="{{ block.settings.link | default: '#' }}">
+                <span class="xstrape-header__mobile-thumb {% if block.settings.image == blank %}xstrape-header__mobile-thumb--placeholder{% endif %}">
+                  {%- if block.settings.image != blank -%}
+                    {{ block.settings.image | image_url: width: 320 | image_tag: loading: 'lazy', sizes: '112px' }}
+                  {%- endif -%}
+                </span>
+                <span>
+                  <span class="xstrape-header__mobile-title">
+                    {{ block.settings.title | escape }}
+                    {%- if block.settings.badge != blank -%}
+                      <span class="xstrape-header__badge xstrape-header__badge--{{ block.settings.badge_style }}">{{ block.settings.badge | escape }}</span>
+                    {%- endif -%}
+                  </span>
+                  {%- if block.settings.subtitle != blank -%}
+                    <span class="xstrape-header__mobile-text">{{ block.settings.subtitle | escape }}</span>
+                  {%- endif -%}
+                </span>
+                <span class="xstrape-header__mobile-arrow" aria-hidden="true">&rsaquo;</span>
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- unless has_mobile_cards -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'desktop_item' -%}
+              <li>
+                <a class="xstrape-header__mobile-card" href="{{ block.settings.link | default: '#' }}">
+                  <span class="xstrape-header__mobile-thumb xstrape-header__mobile-thumb--placeholder"></span>
+                  <span>
+                    <span class="xstrape-header__mobile-title">{{ block.settings.title | escape }}</span>
+                    {%- if block.settings.card_1_text != blank -%}
+                      <span class="xstrape-header__mobile-text">{{ block.settings.card_1_text | escape }}</span>
+                    {%- endif -%}
+                  </span>
+                  <span class="xstrape-header__mobile-arrow" aria-hidden="true">&rsaquo;</span>
+                </a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endunless -%}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const section = document.getElementById('shopify-section-{{ section.id }}');
+    if (!section) return;
+
+    const bar = section.querySelector('[data-xstrape-header-bar]');
+    const panel = section.querySelector('#xstrape-mobile-panel-{{ section.id }}');
+    const toggles = section.querySelectorAll('[data-xstrape-mobile-menu-toggle]');
+    const desktopQuery = window.matchMedia('(min-width: 1150px)');
+    let closeTimer;
+
+    const updateMetrics = () => {
+      if (!bar) return;
+      const rect = bar.getBoundingClientRect();
+      section.style.setProperty('--xstrape-header-bar-real-height', `${Math.round(rect.height)}px`);
+      section.style.setProperty('--xstrape-mobile-panel-top', `${Math.round(rect.top)}px`);
+      document.documentElement.style.setProperty('--header-height', `${Math.round(section.clientHeight)}px`);
+    };
+
+    const closeDesktopItems = (activeItem) => {
+      section.querySelectorAll('[data-xstrape-mega-item]').forEach((item) => {
+        if (item !== activeItem) item.removeAttribute('open');
+      });
+    };
+
+    section.querySelectorAll('[data-xstrape-mega-item]').forEach((item) => {
+      item.addEventListener('mouseenter', () => {
+        if (!desktopQuery.matches) return;
+        closeDesktopItems(item);
+        item.setAttribute('open', '');
+      });
+
+      item.addEventListener('mouseleave', () => {
+        if (!desktopQuery.matches) return;
+        item.removeAttribute('open');
+      });
+
+      item.querySelector('summary')?.addEventListener('click', () => {
+        if (!desktopQuery.matches) return;
+        closeDesktopItems(item);
+      });
+    });
+
+    const setOpen = (open) => {
+      if (!panel || toggles.length === 0) return;
+      window.clearTimeout(closeTimer);
+
+      toggles.forEach((toggle) => {
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+
+      document.documentElement.classList.toggle('xstrape-mobile-menu-open', open);
+
+      if (open) {
+        updateMetrics();
+        panel.hidden = false;
+        panel.offsetHeight;
+        panel.classList.add('is-open');
+        panel.querySelector('.xstrape-header__mobile-surface')?.focus({ preventScroll: true });
+      } else {
+        panel.classList.remove('is-open');
+        closeTimer = window.setTimeout(() => {
+          panel.hidden = true;
+        }, 280);
+      }
+    };
+
+    toggles.forEach((toggle) => {
+      toggle.addEventListener('click', (event) => {
+        if (desktopQuery.matches) return;
+        event.preventDefault();
+        event.stopPropagation();
+        setOpen(!panel?.classList.contains('is-open'));
+      });
+    });
+
+    panel?.addEventListener('click', (event) => {
+      if (event.target.closest('[data-xstrape-mobile-menu-close]') || event.target.closest('a')) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeDesktopItems();
+        if (panel?.classList.contains('is-open')) setOpen(false);
+      }
+    });
+
+    const onDesktopChange = (event) => {
+      if (event.matches) setOpen(false);
+    };
+
+    updateMetrics();
+    window.addEventListener('resize', updateMetrics, { passive: true });
+
+    if (desktopQuery.addEventListener) {
+      desktopQuery.addEventListener('change', onDesktopChange);
+    } else {
+      desktopQuery.addListener(onDesktopChange);
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Xstrape header",
+  "class": "shopify-section--xstrape-header",
+  "tag": "header",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    { "type": "checkbox", "id": "overlay_on_homepage", "label": "Overlay on homepage hero", "default": true },
+    { "type": "checkbox", "id": "enable_sticky", "label": "Sticky on non-home pages", "default": true },
+    { "type": "header", "content": "Logo" },
+    { "type": "image_picker", "id": "logo", "label": "Logo image" },
+    { "type": "text", "id": "logo_text", "label": "Logo text", "default": "XSTRAPETM" },
+    { "type": "range", "id": "logo_width", "min": 80, "max": 320, "step": 5, "unit": "px", "label": "Desktop logo width", "default": 190 },
+    { "type": "range", "id": "logo_mobile_width", "min": 80, "max": 220, "step": 5, "unit": "px", "label": "Mobile logo width", "default": 150 },
+    { "type": "header", "content": "Desktop navigation" },
+    { "type": "text", "id": "desktop_menu_label", "label": "Navigation label", "default": "Primary menu" },
+    { "type": "range", "id": "nav_gap", "min": 12, "max": 54, "step": 2, "unit": "px", "label": "Navigation gap", "default": 34 },
+    { "type": "range", "id": "nav_font_size", "min": 12, "max": 22, "step": 1, "unit": "px", "label": "Navigation font size", "default": 16 },
+    { "type": "header", "content": "Announcement" },
+    { "type": "checkbox", "id": "show_announcement", "label": "Show announcement", "default": false },
+    { "type": "text", "id": "announcement_text", "label": "Text", "default": "Free Shipping on Orders $50+" },
+    { "type": "url", "id": "announcement_link", "label": "Link" },
+    { "type": "color", "id": "announcement_background", "label": "Background", "default": "#111111" },
+    { "type": "color", "id": "announcement_text_color", "label": "Text color", "default": "#ffffff" },
+    { "type": "header", "content": "Actions" },
+    { "type": "checkbox", "id": "show_search", "label": "Show search", "default": true },
+    { "type": "checkbox", "id": "show_cart", "label": "Show cart", "default": true },
+    { "type": "checkbox", "id": "show_account", "label": "Show account", "default": true },
+    { "type": "link_list", "id": "customer_account_menu", "label": "Customer account menu", "default": "customer-account-main-menu" },
+    { "type": "checkbox", "id": "show_country_selector", "label": "Show country/region selector", "default": true },
+    { "type": "checkbox", "id": "show_country_flag", "label": "Show country flag", "default": true },
+    { "type": "checkbox", "id": "show_country_name", "label": "Show country name", "default": false },
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "max_width", "min": 1200, "max": 2000, "step": 20, "unit": "px", "label": "Max width", "default": 1920 },
+    { "type": "range", "id": "side_gap", "min": 8, "max": 48, "step": 2, "unit": "px", "label": "Side gap", "default": 16 },
+    { "type": "range", "id": "desktop_top_gap", "min": 0, "max": 40, "step": 1, "unit": "px", "label": "Desktop top gap", "default": 21 },
+    { "type": "range", "id": "mobile_top_gap", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Mobile top gap", "default": 10 },
+    { "type": "range", "id": "desktop_height", "min": 64, "max": 110, "step": 2, "unit": "px", "label": "Desktop bar height", "default": 80 },
+    { "type": "range", "id": "mobile_height", "min": 58, "max": 92, "step": 2, "unit": "px", "label": "Mobile bar height", "default": 72 },
+    { "type": "range", "id": "bar_radius", "min": 18, "max": 80, "step": 2, "unit": "px", "label": "Bar radius", "default": 60 },
+    { "type": "range", "id": "mobile_panel_radius", "min": 18, "max": 42, "step": 1, "unit": "px", "label": "Mobile panel radius", "default": 30 },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "bar_background", "label": "Bar background", "default": "#ffffff" },
+    { "type": "color", "id": "panel_background", "label": "Mega/mobile panel background", "default": "#f5f5f5" },
+    { "type": "color", "id": "card_background", "label": "Mega card background", "default": "#f5f5f5" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#050505" },
+    { "type": "color", "id": "accent_color", "label": "Accent color", "default": "#0048ff" },
+    { "type": "range", "id": "shadow_opacity", "min": 0, "max": 35, "step": 1, "unit": "%", "label": "Shadow opacity", "default": 18 }
+  ],
+  "blocks": [
+    {
+      "type": "desktop_item",
+      "name": "Desktop menu item",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Menu item" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "checkbox", "id": "split_title", "label": "Split title onto two lines", "default": false },
+        { "type": "checkbox", "id": "highlight", "label": "Highlight link", "default": false },
+        { "type": "checkbox", "id": "enable_dropdown", "label": "Show mega menu", "default": false },
+        { "type": "header", "content": "Card 1" },
+        { "type": "image_picker", "id": "card_1_image", "label": "Image" },
+        { "type": "text", "id": "card_1_title", "label": "Title" },
+        { "type": "text", "id": "card_1_text", "label": "Subtitle" },
+        { "type": "url", "id": "card_1_link", "label": "Link" },
+        { "type": "text", "id": "card_1_badge", "label": "Badge" },
+        { "type": "select", "id": "card_1_badge_style", "label": "Badge style", "options": [{ "value": "new", "label": "Blue" }, { "value": "hot", "label": "Red" }, { "value": "sale", "label": "Sale" }], "default": "new" },
+        { "type": "header", "content": "Card 2" },
+        { "type": "image_picker", "id": "card_2_image", "label": "Image" },
+        { "type": "text", "id": "card_2_title", "label": "Title" },
+        { "type": "text", "id": "card_2_text", "label": "Subtitle" },
+        { "type": "url", "id": "card_2_link", "label": "Link" },
+        { "type": "text", "id": "card_2_badge", "label": "Badge" },
+        { "type": "select", "id": "card_2_badge_style", "label": "Badge style", "options": [{ "value": "new", "label": "Blue" }, { "value": "hot", "label": "Red" }, { "value": "sale", "label": "Sale" }], "default": "hot" },
+        { "type": "header", "content": "Card 3" },
+        { "type": "image_picker", "id": "card_3_image", "label": "Image" },
+        { "type": "text", "id": "card_3_title", "label": "Title" },
+        { "type": "text", "id": "card_3_text", "label": "Subtitle" },
+        { "type": "url", "id": "card_3_link", "label": "Link" },
+        { "type": "text", "id": "card_3_badge", "label": "Badge" },
+        { "type": "select", "id": "card_3_badge_style", "label": "Badge style", "options": [{ "value": "new", "label": "Blue" }, { "value": "hot", "label": "Red" }, { "value": "sale", "label": "Sale" }], "default": "new" },
+        { "type": "header", "content": "Link columns" },
+        { "type": "text", "id": "link_heading_1", "label": "Column 1 heading" },
+        { "type": "link_list", "id": "link_list_1", "label": "Column 1 menu" },
+        { "type": "text", "id": "link_heading_2", "label": "Column 2 heading" },
+        { "type": "link_list", "id": "link_list_2", "label": "Column 2 menu" },
+        { "type": "text", "id": "link_heading_3", "label": "Column 3 heading" },
+        { "type": "link_list", "id": "link_list_3", "label": "Column 3 menu" },
+        { "type": "header", "content": "Feature tile" },
+        { "type": "image_picker", "id": "feature_image", "label": "Image" },
+        { "type": "text", "id": "feature_kicker", "label": "Kicker", "default": "Starter setup" },
+        { "type": "text", "id": "feature_title", "label": "Title", "default": "Build your setup" },
+        { "type": "text", "id": "feature_button_text", "label": "Button text", "default": "Shop Now" },
+        { "type": "url", "id": "feature_link", "label": "Link" }
+      ]
+    },
+    {
+      "type": "mobile_card",
+      "name": "Mobile menu card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Menu card" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Add a short description" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "badge", "label": "Badge" },
+        { "type": "select", "id": "badge_style", "label": "Badge style", "options": [{ "value": "new", "label": "Blue" }, { "value": "hot", "label": "Red" }, { "value": "sale", "label": "Sale" }], "default": "new" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Xstrape header",
+      "blocks": [
+        { "type": "desktop_item", "settings": { "title": "Best Sellers", "split_title": true, "enable_dropdown": true, "card_1_title": "Suction Cup Mount", "card_1_text": "Secure Mini setup for vehicles", "card_1_badge": "New", "card_2_title": "30V Step-Up Adapter", "card_2_text": "Stable vehicle power", "card_2_badge": "Hot", "card_2_badge_style": "hot", "card_3_title": "Mini Essentials", "card_3_text": "Top picks for Starlink Mini", "feature_title": "Build your Mini travel kit" } },
+        { "type": "desktop_item", "settings": { "title": "Models", "enable_dropdown": true, "card_1_title": "Mini", "card_1_text": "Compact travel accessories", "card_1_badge": "New", "card_2_title": "Gen 3", "card_2_text": "Home and mobile upgrades", "card_3_title": "Gen 3 Performance", "card_3_text": "For high-demand setups", "feature_title": "Shop by your Starlink" } },
+        { "type": "desktop_item", "settings": { "title": "Power", "enable_dropdown": true, "card_1_title": "DC Power Cable", "card_1_text": "Vehicle-ready Mini power", "card_2_title": "30V Adapter", "card_2_text": "No power drops", "card_2_badge": "Hot", "card_2_badge_style": "hot", "card_3_title": "Power Accessories", "card_3_text": "Complete your setup", "feature_title": "Run Mini from your vehicle" } },
+        { "type": "desktop_item", "settings": { "title": "Travel Kits", "split_title": true } },
+        { "type": "desktop_item", "settings": { "title": "Protection" } },
+        { "type": "desktop_item", "settings": { "title": "Support" } },
+        { "type": "desktop_item", "settings": { "title": "Sale", "highlight": true } },
+        { "type": "mobile_card", "settings": { "title": "Starlink Mini", "subtitle": "Travel-ready kits and accessories", "badge": "New" } },
+        { "type": "mobile_card", "settings": { "title": "Power", "subtitle": "Adapters, cables and 30V power", "badge": "Hot", "badge_style": "hot" } },
+        { "type": "mobile_card", "settings": { "title": "Mounts", "subtitle": "Secure setup for vehicles and travel" } },
+        { "type": "mobile_card", "settings": { "title": "Cables", "subtitle": "Extension and DC power cables" } },
+        { "type": "mobile_card", "settings": { "title": "Sale", "subtitle": "Featured discounts", "badge": "Featured", "badge_style": "sale" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
