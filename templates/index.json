@@ -13,15 +13,15 @@
       "type": "xstrape-home-hero",
       "name": "首页主视觉",
       "settings": {
-        "hero_image": "shopify://shop_images/1.jpg",
-        "hero_mobile_image": "shopify://shop_images/five_home_anner.jpg",
+        "hero_image": "shopify://shop_images/ChatGPT_Image_2026_6_3_00_42_03.png",
+        "hero_mobile_image": "shopify://shop_images/ChatGPT_Image_2026_6_3_00_43_18.png",
         "hero_kicker": "Built for Starlink Mini",
         "hero_heading": "Gear That Goes The Distance",
         "hero_subheading": "Power, mount, and protect your Starlink Mini from the driveway to the backcountry.",
         "hero_button_text": "Shop Travel Gear",
         "hero_button_link": "shopify://collections/for-starlink-mini",
         "hero_text_color": "#ffffff",
-        "hero_overlay_opacity": 45
+        "hero_overlay_opacity": 0
       }
     },
     "xstrape_home_favorites": {
@@ -33,7 +33,7 @@
             "title": "Suction Cup Car Mount",
             "text": "Secure Starlink Mini on windshields, vans, and RVs.",
             "price": "Shop now",
-            "image": "shopify://shop_images/img_shouye_chanpin1_2x_aa239299-cf29-4c16-960b-23e6fbb82c2a.webp",
+            "image": "shopify://shop_images/Image_2.png",
             "link": "shopify://products/starlink-mini-suction-cup-car-mount"
           }
         },
@@ -43,7 +43,7 @@
             "title": "DC Power Cable",
             "text": "A simple road-ready cable for Starlink Mini power.",
             "price": "Shop now",
-            "image": "shopify://shop_images/img_shouye_chanpin2_2x_a3ad7825-40a5-450d-b892-88762d551963.webp",
+            "image": "shopify://shop_images/9372035845_1.webp",
             "link": "shopify://products/10ft-cigarette-lighter-to-dc-power-cable-for-starlink-mini"
           }
         },
@@ -53,7 +53,7 @@
             "title": "30V Step-Up Adapter",
             "text": "More stable vehicle power with a built-in USB-C port.",
             "price": "Shop now",
-            "image": "shopify://shop_images/img_shouye_chanpin3_2x_7b261dba-028b-45c1-9914-8346604a5e6c.webp",
+            "image": "shopify://shop_images/8904431353_1.webp",
             "link": "shopify://products/starlink-mini-30v-step-up-car-adapter-with-usb-c-port"
           }
         },
@@ -63,28 +63,8 @@
             "title": "Mini Travel Kit",
             "text": "Built for remote work, overlanding, and weekends away.",
             "price": "Explore",
-            "image": "shopify://shop_images/img_top03_2x_74524e86-4c19-42e6-b9e5-a3bf34ef10a3.webp",
+            "image": "shopify://shop_images/8858554266_1.webp",
             "link": "shopify://collections/mini-for-car-travel"
-          }
-        },
-        "favorite_camp": {
-          "type": "favorite",
-          "settings": {
-            "title": "Camping Setup",
-            "text": "Keep your connection organized off the grid.",
-            "price": "Explore",
-            "image": "shopify://shop_images/img_top02_2x_f3700c11-717e-4bdb-a9bb-315d3f2f18c9.webp",
-            "link": "shopify://collections/mini-for-camping"
-          }
-        },
-        "favorite_protect": {
-          "type": "favorite",
-          "settings": {
-            "title": "Protection Gear",
-            "text": "Storage and protection for mobile Starlink use.",
-            "price": "Explore",
-            "image": "shopify://shop_images/img_top01_2x_cfc4384e-d0e1-4071-80e5-253dad43b130.webp",
-            "link": "shopify://collections/mini-storage-protection"
           }
         }
       },
@@ -92,9 +72,7 @@
         "favorite_mount",
         "favorite_cable",
         "favorite_adapter",
-        "favorite_mini",
-        "favorite_camp",
-        "favorite_protect"
+        "favorite_mini"
       ],
       "name": "热卖推荐",
       "settings": {
@@ -104,7 +82,7 @@
         "products_count": 8,
         "products_link_text": "",
         "products_link_url": "",
-        "page_background": "#ffffff",
+        "page_background": "#f3f3f3",
         "text_color": "#111111",
         "muted_text_color": "#6c6c6c",
         "accent_color": "#111111"
@@ -114,13 +92,13 @@
       "type": "xstrape-home-review-banner",
       "name": "评价横幅",
       "settings": {
-        "review_image": "shopify://shop_images/Frame_427319025_2x_b7109a7a-1cdd-40d4-bfb8-fd1571f47b35.webp",
+        "review_image": "shopify://shop_images/ChatGPT_Image_2026_6_3_00_42_03.png",
         "review_stars": "★★★★★",
         "review_title": "Trusted Daily by Starlink Travelers",
         "review_text": "Reliable mounts, smart power, and rugged protection for road trips, remote work, and off-grid weekends.",
         "review_button_text": "Shop Best Sellers",
         "review_link": "shopify://collections/for-starlink-mini",
-        "page_background": "#ffffff",
+        "page_background": "#f3f3f3",
         "text_color": "#111111",
         "muted_text_color": "#6c6c6c"
       }
@@ -203,7 +181,6 @@
             "title": "Suction Cup Car Mount",
             "text": "A rugged mounting setup for windshields, vans, RVs, and remote work days.",
             "button_text": "Shop Now",
-            "image": "shopify://shop_images/img_shouye_chanpin1_2x_aa239299-cf29-4c16-960b-23e6fbb82c2a.webp",
             "link": "shopify://products/starlink-mini-suction-cup-car-mount"
           }
         },
@@ -214,7 +191,6 @@
             "title": "30V Step-Up Adapter",
             "text": "Designed to keep your Mini powered from vehicle outlets with fewer drops.",
             "button_text": "Shop Now",
-            "image": "shopify://shop_images/img_shouye_chanpin3_2x_7b261dba-028b-45c1-9914-8346604a5e6c.webp",
             "link": "shopify://products/starlink-mini-30v-step-up-car-adapter-with-usb-c-port"
           }
         }
@@ -225,7 +201,7 @@
       ],
       "name": "促销图文区",
       "settings": {
-        "page_background": "#ffffff",
+        "page_background": "#f3f3f3",
         "text_color": "#111111",
         "muted_text_color": "#6c6c6c"
       }
@@ -236,7 +212,7 @@
       "settings": {
         "quote_text": "We design practical Starlink accessories for people who need stable connectivity outside the usual places.",
         "quote_author": "Parts4Star team",
-        "page_background": "#ffffff",
+        "page_background": "#f3f3f3",
         "text_color": "#111111",
         "muted_text_color": "#6c6c6c"
       }
@@ -248,7 +224,6 @@
           "type": "community",
           "settings": {
             "label": "Road setup",
-            "image": "shopify://shop_images/img_top03_2x_74524e86-4c19-42e6-b9e5-a3bf34ef10a3.webp",
             "link": "shopify://products/starlink-mini-suction-cup-car-mount"
           }
         },
@@ -256,7 +231,6 @@
           "type": "community",
           "settings": {
             "label": "Camp power",
-            "image": "shopify://shop_images/img_top02_2x_f3700c11-717e-4bdb-a9bb-315d3f2f18c9.webp",
             "link": "shopify://collections/mini-for-camping"
           }
         },
@@ -264,7 +238,6 @@
           "type": "community",
           "settings": {
             "label": "Boat roof",
-            "image": "shopify://shop_images/img_shouye_chanpin1_2x_aa239299-cf29-4c16-960b-23e6fbb82c2a.webp",
             "link": "shopify://collections/mini-for-car-travel"
           }
         },
@@ -272,7 +245,6 @@
           "type": "community",
           "settings": {
             "label": "Home backup",
-            "image": "shopify://shop_images/img_top04_2x_9b6841d1-906a-4101-93c6-d86ff3d8f766.webp",
             "link": "shopify://collections/mini-for-home-backup"
           }
         },
@@ -280,7 +252,6 @@
           "type": "community",
           "settings": {
             "label": "Outdoor install",
-            "image": "shopify://shop_images/img_top01_2x_cfc4384e-d0e1-4071-80e5-253dad43b130.webp",
             "link": "shopify://collections/mini-storage-protection"
           }
         }
@@ -320,7 +291,6 @@
             "kicker": "",
             "heading": "",
             "button_text": "",
-            "image": "shopify://shop_images/img_top03_2x_74524e86-4c19-42e6-b9e5-a3bf34ef10a3.webp",
             "link": "shopify://collections/mini-for-car-travel",
             "text_color": "#ffffff",
             "overlay_opacity": 0
@@ -332,7 +302,6 @@
             "kicker": "Built for",
             "heading": "Every Mile",
             "button_text": "Learn More",
-            "image": "shopify://shop_images/Frame_427319025_2x_b7109a7a-1cdd-40d4-bfb8-fd1571f47b35.webp",
             "link": "shopify://collections/for-starlink-mini",
             "text_color": "#ffffff",
             "overlay_opacity": 35
@@ -357,7 +326,6 @@
           "type": "tile",
           "settings": {
             "title": "Shop Mounts",
-            "image": "shopify://shop_images/img_top03_2x_74524e86-4c19-42e6-b9e5-a3bf34ef10a3.webp",
             "link": "shopify://collections/mini-for-car-travel"
           }
         },
@@ -365,7 +333,6 @@
           "type": "tile",
           "settings": {
             "title": "Power",
-            "image": "shopify://shop_images/img_top02_2x_f3700c11-717e-4bdb-a9bb-315d3f2f18c9.webp",
             "link": "shopify://collections/power-adapters"
           }
         },
@@ -373,7 +340,6 @@
           "type": "tile",
           "settings": {
             "title": "Cables",
-            "image": "shopify://shop_images/img_shouye_chanpin3_2x_7b261dba-028b-45c1-9914-8346604a5e6c.webp",
             "link": "shopify://collections/cables"
           }
         },
@@ -381,7 +347,6 @@
           "type": "tile",
           "settings": {
             "title": "Travel Kits",
-            "image": "shopify://shop_images/img_top04_2x_9b6841d1-906a-4101-93c6-d86ff3d8f766.webp",
             "link": "shopify://collections/mini-for-camping"
           }
         }
@@ -416,7 +381,6 @@
             "kicker": "Built for Remote Work",
             "heading": "We Are Xstrape",
             "button_text": "Learn More",
-            "image": "shopify://shop_images/1.jpg",
             "link": "shopify://pages/about-us",
             "text_color": "#ffffff",
             "overlay_opacity": 35
@@ -428,7 +392,6 @@
             "kicker": "Committed to",
             "heading": "Reliable Power",
             "button_text": "Learn More",
-            "image": "shopify://shop_images/img_top01_2x_cfc4384e-d0e1-4071-80e5-253dad43b130.webp",
             "link": "shopify://collections/for-starlink-mini",
             "text_color": "#ffffff",
             "overlay_opacity": 35
