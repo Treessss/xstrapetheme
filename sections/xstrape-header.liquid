@@ -1031,6 +1031,26 @@
           {%- if block.type == 'mobile_card' -%}
             {%- assign has_mobile_cards = true -%}
             {%- assign mobile_image_asset = block.settings.image_asset | strip -%}
+            {%- if mobile_image_asset == blank -%}
+              {%- case block.settings.title -%}
+                {%- when 'Cases' -%}
+                  {%- assign mobile_image_asset = 'xstrape-menu-cases.jpg' -%}
+                {%- when 'Watch Bands' -%}
+                  {%- assign mobile_image_asset = 'xstrape-menu-watch-bands.jpg' -%}
+                {%- when 'Find My® Tracking' -%}
+                  {%- assign mobile_image_asset = 'xstrape-menu-find-my.jpg' -%}
+                {%- when 'Charging' -%}
+                  {%- assign mobile_image_asset = 'xstrape-menu-charging.jpg' -%}
+                {%- when 'Wallets' -%}
+                  {%- assign mobile_image_asset = 'xstrape-menu-wallets.jpg' -%}
+                {%- when 'Lifestyle Gear' -%}
+                  {%- assign mobile_image_asset = 'xstrape-menu-lifestyle.jpg' -%}
+                {%- when 'Tracking' -%}
+                  {%- assign mobile_image_asset = 'xstrape-menu-tracking.jpg' -%}
+                {%- when 'Sale' -%}
+                  {%- assign mobile_image_asset = 'xstrape-menu-sale.png' -%}
+              {%- endcase -%}
+            {%- endif -%}
             <li {{ block.shopify_attributes }}>
               <a class="xstrape-header__mobile-card" href="{{ block.settings.link | default: '#' }}">
                 <span class="xstrape-header__mobile-thumb {% if block.settings.image == blank and mobile_image_asset == blank %}xstrape-header__mobile-thumb--placeholder{% endif %}">
