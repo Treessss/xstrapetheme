@@ -451,9 +451,10 @@
 
 .xstrape-home-scope.xh-categories .xh-card-grid {
   display: grid;
-  grid-template-columns: repeat(4, 335px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
   width: min(1400px, calc(100vw - 40px));
+  max-width: calc(100% - 40px);
   margin: 0 auto;
 }
 
@@ -484,6 +485,7 @@
 .xstrape-home-scope.xh-categories .xh-category-card .xh-media-card__image img,
 .xstrape-home-scope.xh-categories .xh-category-card .xh-media-card__placeholder {
   object-fit: cover;
+  object-position: var(--xh-image-x, 50%) var(--xh-image-y, 50%);
 }
 
 .xstrape-home-scope.xh-categories .xh-category-card .xh-media-card__body {
@@ -506,7 +508,7 @@
   display: block;
   margin: 0;
   color: inherit;
-  font-size: 33px;
+  font-size: clamp(24px, 2.3vw, 33px);
   font-weight: 700;
   letter-spacing: -1.32px;
   line-height: 1.1;
@@ -1031,6 +1033,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
     width: calc(100% - 20px);
+    max-width: none;
     margin: 10px auto 0;
   }
 

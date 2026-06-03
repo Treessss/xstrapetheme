@@ -134,8 +134,9 @@
             "badge": "",
             "title": "Best Sellers",
             "text": "",
+            "image_position_x": 50,
+            "image_position_y": 50,
             "asset_image": "xstrape-category-best-sellers.jpg",
-            "image": "shopify://shop_images/img_top03_2x_74524e86-4c19-42e6-b9e5-a3bf34ef10a3.webp",
             "link": "shopify://collections/best-sellers"
           }
         },
@@ -145,8 +146,9 @@
             "badge": "",
             "title": "Power",
             "text": "",
+            "image_position_x": 50,
+            "image_position_y": 50,
             "asset_image": "xstrape-category-power.jpg",
-            "image": "shopify://shop_images/img_top02_2x_f3700c11-717e-4bdb-a9bb-315d3f2f18c9.webp",
             "link": "shopify://collections/mini-for-car-travel"
           }
         },
@@ -156,8 +158,9 @@
             "badge": "",
             "title": "Accessories",
             "text": "",
+            "image_position_x": 50,
+            "image_position_y": 50,
             "asset_image": "xstrape-category-accessories.jpg",
-            "image": "shopify://shop_images/img_top01_2x_cfc4384e-d0e1-4071-80e5-253dad43b130.webp",
             "link": "shopify://collections/all"
           }
         },
@@ -167,8 +170,9 @@
             "badge": "",
             "title": "Bands",
             "text": "",
+            "image_position_x": 50,
+            "image_position_y": 50,
             "asset_image": "xstrape-category-bands.jpg",
-            "image": "shopify://shop_images/img_top04_2x_9b6841d1-906a-4101-93c6-d86ff3d8f766.webp",
             "link": "shopify://collections/mini-for-camping"
           }
         }

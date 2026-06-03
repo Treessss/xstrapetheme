@@ -35,9 +35,20 @@
           endif
         %}
 
-        <a class="xh-media-card xh-category-card" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+        <a
+          class="xh-media-card xh-category-card"
+          href="{{ block.settings.link }}"
+          style="--xh-image-x: {{ block.settings.image_position_x | default: 50 }}%; --xh-image-y: {{ block.settings.image_position_y | default: 50 }}%;"
+          {{ block.shopify_attributes }}
+        >
           <span class="xh-media-card__image">
-            {% if category_asset != blank %}
+            {% if block.settings.image != blank %}
+              {{
+                block.settings.image
+                | image_url: width: 1200
+                | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 50vw, 25vw', widths: '200,400,600,800,1000,1200'
+              }}
+            {% elsif category_asset != blank %}
               <img
                 src="{{ category_asset | asset_url }}"
                 alt="{{ block.settings.title | escape }}"
@@ -45,12 +56,6 @@
                 width="1000"
                 height="245"
               >
-            {% elsif block.settings.image != blank %}
-              {{
-                block.settings.image
-                | image_url: width: 1200
-                | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 50vw, 25vw', widths: '200,400,600,800,1000,1200'
-              }}
             {% else %}
               {{ 'collection-1' | placeholder_svg_tag: 'xh-media-card__placeholder' }}
             {% endif %}
@@ -134,14 +139,34 @@
           "label": "文字"
         },
         {
-          "type": "text",
-          "id": "asset_image",
-          "label": "主题资源图片文件名"
-        },
-        {
           "type": "image_picker",
           "id": "image",
-          "label": "图片"
+          "label": "自定义图片"
+        },
+        {
+          "type": "range",
+          "id": "image_position_x",
+          "label": "图片水平位置",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "image_position_y",
+          "label": "图片垂直位置",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "text",
+          "id": "asset_image",
+          "label": "默认主题图片文件名"
         },
         {
           "type": "url",
