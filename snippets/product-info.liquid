@@ -80,6 +80,14 @@ Supported variables
           {%- comment -%} product vendor 已关闭（原：product-info__vendor + vendor snippet） {%- endcomment -%}
 
         {%- when 'title' -%}
+          {%- liquid
+            assign product_nomad_subtitle = product.metafields.custom.short_description.value | default: product.metafields.custom.subtitle.value | default: product.metafields.descriptors.subtitle.value
+
+            if product_nomad_subtitle == blank and product.description != blank
+              assign product_nomad_subtitle = product.description | strip_html | strip | truncatewords: 24
+            endif
+          -%}
+
           {%- if request.page_type == 'product' -%}
             <h1 class="product-info__title {{ block.settings.heading_tag }}">
               {{- product.title -}}
@@ -88,6 +96,12 @@ Supported variables
             <h2 class="product-info__title {{ block.settings.heading_tag }}">
               <a href="{{ product.url }}">{{ product.title }}</a>
             </h2>
+          {%- endif -%}
+
+          {%- if product_nomad_subtitle != blank -%}
+            <div class="product-info__nomad-subtitle">
+              {{- product_nomad_subtitle -}}
+            </div>
           {%- endif -%}
 
         {%- when 'badges' -%}
@@ -313,6 +327,7 @@ Supported variables
           {%- if request.page_type != 'password' -%}
             <div class="product-info__buy-buttons">
               {%- render 'buy-buttons', product: product, form_id: product_form_id, show_payment_button: block.settings.show_payment_button, show_gift_card_recipient: block.settings.show_gift_card_recipient, atc_button_background: block.settings.atc_button_background, atc_button_text_color: block.settings.atc_button_text_color, payment_button_background: block.settings.payment_button_background, payment_button_text_color: block.settings.payment_button_text_color -%}
+              <p class="product-info__nomad-trust">Free Shipping $50+ | 2 Year Extended Warranty</p>
             </div>
           {%- endif -%}
 
