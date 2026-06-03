@@ -266,7 +266,7 @@
   overflow: visible;
   border-radius: 0;
   background: transparent;
-  line-height: 0;
+  line-height: normal;
 }
 
 .xstrape-home-scope.xh-favorites .xh-favorite-card__media {
@@ -293,7 +293,7 @@
   font-size: 24px;
   font-weight: 900;
   letter-spacing: 0;
-  line-height: 16px;
+  line-height: 1.05;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
