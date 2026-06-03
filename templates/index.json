@@ -131,41 +131,45 @@
         "category_mini": {
           "type": "category",
           "settings": {
-            "badge": "Best seller",
-            "title": "Mini Travel",
-            "text": "Power and mount your Starlink Mini on the road.",
+            "badge": "",
+            "title": "Best Sellers",
+            "text": "",
+            "asset_image": "xstrape-category-best-sellers.jpg",
             "image": "shopify://shop_images/img_top03_2x_74524e86-4c19-42e6-b9e5-a3bf34ef10a3.webp",
-            "link": "shopify://collections/mini-for-car-travel"
+            "link": "shopify://collections/best-sellers"
           }
         },
         "category_camping": {
           "type": "category",
           "settings": {
-            "badge": "Outdoor",
-            "title": "Camping",
-            "text": "Off-grid accessories for stable weekend connectivity.",
+            "badge": "",
+            "title": "Power",
+            "text": "",
+            "asset_image": "xstrape-category-power.jpg",
             "image": "shopify://shop_images/img_top02_2x_f3700c11-717e-4bdb-a9bb-315d3f2f18c9.webp",
-            "link": "shopify://collections/mini-for-camping"
+            "link": "shopify://collections/mini-for-car-travel"
           }
         },
         "category_protection": {
           "type": "category",
           "settings": {
-            "badge": "Protection",
-            "title": "Storage",
-            "text": "Protect your dish, cables, and power setup in transit.",
+            "badge": "",
+            "title": "Accessories",
+            "text": "",
+            "asset_image": "xstrape-category-accessories.jpg",
             "image": "shopify://shop_images/img_top01_2x_cfc4384e-d0e1-4071-80e5-253dad43b130.webp",
-            "link": "shopify://collections/mini-storage-protection"
+            "link": "shopify://collections/all"
           }
         },
         "category_home": {
           "type": "category",
           "settings": {
-            "badge": "Backup",
-            "title": "Home",
-            "text": "Keep internet ready when your main connection drops.",
+            "badge": "",
+            "title": "Bands",
+            "text": "",
+            "asset_image": "xstrape-category-bands.jpg",
             "image": "shopify://shop_images/img_top04_2x_9b6841d1-906a-4101-93c6-d86ff3d8f766.webp",
-            "link": "shopify://collections/mini-for-home-backup"
+            "link": "shopify://collections/mini-for-camping"
           }
         }
       },
@@ -177,11 +181,12 @@
       ],
       "name": "Xstrape categories",
       "settings": {
-        "categories_kicker": "Browse by use",
+        "categories_kicker": "",
         "categories_title": "Shop by Category",
-        "page_background": "#ffffff",
-        "text_color": "#111111",
-        "muted_text_color": "#6c6c6c"
+        "page_background": "#f3f3f3",
+        "text_color": "#000000",
+        "muted_text_color": "#6c6c6c",
+        "card_text_color": "#ffffff"
       }
     },
     "xstrape_home_promos": {
