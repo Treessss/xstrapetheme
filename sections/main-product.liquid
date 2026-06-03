@@ -981,11 +981,14 @@ padding:10px;
     #shopify-section-{{ section.id }} .product-gallery__media-list-wrapper {
       width: min(350px, calc(100vw - 50px));
       margin-inline: auto;
+      overflow: hidden;
     }
 
     #shopify-section-{{ section.id }} .product-gallery__media-list {
+      width: 100% !important;
       grid-auto-columns: 100% !important;
       gap: 3px;
+      padding-inline: 0 !important;
     }
 
     #shopify-section-{{ section.id }} .product-gallery__media,
