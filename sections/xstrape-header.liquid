@@ -21,6 +21,7 @@
     --xstrape-header-panel-bg: {{ section.settings.panel_background }};
     --xstrape-header-card-bg: {{ section.settings.card_background }};
     --xstrape-header-shadow: 0 18px 38px rgb(0 0 0 / {{ section.settings.shadow_opacity | divided_by: 100.0 }});
+    --xstrape-announcement-bg-rgb: {{ section.settings.announcement_background.rgb }};
     --xstrape-logo-y-offset: {{ section.settings.logo_vertical_offset | default: 2 }}px;
     --xstrape-logo-mobile-y-offset: {{ section.settings.logo_mobile_vertical_offset | default: 3 }}px;
 
@@ -31,31 +32,76 @@
     background: transparent;
   }
 
+  #shopify-section-{{ section.id }}::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 0;
+    height: 92px;
+    background: linear-gradient(
+      180deg,
+      rgb(var(--xstrape-announcement-bg-rgb) / 0.72) 0%,
+      rgb(var(--xstrape-announcement-bg-rgb) / 0.42) 44%,
+      rgb(var(--xstrape-announcement-bg-rgb) / 0) 100%
+    );
+    pointer-events: none;
+  }
+
   #shopify-section-{{ section.id }} .xstrape-header {
     position: relative;
+    z-index: 1;
     color: var(--xstrape-header-text);
-    padding-block: var(--xstrape-header-top-gap);
+    padding: 0 0 var(--xstrape-header-top-gap);
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__announcement {
     width: min(var(--xstrape-header-max-width), calc(100vw - (var(--xstrape-header-side-gap) * 2)));
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 auto 8px;
     color: {{ section.settings.announcement_text_color }};
-    font-size: 0.95rem;
-    font-weight: 800;
-    line-height: 1.2;
+    font-size: 14px;
+    font-weight: 850;
+    line-height: 1;
     text-align: center;
+    text-shadow: 0 1px 16px rgb(0 0 0 / 0.34);
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__announcement-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 28px;
-    padding: 0 18px;
-    border-radius: 999px;
-    background: {{ section.settings.announcement_background }};
+    gap: 6px;
+    min-height: 18px;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
     color: inherit;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__announcement-cta {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__announcement-info {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-left: 4px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    color: inherit;
+    font-size: 13px;
+    font-weight: 900;
+    line-height: 1;
     text-decoration: none;
   }
 
@@ -584,12 +630,19 @@
     }
 
     #shopify-section-{{ section.id }} .xstrape-header {
-      padding-block: var(--xstrape-header-mobile-top-gap);
+      padding: 0 0 var(--xstrape-header-mobile-top-gap);
     }
 
     #shopify-section-{{ section.id }} .xstrape-header__announcement {
+      height: 36px;
       margin-bottom: 8px;
-      font-size: 0.88rem;
+      font-size: 13px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    #shopify-section-{{ section.id }}::before {
+      height: 72px;
     }
 
     #shopify-section-{{ section.id }} .xstrape-header__bar {
@@ -657,7 +710,14 @@
   {%- if section.settings.show_announcement and section.settings.announcement_text != blank -%}
     <div class="xstrape-header__announcement">
       <a class="xstrape-header__announcement-link" href="{{ section.settings.announcement_link | default: '#' }}">
-        {{ section.settings.announcement_text | escape }}
+        <span>{{ section.settings.announcement_text | escape }}</span>
+        {%- if section.settings.announcement_link_text != blank -%}
+          <span aria-hidden="true">|</span>
+          <span class="xstrape-header__announcement-cta">{{ section.settings.announcement_link_text | escape }}</span>
+        {%- endif -%}
+        {%- if section.settings.show_announcement_info_icon -%}
+          <span class="xstrape-header__announcement-info" aria-hidden="true">i</span>
+        {%- endif -%}
       </a>
     </div>
   {%- endif -%}
@@ -1160,12 +1220,24 @@
       "type": "text",
       "id": "announcement_text",
       "label": "文字",
-      "default": "Free Shipping on Orders $50+"
+      "default": "Free Shipping on U.S. Orders $50+"
+    },
+    {
+      "type": "text",
+      "id": "announcement_link_text",
+      "label": "链接文字",
+      "default": "Shop Now"
     },
     {
       "type": "url",
       "id": "announcement_link",
       "label": "链接"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement_info_icon",
+      "label": "显示信息图标",
+      "default": true
     },
     {
       "type": "color",
