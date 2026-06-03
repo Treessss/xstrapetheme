@@ -9,6 +9,289 @@
  */
 {
   "sections": {
+    "xstrape_home_hero": {
+      "type": "xstrape-home-hero",
+      "name": "Xstrape hero",
+      "settings": {
+        "hero_image": "shopify://shop_images/1.jpg",
+        "hero_mobile_image": "shopify://shop_images/five_home_anner.jpg",
+        "hero_kicker": "Built for Starlink Mini",
+        "hero_heading": "Gear That Goes The Distance",
+        "hero_subheading": "Power, mount, and protect your Starlink Mini from the driveway to the backcountry.",
+        "hero_button_text": "Shop Travel Gear",
+        "hero_button_link": "shopify://collections/for-starlink-mini",
+        "hero_text_color": "#ffffff",
+        "hero_overlay_opacity": 45
+      }
+    },
+    "xstrape_home_favorites": {
+      "type": "xstrape-home-favorites",
+      "blocks": {
+        "favorite_mount": {
+          "type": "favorite",
+          "settings": {
+            "title": "Suction Cup Car Mount",
+            "text": "Secure Starlink Mini on windshields, vans, and RVs.",
+            "price": "Shop now",
+            "image": "shopify://shop_images/img_shouye_chanpin1_2x_aa239299-cf29-4c16-960b-23e6fbb82c2a.webp",
+            "link": "shopify://products/starlink-mini-suction-cup-car-mount"
+          }
+        },
+        "favorite_cable": {
+          "type": "favorite",
+          "settings": {
+            "title": "DC Power Cable",
+            "text": "A simple road-ready cable for Starlink Mini power.",
+            "price": "Shop now",
+            "image": "shopify://shop_images/img_shouye_chanpin2_2x_a3ad7825-40a5-450d-b892-88762d551963.webp",
+            "link": "shopify://products/10ft-cigarette-lighter-to-dc-power-cable-for-starlink-mini"
+          }
+        },
+        "favorite_adapter": {
+          "type": "favorite",
+          "settings": {
+            "title": "30V Step-Up Adapter",
+            "text": "More stable vehicle power with a built-in USB-C port.",
+            "price": "Shop now",
+            "image": "shopify://shop_images/img_shouye_chanpin3_2x_7b261dba-028b-45c1-9914-8346604a5e6c.webp",
+            "link": "shopify://products/starlink-mini-30v-step-up-car-adapter-with-usb-c-port"
+          }
+        },
+        "favorite_mini": {
+          "type": "favorite",
+          "settings": {
+            "title": "Mini Travel Kit",
+            "text": "Built for remote work, overlanding, and weekends away.",
+            "price": "Explore",
+            "image": "shopify://shop_images/img_top03_2x_74524e86-4c19-42e6-b9e5-a3bf34ef10a3.webp",
+            "link": "shopify://collections/mini-for-car-travel"
+          }
+        },
+        "favorite_camp": {
+          "type": "favorite",
+          "settings": {
+            "title": "Camping Setup",
+            "text": "Keep your connection organized off the grid.",
+            "price": "Explore",
+            "image": "shopify://shop_images/img_top02_2x_f3700c11-717e-4bdb-a9bb-315d3f2f18c9.webp",
+            "link": "shopify://collections/mini-for-camping"
+          }
+        },
+        "favorite_protect": {
+          "type": "favorite",
+          "settings": {
+            "title": "Protection Gear",
+            "text": "Storage and protection for mobile Starlink use.",
+            "price": "Explore",
+            "image": "shopify://shop_images/img_top01_2x_cfc4384e-d0e1-4071-80e5-253dad43b130.webp",
+            "link": "shopify://collections/mini-storage-protection"
+          }
+        }
+      },
+      "block_order": [
+        "favorite_mount",
+        "favorite_cable",
+        "favorite_adapter",
+        "favorite_mini",
+        "favorite_camp",
+        "favorite_protect"
+      ],
+      "name": "Xstrape favorites",
+      "settings": {
+        "products_kicker": "Customer favorites",
+        "products_title": "Gear You'll Love",
+        "products_collection": "for-starlink-mini",
+        "products_count": 8,
+        "products_link_text": "Shop all",
+        "products_link_url": "shopify://collections/for-starlink-mini",
+        "page_background": "#ffffff",
+        "text_color": "#111111",
+        "muted_text_color": "#6c6c6c",
+        "accent_color": "#111111"
+      }
+    },
+    "xstrape_home_review": {
+      "type": "xstrape-home-review-banner",
+      "name": "Xstrape review banner",
+      "settings": {
+        "review_image": "shopify://shop_images/Frame_427319025_2x_b7109a7a-1cdd-40d4-bfb8-fd1571f47b35.webp",
+        "review_stars": "★★★★★",
+        "review_title": "Trusted Daily by Starlink Travelers",
+        "review_text": "Reliable mounts, smart power, and rugged protection for road trips, remote work, and off-grid weekends.",
+        "review_button_text": "Shop Best Sellers",
+        "review_link": "shopify://collections/for-starlink-mini",
+        "page_background": "#ffffff",
+        "text_color": "#111111",
+        "muted_text_color": "#6c6c6c"
+      }
+    },
+    "xstrape_home_categories": {
+      "type": "xstrape-home-categories",
+      "blocks": {
+        "category_mini": {
+          "type": "category",
+          "settings": {
+            "badge": "Best seller",
+            "title": "Mini Travel",
+            "text": "Power and mount your Starlink Mini on the road.",
+            "image": "shopify://shop_images/img_top03_2x_74524e86-4c19-42e6-b9e5-a3bf34ef10a3.webp",
+            "link": "shopify://collections/mini-for-car-travel"
+          }
+        },
+        "category_camping": {
+          "type": "category",
+          "settings": {
+            "badge": "Outdoor",
+            "title": "Camping",
+            "text": "Off-grid accessories for stable weekend connectivity.",
+            "image": "shopify://shop_images/img_top02_2x_f3700c11-717e-4bdb-a9bb-315d3f2f18c9.webp",
+            "link": "shopify://collections/mini-for-camping"
+          }
+        },
+        "category_protection": {
+          "type": "category",
+          "settings": {
+            "badge": "Protection",
+            "title": "Storage",
+            "text": "Protect your dish, cables, and power setup in transit.",
+            "image": "shopify://shop_images/img_top01_2x_cfc4384e-d0e1-4071-80e5-253dad43b130.webp",
+            "link": "shopify://collections/mini-storage-protection"
+          }
+        },
+        "category_home": {
+          "type": "category",
+          "settings": {
+            "badge": "Backup",
+            "title": "Home",
+            "text": "Keep internet ready when your main connection drops.",
+            "image": "shopify://shop_images/img_top04_2x_9b6841d1-906a-4101-93c6-d86ff3d8f766.webp",
+            "link": "shopify://collections/mini-for-home-backup"
+          }
+        }
+      },
+      "block_order": [
+        "category_mini",
+        "category_camping",
+        "category_protection",
+        "category_home"
+      ],
+      "name": "Xstrape categories",
+      "settings": {
+        "categories_kicker": "Browse by use",
+        "categories_title": "Shop by Category",
+        "page_background": "#ffffff",
+        "text_color": "#111111",
+        "muted_text_color": "#6c6c6c"
+      }
+    },
+    "xstrape_home_promos": {
+      "type": "xstrape-home-promo-grid",
+      "blocks": {
+        "promo_mount": {
+          "type": "promo",
+          "settings": {
+            "kicker": "Secure anywhere",
+            "title": "Suction Cup Car Mount",
+            "text": "A rugged mounting setup for windshields, vans, RVs, and remote work days.",
+            "button_text": "Shop Now",
+            "image": "shopify://shop_images/img_shouye_chanpin1_2x_aa239299-cf29-4c16-960b-23e6fbb82c2a.webp",
+            "link": "shopify://products/starlink-mini-suction-cup-car-mount"
+          }
+        },
+        "promo_power": {
+          "type": "promo",
+          "settings": {
+            "kicker": "Stable power",
+            "title": "30V Step-Up Adapter",
+            "text": "Designed to keep your Mini powered from vehicle outlets with fewer drops.",
+            "button_text": "Shop Now",
+            "image": "shopify://shop_images/img_shouye_chanpin3_2x_7b261dba-028b-45c1-9914-8346604a5e6c.webp",
+            "link": "shopify://products/starlink-mini-30v-step-up-car-adapter-with-usb-c-port"
+          }
+        }
+      },
+      "block_order": [
+        "promo_mount",
+        "promo_power"
+      ],
+      "name": "Xstrape promo grid",
+      "settings": {
+        "page_background": "#ffffff",
+        "text_color": "#111111",
+        "muted_text_color": "#6c6c6c"
+      }
+    },
+    "xstrape_home_quote": {
+      "type": "xstrape-home-quote",
+      "name": "Xstrape quote",
+      "settings": {
+        "quote_text": "We design practical Starlink accessories for people who need stable connectivity outside the usual places.",
+        "quote_author": "Parts4Star team",
+        "page_background": "#ffffff",
+        "text_color": "#111111",
+        "muted_text_color": "#6c6c6c"
+      }
+    },
+    "xstrape_home_community": {
+      "type": "xstrape-home-community",
+      "blocks": {
+        "community_1": {
+          "type": "community",
+          "settings": {
+            "label": "Road setup",
+            "image": "shopify://shop_images/img_top03_2x_74524e86-4c19-42e6-b9e5-a3bf34ef10a3.webp",
+            "link": "shopify://products/starlink-mini-suction-cup-car-mount"
+          }
+        },
+        "community_2": {
+          "type": "community",
+          "settings": {
+            "label": "Camp power",
+            "image": "shopify://shop_images/img_top02_2x_f3700c11-717e-4bdb-a9bb-315d3f2f18c9.webp",
+            "link": "shopify://collections/mini-for-camping"
+          }
+        },
+        "community_3": {
+          "type": "community",
+          "settings": {
+            "label": "Boat roof",
+            "image": "shopify://shop_images/img_shouye_chanpin1_2x_aa239299-cf29-4c16-960b-23e6fbb82c2a.webp",
+            "link": "shopify://collections/mini-for-car-travel"
+          }
+        },
+        "community_4": {
+          "type": "community",
+          "settings": {
+            "label": "Home backup",
+            "image": "shopify://shop_images/img_top04_2x_9b6841d1-906a-4101-93c6-d86ff3d8f766.webp",
+            "link": "shopify://collections/mini-for-home-backup"
+          }
+        },
+        "community_5": {
+          "type": "community",
+          "settings": {
+            "label": "Outdoor install",
+            "image": "shopify://shop_images/img_top01_2x_cfc4384e-d0e1-4071-80e5-253dad43b130.webp",
+            "link": "shopify://collections/mini-storage-protection"
+          }
+        }
+      },
+      "block_order": [
+        "community_1",
+        "community_2",
+        "community_3",
+        "community_4",
+        "community_5"
+      ],
+      "name": "Xstrape community",
+      "settings": {
+        "community_kicker": "In the wild",
+        "community_title": "From the Community",
+        "page_background": "#ffffff",
+        "text_color": "#111111",
+        "muted_text_color": "#6c6c6c"
+      }
+    },
     "section-1": {
       "type": "slideshow",
       "blocks": {
@@ -38,6 +321,7 @@
       "block_order": [
         "block-1"
       ],
+      "disabled": true,
       "custom_css": [
         "{max-height: 90vh;}"
       ],
@@ -71,6 +355,7 @@
       "block_order": [
         "heading_Q7YDbM"
       ],
+      "disabled": true,
       "custom_css": [
         "{margin-top: -2rem !important; position: relative; z-index: 2; border-radius: 36px 36px 0 0;}"
       ],
@@ -146,6 +431,7 @@
         "card_Jcf9iF",
         "card_bnKnaG"
       ],
+      "disabled": true,
       "name": "Model pill cards",
       "settings": {
         "heading": "",
@@ -155,6 +441,7 @@
     },
     "feature_card_split_Vz9Xk4": {
       "type": "feature-card-split",
+      "disabled": true,
       "name": "Feature card split",
       "settings": {
         "full_width": true,
@@ -216,6 +503,7 @@
         "card_Vhp4Rr",
         "card_wP8TFk"
       ],
+      "disabled": true,
       "name": "Feature card grid 2",
       "settings": {
         "full_width": true,
@@ -268,6 +556,7 @@
       "block_order": [
         "heading_PpzKHi"
       ],
+      "disabled": true,
       "name": "Rich text",
       "settings": {
         "full_width": true,
@@ -328,6 +617,7 @@
         "tab_fUJaQA",
         "tab_UfmBjq"
       ],
+      "disabled": true,
       "name": "Best sellers tabs",
       "settings": {
         "full_width": true,
@@ -358,6 +648,7 @@
       "block_order": [
         "heading_Yi9QXn"
       ],
+      "disabled": true,
       "name": "Rich text",
       "settings": {
         "full_width": true,
@@ -514,6 +805,7 @@
         "card_ik4FRD",
         "card_8tTbFi"
       ],
+      "disabled": true,
       "name": "Top collections 11111",
       "settings": {
         "full_width": true,
@@ -562,6 +854,7 @@
         "feature_nYM89x",
         "feature_caqETP"
       ],
+      "disabled": true,
       "name": "What drives us split",
       "settings": {
         "full_width": true,
@@ -720,6 +1013,7 @@
         "testimonial_YFnGia",
         "testimonial_JabXym"
       ],
+      "disabled": true,
       "name": "Testimonials slider cards",
       "settings": {
         "full_width": true,
@@ -775,6 +1069,13 @@
     }
   },
   "order": [
+    "xstrape_home_hero",
+    "xstrape_home_favorites",
+    "xstrape_home_review",
+    "xstrape_home_categories",
+    "xstrape_home_promos",
+    "xstrape_home_quote",
+    "xstrape_home_community",
     "section-1",
     "rich_text_EgGy3Q",
     "model_pill_cards_6QYT3h",

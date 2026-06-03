@@ -1,0 +1,59 @@
+{{ 'xstrape-home.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="xstrape-home-scope xh-section"
+  style="--xh-page-bg: {{ section.settings.page_background | default: '#ffffff' }}; --xh-text: {{ section.settings.text_color | default: '#111111' }}; --xh-muted: {{ section.settings.muted_text_color | default: '#6c6c6c' }};"
+>
+  <div class="xh-container">
+    <a class="xh-media-card xh-review-banner" {% if section.settings.review_link != blank %}href="{{ section.settings.review_link }}"{% endif %}>
+      <span class="xh-media-card__image">
+        {% if section.settings.review_image != blank %}
+          {{
+            section.settings.review_image
+            | image_url: width: 2400
+            | image_tag: loading: 'lazy', sizes: '(max-width: 999px) 100vw, 1480px', widths: '700,1000,1400,1800,2200,2400'
+          }}
+        {% else %}
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'xh-media-card__placeholder' }}
+        {% endif %}
+      </span>
+      <span class="xh-media-card__body">
+        {% if section.settings.review_stars != blank %}
+          <span class="xh-stars">{{ section.settings.review_stars | escape }}</span>
+        {% endif %}
+        {% if section.settings.review_title != blank %}
+          <span class="xh-media-card__title">{{ section.settings.review_title | escape }}</span>
+        {% endif %}
+        {% if section.settings.review_text != blank %}
+          <span class="xh-media-card__text">{{ section.settings.review_text | escape }}</span>
+        {% endif %}
+        {% if section.settings.review_button_text != blank %}
+          <span class="xh-pill-button" style="margin-top: 1.35rem;">{{ section.settings.review_button_text | escape }}</span>
+        {% endif %}
+      </span>
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Xstrape review banner",
+  "class": "shopify-section--xstrape-review-banner",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "review_image", "label": "Image" },
+    { "type": "text", "id": "review_stars", "label": "Stars", "default": "★★★★★" },
+    { "type": "text", "id": "review_title", "label": "Heading", "default": "Trusted Daily by Starlink Travelers" },
+    { "type": "text", "id": "review_text", "label": "Text", "default": "Reliable mounts, smart power, and rugged protection for real trips, remote work, and off-grid weekends." },
+    { "type": "text", "id": "review_button_text", "label": "Button text", "default": "Shop Best Sellers" },
+    { "type": "url", "id": "review_link", "label": "Link" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "page_background", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#111111" },
+    { "type": "color", "id": "muted_text_color", "label": "Muted text", "default": "#6c6c6c" }
+  ],
+  "presets": [
+    { "name": "Xstrape review banner" }
+  ]
+}
+{% endschema %}

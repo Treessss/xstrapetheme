@@ -1,0 +1,80 @@
+{{ 'xstrape-home.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="xstrape-home-scope xh-section"
+  style="--xh-page-bg: {{ section.settings.page_background | default: '#ffffff' }}; --xh-text: {{ section.settings.text_color | default: '#111111' }}; --xh-muted: {{ section.settings.muted_text_color | default: '#6c6c6c' }};"
+>
+  <div class="xh-container">
+    <div class="xh-section-header">
+      <div>
+        {% if section.settings.categories_kicker != blank %}
+          <p class="xh-eyebrow">{{ section.settings.categories_kicker | escape }}</p>
+        {% endif %}
+        {% if section.settings.categories_title != blank %}
+          <h2 class="xh-heading">{{ section.settings.categories_title | escape }}</h2>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="xh-card-grid">
+      {% for block in section.blocks %}
+        <a class="xh-media-card xh-category-card" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+          <span class="xh-media-card__image">
+            {% if block.settings.image != blank %}
+              {{
+                block.settings.image
+                | image_url: width: 1200
+                | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 100vw, (max-width: 999px) 50vw, 25vw', widths: '400,600,800,1000,1200'
+              }}
+            {% else %}
+              {{ 'collection-1' | placeholder_svg_tag: 'xh-media-card__placeholder' }}
+            {% endif %}
+          </span>
+          <span class="xh-media-card__body">
+            {% if block.settings.badge != blank %}
+              <span class="xh-badge">{{ block.settings.badge | escape }}</span>
+            {% endif %}
+            {% if block.settings.title != blank %}
+              <span class="xh-media-card__title">{{ block.settings.title | escape }}</span>
+            {% endif %}
+            {% if block.settings.text != blank %}
+              <span class="xh-media-card__text">{{ block.settings.text | escape }}</span>
+            {% endif %}
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Xstrape categories",
+  "class": "shopify-section--xstrape-categories",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "categories_kicker", "label": "Kicker", "default": "Browse by use" },
+    { "type": "text", "id": "categories_title", "label": "Heading", "default": "Shop by Category" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "page_background", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#111111" },
+    { "type": "color", "id": "muted_text_color", "label": "Muted text", "default": "#6c6c6c" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category card",
+      "settings": [
+        { "type": "text", "id": "badge", "label": "Badge" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Category" },
+        { "type": "text", "id": "text", "label": "Text" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Xstrape categories" }
+  ]
+}
+{% endschema %}

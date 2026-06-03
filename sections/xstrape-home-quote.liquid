@@ -1,0 +1,32 @@
+{{ 'xstrape-home.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.quote_text != blank %}
+  <section
+    class="xstrape-home-scope xh-quote"
+    style="--xh-page-bg: {{ section.settings.page_background | default: '#ffffff' }}; --xh-text: {{ section.settings.text_color | default: '#111111' }}; --xh-muted: {{ section.settings.muted_text_color | default: '#6c6c6c' }};"
+  >
+    <p class="xh-quote__text">“{{ section.settings.quote_text | escape }}”</p>
+    {% if section.settings.quote_author != blank %}
+      <p class="xh-quote__author">{{ section.settings.quote_author | escape }}</p>
+    {% endif %}
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Xstrape quote",
+  "class": "shopify-section--xstrape-quote",
+  "tag": "section",
+  "settings": [
+    { "type": "textarea", "id": "quote_text", "label": "Quote", "default": "We design practical Starlink accessories for people who need stable connectivity outside the usual places." },
+    { "type": "text", "id": "quote_author", "label": "Author", "default": "Parts4Star team" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "page_background", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#111111" },
+    { "type": "color", "id": "muted_text_color", "label": "Muted text", "default": "#6c6c6c" }
+  ],
+  "presets": [
+    { "name": "Xstrape quote" }
+  ]
+}
+{% endschema %}

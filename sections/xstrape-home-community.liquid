@@ -1,0 +1,66 @@
+{{ 'xstrape-home.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="xstrape-home-scope xh-section"
+  style="--xh-page-bg: {{ section.settings.page_background | default: '#ffffff' }}; --xh-text: {{ section.settings.text_color | default: '#111111' }}; --xh-muted: {{ section.settings.muted_text_color | default: '#6c6c6c' }};"
+>
+  <div class="xh-container">
+    <div class="xh-section-header">
+      <div>
+        {% if section.settings.community_kicker != blank %}
+          <p class="xh-eyebrow">{{ section.settings.community_kicker | escape }}</p>
+        {% endif %}
+        {% if section.settings.community_title != blank %}
+          <h2 class="xh-heading">{{ section.settings.community_title | escape }}</h2>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="xh-community-list">
+      {% for block in section.blocks %}
+        <a class="xh-community-card {% if block.settings.image == blank %}xh-community-card--text{% endif %}" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            {{
+              block.settings.image
+              | image_url: width: 900
+              | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 70vw, 20vw', widths: '360,540,720,900'
+            }}
+          {% endif %}
+          {% if block.settings.label != blank %}
+            <span class="xh-community-card__label">{{ block.settings.label | escape }}</span>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Xstrape community",
+  "class": "shopify-section--xstrape-community",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "community_kicker", "label": "Kicker", "default": "In the wild" },
+    { "type": "text", "id": "community_title", "label": "Heading", "default": "From the Community" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "page_background", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#111111" },
+    { "type": "color", "id": "muted_text_color", "label": "Muted text", "default": "#6c6c6c" }
+  ],
+  "blocks": [
+    {
+      "type": "community",
+      "name": "Community card",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Road setup" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Xstrape community" }
+  ]
+}
+{% endschema %}
