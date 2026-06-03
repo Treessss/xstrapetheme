@@ -22,8 +22,8 @@
     --xstrape-header-card-bg: {{ section.settings.card_background }};
     --xstrape-header-shadow: 0 18px 38px rgb(0 0 0 / {{ section.settings.shadow_opacity | divided_by: 100.0 }});
     --xstrape-announcement-bg-rgb: {{ section.settings.announcement_background.rgb }};
-    --xstrape-logo-y-offset: {{ section.settings.logo_vertical_offset | default: 2 }}px;
-    --xstrape-logo-mobile-y-offset: {{ section.settings.logo_mobile_vertical_offset | default: 3 }}px;
+    --xstrape-logo-y-offset: {{ section.settings.logo_vertical_offset | default: 0 }}px;
+    --xstrape-logo-mobile-y-offset: {{ section.settings.logo_mobile_vertical_offset | default: 0 }}px;
 
     position: {% if is_home_overlay and section.settings.enable_sticky %}fixed{% elsif is_home_overlay %}absolute{% elsif section.settings.enable_sticky %}sticky{% else %}relative{% endif %};
     inset-inline: 0;
@@ -555,7 +555,7 @@
     max-height: calc(100dvh - var(--xstrape-mobile-panel-top, var(--xstrape-header-mobile-top-gap)) - var(--xstrape-header-mobile-top-gap));
     overflow: auto;
     overscroll-behavior: contain;
-    padding: calc(var(--xstrape-header-bar-real-height, var(--xstrape-header-mobile-height)) + 12px) 14px 22px;
+    padding: calc(var(--xstrape-header-bar-real-height, var(--xstrape-header-mobile-height)) + 5px) 15px 15px;
     border-radius: var(--xstrape-header-panel-radius);
     background: var(--xstrape-header-panel-bg);
     box-shadow: 0 22px 50px rgb(0 0 0 / 0.25);
@@ -581,43 +581,101 @@
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-list {
     display: grid;
-    gap: 12px;
+    gap: 10px;
+    padding-top: 1px;
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-card {
     display: grid;
-    grid-template-columns: 112px minmax(0, 1fr) auto;
-    gap: 16px;
+    grid-template-columns: 74px minmax(0, 1fr) 23px;
+    gap: 10px;
     align-items: center;
-    min-height: 128px;
-    padding: 10px 16px 10px 10px;
-    border-radius: 22px;
+    height: 82px;
+    min-height: 82px;
+    overflow: hidden;
+    padding: 4px;
+    border-radius: 16px;
     background: #fff;
-    color: #080808;
+    color: #000;
     text-decoration: none;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.14);
+    box-shadow:
+      0 6px 6px -3px rgb(0 0 0 / 0.06),
+      0 3px 3px -1.5px rgb(0 0 0 / 0.06),
+      0 1px 1px -0.5px rgb(0 0 0 / 0.06),
+      0 0 0 1px rgb(0 0 0 / 0.06);
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb {
-    width: 112px;
-    height: 108px;
-    border-radius: 16px;
+    width: 74px;
+    height: 74px;
+    border-radius: 11px;
+    background: #f3f3f3;
+    box-shadow: none;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb img {
+    border-radius: 11px;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-body {
+    display: block;
+    min-width: 0;
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-title {
-    margin-bottom: 8px;
-    font-size: clamp(1.22rem, 6.4vw, 1.85rem);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: #000;
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 16px;
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-text {
-    font-size: clamp(0.94rem, 4vw, 1.16rem);
+    display: block;
+    margin-top: 5px;
+    color: #000;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 11px;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-title .xstrape-header__badge {
+    min-height: 21px;
+    padding: 5px 6px 4px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 12px;
+    box-shadow:
+      0 1.8px 3.2px rgb(0 0 0 / 0.1),
+      0 1.7px 10.3px rgb(0 0 0 / 0.07),
+      0 3.5px 10px rgb(0 0 0 / 0.05),
+      0 7.5px 7px rgb(0 0 0 / 0.05);
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-arrow {
-    color: #050505;
-    font-size: 2.5rem;
-    font-weight: 500;
-    line-height: 1;
+    position: relative;
+    display: grid;
+    place-items: center;
+    justify-self: end;
+    width: 23px;
+    height: 23px;
+    color: #000;
+    font-size: 0;
+    line-height: 0;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-arrow::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 4px solid currentColor;
+    border-right: 4px solid currentColor;
+    transform: rotate(45deg);
   }
 
   @media screen and (max-width: 1149px) {
@@ -626,7 +684,7 @@
     }
 
     #shopify-section-{{ section.id }} {
-      --xstrape-header-side-gap: 16px;
+      --xstrape-header-side-gap: 10px;
     }
 
     #shopify-section-{{ section.id }} .xstrape-header {
@@ -635,7 +693,7 @@
 
     #shopify-section-{{ section.id }} .xstrape-header__announcement {
       height: 36px;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       font-size: 13px;
       font-weight: 850;
       white-space: nowrap;
@@ -646,21 +704,40 @@
     }
 
     #shopify-section-{{ section.id }} .xstrape-header__bar {
-      grid-template-columns: minmax(0, 1fr) auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       width: calc(100vw - (var(--xstrape-header-side-gap) * 2));
       min-height: var(--xstrape-header-mobile-height);
-      padding-inline: 22px;
-      gap: 12px;
+      padding: 0;
+      gap: 0;
+      border-radius: 24px;
+      box-shadow:
+        0 0 0 1px rgb(0 0 0 / 0.06),
+        0 1px 1px -0.5px rgb(0 0 0 / 0.06),
+        0 3px 3px -1.5px rgb(0 0 0 / 0.06),
+        0 6px 6px -3px rgb(0 0 0 / 0.06),
+        0 12px 12px -6px rgb(0 0 0 / 0.06),
+        0 24px 24px -12px rgb(0 0 0 / 0.06);
     }
 
     #shopify-section-{{ section.id }} .xstrape-header__logo-image {
       max-width: min({{ section.settings.logo_mobile_width }}px, 45vw);
-      max-height: calc(var(--xstrape-header-mobile-height) - 14px);
+      max-height: calc(var(--xstrape-header-mobile-height) - 27px);
       transform: translateY(var(--xstrape-logo-mobile-y-offset));
     }
 
     #shopify-section-{{ section.id }} .xstrape-header__logo {
       height: var(--xstrape-header-mobile-height);
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    #shopify-section-{{ section.id }} .xstrape-header__logo-link {
+      height: var(--xstrape-header-mobile-height);
+      padding-left: 25px;
+      align-items: center;
+      justify-content: flex-start;
     }
 
     #shopify-section-{{ section.id }} .xstrape-header__logo-text {
@@ -674,12 +751,21 @@
     }
 
     #shopify-section-{{ section.id }} .xstrape-header__actions {
-      gap: 10px;
+      height: var(--xstrape-header-mobile-height);
+      gap: 0;
+      padding-right: 0;
     }
 
     #shopify-section-{{ section.id }} .xstrape-header__icon {
-      width: 34px;
-      height: 34px;
+      width: 45px;
+      height: var(--xstrape-header-mobile-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #shopify-section-{{ section.id }} [data-xstrape-mobile-menu-toggle] {
+      width: 52px;
     }
   }
 
@@ -692,16 +778,13 @@
 
   @media screen and (max-width: 430px) {
     #shopify-section-{{ section.id }} .xstrape-header__mobile-card {
-      grid-template-columns: minmax(88px, 30vw) minmax(0, 1fr) auto;
-      min-height: 116px;
-      gap: 12px;
-      padding-right: 12px;
+      grid-template-columns: 74px minmax(0, 1fr) 23px;
+      min-height: 82px;
     }
 
     #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 1 / 1;
+      width: 74px;
+      height: 74px;
     }
   }
 </style>
@@ -947,14 +1030,17 @@
         {%- for block in section.blocks -%}
           {%- if block.type == 'mobile_card' -%}
             {%- assign has_mobile_cards = true -%}
+            {%- assign mobile_image_asset = block.settings.image_asset | strip -%}
             <li {{ block.shopify_attributes }}>
               <a class="xstrape-header__mobile-card" href="{{ block.settings.link | default: '#' }}">
-                <span class="xstrape-header__mobile-thumb {% if block.settings.image == blank %}xstrape-header__mobile-thumb--placeholder{% endif %}">
+                <span class="xstrape-header__mobile-thumb {% if block.settings.image == blank and mobile_image_asset == blank %}xstrape-header__mobile-thumb--placeholder{% endif %}">
                   {%- if block.settings.image != blank -%}
-                    {{ block.settings.image | image_url: width: 320 | image_tag: loading: 'lazy', sizes: '112px' }}
+                    {{ block.settings.image | image_url: width: 320 | image_tag: loading: 'lazy', sizes: '74px' }}
+                  {%- elsif mobile_image_asset != blank -%}
+                    <img src="{{ mobile_image_asset | asset_url }}" alt="" loading="lazy">
                   {%- endif -%}
                 </span>
-                <span>
+                <span class="xstrape-header__mobile-body">
                   <span class="xstrape-header__mobile-title">
                     {{ block.settings.title | escape }}
                     {%- if block.settings.badge != blank -%}
@@ -977,7 +1063,7 @@
               <li>
                 <a class="xstrape-header__mobile-card" href="{{ block.settings.link | default: '#' }}">
                   <span class="xstrape-header__mobile-thumb xstrape-header__mobile-thumb--placeholder"></span>
-                  <span>
+                  <span class="xstrape-header__mobile-body">
                     <span class="xstrape-header__mobile-title">{{ block.settings.title | escape }}</span>
                     {%- if block.settings.card_1_text != blank -%}
                       <span class="xstrape-header__mobile-text">{{ block.settings.card_1_text | escape }}</span>
@@ -1164,7 +1250,7 @@
       "step": 1,
       "unit": "px",
       "label": "桌面标志垂直微调",
-      "default": 2
+      "default": 0
     },
     {
       "type": "range",
@@ -1174,7 +1260,7 @@
       "step": 1,
       "unit": "px",
       "label": "移动端标志垂直微调",
-      "default": 3
+      "default": 0
     },
     {
       "type": "header",
@@ -1700,6 +1786,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "image_asset",
+          "label": "主题资产图片文件名",
+          "info": "例如 xstrape-menu-cases.jpg。优先使用上方选择的图片。"
         },
         {
           "type": "text",

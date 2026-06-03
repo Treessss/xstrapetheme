@@ -287,43 +287,73 @@
             "feature_link": ""
           }
         },
-        "mobile_mini": {
+        "mobile_cases": {
           "type": "mobile_card",
           "settings": {
-            "title": "Starlink Mini",
-            "subtitle": "Travel-ready kits and accessories",
-            "link": "/collections/for-starlink-mini",
-            "badge": "New",
+            "title": "Cases",
+            "subtitle": "iPhone 17 & More",
+            "link": "/collections/all",
+            "badge": "NEW",
             "badge_style": "new"
           }
         },
-        "mobile_power": {
+        "mobile_watch": {
           "type": "mobile_card",
           "settings": {
-            "title": "Power",
-            "subtitle": "Adapters, cables and 30V power",
+            "title": "Watch Bands",
+            "subtitle": "Apple Watch, Garmin & More",
             "link": "/collections/all",
-            "badge": "Hot",
+            "badge": "NEW",
+            "badge_style": "new"
+          }
+        },
+        "mobile_find_my": {
+          "type": "mobile_card",
+          "settings": {
+            "title": "Find My® Tracking",
+            "subtitle": "Never Lose Your Wallet Again",
+            "link": "/collections/all",
+            "badge": "HOT",
             "badge_style": "hot"
           }
         },
-        "mobile_mounts": {
+        "mobile_charging": {
           "type": "mobile_card",
           "settings": {
-            "title": "Mounts",
-            "subtitle": "Secure setup for vehicles and travel",
-            "link": "/collections/for-starlink-mini",
+            "title": "Charging",
+            "subtitle": "Power Your Essentials",
+            "link": "/collections/all",
             "badge": "",
             "badge_style": "new"
           }
         },
-        "mobile_cables": {
+        "mobile_wallets": {
           "type": "mobile_card",
           "settings": {
-            "title": "Cables",
-            "subtitle": "Extension and DC power cables",
+            "title": "Wallets",
+            "subtitle": "Upgrade Your EDC",
             "link": "/collections/all",
             "badge": "",
+            "badge_style": "new"
+          }
+        },
+        "mobile_lifestyle": {
+          "type": "mobile_card",
+          "settings": {
+            "title": "Lifestyle Gear",
+            "subtitle": "",
+            "link": "/collections/all",
+            "badge": "",
+            "badge_style": "new"
+          }
+        },
+        "mobile_tracking": {
+          "type": "mobile_card",
+          "settings": {
+            "title": "Tracking",
+            "subtitle": "",
+            "link": "/collections/all",
+            "badge": "NEW",
             "badge_style": "new"
           }
         },
@@ -331,9 +361,9 @@
           "type": "mobile_card",
           "settings": {
             "title": "Sale",
-            "subtitle": "Featured discounts",
+            "subtitle": "Featured Discounts",
             "link": "/collections/all",
-            "badge": "Featured",
+            "badge": "FEATURED",
             "badge_style": "sale"
           }
         }
@@ -346,10 +376,13 @@
         "desktop_protection",
         "desktop_support",
         "desktop_sale",
-        "mobile_mini",
-        "mobile_power",
-        "mobile_mounts",
-        "mobile_cables",
+        "mobile_cases",
+        "mobile_watch",
+        "mobile_find_my",
+        "mobile_charging",
+        "mobile_wallets",
+        "mobile_lifestyle",
+        "mobile_tracking",
         "mobile_sale"
       ],
       "name": "自定义顶部导航",
@@ -360,15 +393,15 @@
         "logo_text": "XSTRAPETM",
         "logo_width": 190,
         "logo_mobile_width": 110,
-        "logo_vertical_offset": 2,
-        "logo_mobile_vertical_offset": 3,
+        "logo_vertical_offset": 0,
+        "logo_mobile_vertical_offset": 0,
         "desktop_menu_label": "Primary menu",
         "nav_gap": 34,
         "nav_font_size": 16,
         "show_announcement": true,
         "announcement_text": "Free Shipping on U.S. Orders $50+",
-        "announcement_link": "",
         "announcement_link_text": "Shop Now",
+        "announcement_link": "",
         "show_announcement_info_icon": true,
         "announcement_background": "#111111",
         "announcement_text_color": "#ffffff",
