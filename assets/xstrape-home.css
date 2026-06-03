@@ -1,13 +1,21 @@
 .xstrape-home-scope {
-  --xh-page-bg: #ffffff;
+  --xh-page-bg: #f3f3f3;
   --xh-text: #111111;
   --xh-muted: #666666;
   --xh-accent: #111111;
-  --xh-radius: 28px;
+  --xh-radius: 25px;
   --xh-gap: clamp(14px, 1.4vw, 22px);
   --xh-max: 1480px;
+  --xh-nomad-bg: #f3f3f3;
+  --xh-card-bg: #ffffff;
+  --xh-card-shadow: rgb(0 0 0 / 0.06) 0 0 0 1px, rgb(0 0 0 / 0.06) 0 1px 1px -0.5px, rgb(0 0 0 / 0.06) 0 3px 3px -1.5px, rgb(0 0 0 / 0.06) 0 6px 6px -3px, rgb(0 0 0 / 0.06) 0 12px 12px -6px, rgb(0 0 0 / 0.06) 0 24px 24px -12px;
   color: var(--xh-text);
   background: var(--xh-page-bg);
+}
+
+body:has(.xstrape-home-scope),
+main:has(.xstrape-home-scope) {
+  background: #f3f3f3;
 }
 
 .xstrape-home-scope a {
@@ -89,6 +97,7 @@
   overflow: hidden;
   isolation: isolate;
   background: #111;
+  box-shadow: var(--xh-card-shadow);
 }
 
 .xstrape-home-scope .xh-hero__media,
@@ -273,6 +282,7 @@
   aspect-ratio: 353 / 442;
   border-radius: 25px;
   background: #efefef;
+  box-shadow: var(--xh-card-shadow);
 }
 
 .xstrape-home-scope.xh-favorites .xh-favorite-card__media img,
@@ -328,7 +338,8 @@
   align-items: end;
   overflow: hidden;
   border-radius: var(--xh-radius);
-  background: #f3f3f3;
+  background: var(--xh-card-bg);
+  box-shadow: var(--xh-card-shadow);
   isolation: isolate;
 }
 
@@ -466,7 +477,8 @@
   justify-content: center;
   overflow: hidden;
   border-radius: 20px;
-  background: #fff;
+  background: var(--xh-card-bg);
+  box-shadow: var(--xh-card-shadow);
 }
 
 .xstrape-home-scope.xh-categories .xh-category-card::after {
@@ -682,8 +694,8 @@
   height: 442px;
   overflow: hidden;
   border-radius: 25px;
-  background: #fff;
-  box-shadow: 0 4px 16px rgb(0 0 0 / 0.16);
+  background: var(--xh-card-bg);
+  box-shadow: var(--xh-card-shadow);
 }
 
 .xstrape-home-scope.xh-community .xh-community-card__media img,
@@ -808,7 +820,8 @@
   justify-content: center;
   overflow: hidden;
   border-radius: 20px;
-  background: #fff;
+  background: var(--xh-card-bg);
+  box-shadow: var(--xh-card-shadow);
   isolation: isolate;
 }
 
@@ -897,7 +910,8 @@
   justify-content: center;
   overflow: hidden;
   border-radius: 20px;
-  background: #fff;
+  background: var(--xh-card-bg);
+  box-shadow: var(--xh-card-shadow);
 }
 
 .xstrape-home-scope.xh-nomad-link-tiles .xh-nomad-link-tile__media,
