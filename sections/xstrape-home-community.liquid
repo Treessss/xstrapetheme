@@ -1,7 +1,7 @@
 {{ 'xstrape-home.css' | asset_url | stylesheet_tag }}
 
 <section
-  class="xstrape-home-scope xh-section"
+  class="xstrape-home-scope xh-section xh-community"
   style="--xh-page-bg: {{ section.settings.page_background | default: '#ffffff' }}; --xh-text: {{ section.settings.text_color | default: '#111111' }}; --xh-muted: {{ section.settings.muted_text_color | default: '#6c6c6c' }};"
 >
   <div class="xh-container">
@@ -19,13 +19,18 @@
     <div class="xh-community-list">
       {% for block in section.blocks %}
         <a class="xh-community-card {% if block.settings.image == blank %}xh-community-card--text{% endif %}" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
-          {% if block.settings.image != blank %}
-            {{
-              block.settings.image
-              | image_url: width: 900
-              | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 70vw, 20vw', widths: '360,540,720,900'
-            }}
-          {% endif %}
+          <span class="xh-community-card__media">
+            {% if block.settings.image != blank %}
+              {{
+                block.settings.image
+                | image_url: width: 1200
+                | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 44vw, 25vw', widths: '360,540,720,900,1200'
+              }}
+            {% else %}
+              {{ 'lifestyle-1' | placeholder_svg_tag }}
+            {% endif %}
+            <span class="xh-community-card__icon" aria-hidden="true"></span>
+          </span>
           {% if block.settings.label != blank %}
             <span class="xh-community-card__label">{{ block.settings.label | escape }}</span>
           {% endif %}

@@ -1,0 +1,60 @@
+{{ 'xstrape-home.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="xstrape-home-scope xh-nomad-link-tiles"
+  style="--xh-page-bg: {{ section.settings.page_background | default: '#f3f3f3' }};"
+>
+  <div class="xh-nomad-link-tiles__grid">
+    {% for block in section.blocks %}
+      <a class="xh-nomad-link-tile" {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %} {{ block.shopify_attributes }}>
+        <span class="xh-nomad-link-tile__media">
+          {% if block.settings.image != blank %}
+            {{
+              block.settings.image
+              | image_url: width: 1200
+              | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 100vw, 25vw', widths: '360,540,720,900,1200'
+            }}
+          {% else %}
+            {{ 'lifestyle-2' | placeholder_svg_tag }}
+          {% endif %}
+        </span>
+        {% if block.settings.title != blank %}
+          <span class="xh-nomad-link-tile__title">{{ block.settings.title | escape }}</span>
+        {% endif %}
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Xstrape Nomad link tiles",
+  "class": "shopify-section--xstrape-nomad-link-tiles",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "page_background", "label": "Background", "default": "#f3f3f3" }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Shop Gear" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Xstrape Nomad link tiles",
+      "blocks": [
+        { "type": "tile" },
+        { "type": "tile" },
+        { "type": "tile" },
+        { "type": "tile" }
+      ]
+    }
+  ]
+}
+{% endschema %}
