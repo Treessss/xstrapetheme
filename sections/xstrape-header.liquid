@@ -21,8 +21,10 @@
     --xstrape-header-panel-bg: {{ section.settings.panel_background }};
     --xstrape-header-card-bg: {{ section.settings.card_background }};
     --xstrape-header-shadow: 0 18px 38px rgb(0 0 0 / {{ section.settings.shadow_opacity | divided_by: 100.0 }});
+    --xstrape-logo-y-offset: {{ section.settings.logo_vertical_offset | default: 2 }}px;
+    --xstrape-logo-mobile-y-offset: {{ section.settings.logo_mobile_vertical_offset | default: 3 }}px;
 
-    position: {% if is_home_overlay %}absolute{% elsif section.settings.enable_sticky %}sticky{% else %}relative{% endif %};
+    position: {% if is_home_overlay and section.settings.enable_sticky %}fixed{% elsif is_home_overlay %}absolute{% elsif section.settings.enable_sticky %}sticky{% else %}relative{% endif %};
     inset-inline: 0;
     top: calc(var(--sticky-announcement-bar-enabled, 0) * var(--announcement-bar-height, 0px));
     z-index: 80;
@@ -94,12 +96,14 @@
 
   #shopify-section-{{ section.id }} .xstrape-header__logo-image {
     display: block;
-    width: {{ section.settings.logo_width }}px;
+    width: auto;
     max-width: min({{ section.settings.logo_width }}px, 38vw);
+    max-height: calc(var(--xstrape-header-height) - 24px);
     height: auto;
     flex: 0 0 auto;
     object-fit: contain;
-    transform: translateY(2px);
+    object-position: center;
+    transform: translateY(var(--xstrape-logo-y-offset));
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__logo-text {
@@ -112,7 +116,7 @@
     line-height: 1;
     text-transform: uppercase;
     white-space: nowrap;
-    transform: translateY(2px);
+    transform: translateY(var(--xstrape-logo-y-offset));
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__nav {
@@ -597,8 +601,9 @@
     }
 
     #shopify-section-{{ section.id }} .xstrape-header__logo-image {
-      width: {{ section.settings.logo_mobile_width }}px;
       max-width: min({{ section.settings.logo_mobile_width }}px, 45vw);
+      max-height: calc(var(--xstrape-header-mobile-height) - 14px);
+      transform: translateY(var(--xstrape-logo-mobile-y-offset));
     }
 
     #shopify-section-{{ section.id }} .xstrape-header__logo {
@@ -607,6 +612,7 @@
 
     #shopify-section-{{ section.id }} .xstrape-header__logo-text {
       font-size: clamp(1.18rem, 7vw, 1.7rem);
+      transform: translateY(var(--xstrape-logo-mobile-y-offset));
     }
 
     #shopify-section-{{ section.id }} .xstrape-header__nav,
@@ -1091,6 +1097,26 @@
       "default": 150
     },
     {
+      "type": "range",
+      "id": "logo_vertical_offset",
+      "min": -8,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "label": "桌面标志垂直微调",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "logo_mobile_vertical_offset",
+      "min": -8,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "label": "移动端标志垂直微调",
+      "default": 3
+    },
+    {
       "type": "header",
       "content": "桌面导航"
     },
@@ -1256,7 +1282,7 @@
     {
       "type": "range",
       "id": "mobile_height",
-      "min": 58,
+      "min": 44,
       "max": 92,
       "step": 2,
       "unit": "px",
