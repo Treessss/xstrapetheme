@@ -368,6 +368,8 @@
         "show_announcement": true,
         "announcement_text": "Free Shipping on U.S. Orders $50+",
         "announcement_link": "",
+        "announcement_link_text": "Shop Now",
+        "show_announcement_info_icon": true,
         "announcement_background": "#111111",
         "announcement_text_color": "#ffffff",
         "show_search": true,
