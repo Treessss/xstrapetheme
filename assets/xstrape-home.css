@@ -120,9 +120,13 @@ main:has(.xstrape-home-scope) {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgb(0 0 0 / 0.08), rgb(0 0 0 / var(--xh-hero-overlay-opacity, 0.45))),
-    linear-gradient(90deg, rgb(0 0 0 / 0.46), rgb(0 0 0 / 0.04) 68%);
+    linear-gradient(180deg, rgb(0 0 0 / calc(var(--xh-hero-overlay-opacity, 0.45) * 0.18)), rgb(0 0 0 / var(--xh-hero-overlay-opacity, 0.45))),
+    linear-gradient(90deg, rgb(0 0 0 / calc(var(--xh-hero-overlay-opacity, 0.45) * 1.02)), rgb(0 0 0 / calc(var(--xh-hero-overlay-opacity, 0.45) * 0.09)) 68%);
   pointer-events: none;
+}
+
+.xstrape-home-scope.xh-hero.xh-hero--no-overlay::after {
+  content: none;
 }
 
 .xstrape-home-scope .xh-hero__content {

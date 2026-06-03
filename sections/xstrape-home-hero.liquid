@@ -1,7 +1,7 @@
 {{ 'xstrape-home.css' | asset_url | stylesheet_tag }}
 
 <section
-  class="xstrape-home-scope xh-hero"
+  class="xstrape-home-scope xh-hero{% if section.settings.hero_overlay_opacity == 0 %} xh-hero--no-overlay{% endif %}"
   style="--xh-hero-text: {{ section.settings.hero_text_color | default: '#ffffff' }}; --xh-hero-overlay-opacity: {{ section.settings.hero_overlay_opacity | divided_by: 100.0 }};"
 >
   <div class="xh-hero__media">
