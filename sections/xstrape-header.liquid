@@ -574,18 +574,23 @@
     top: var(--xstrape-mobile-panel-top, var(--xstrape-header-mobile-top-gap));
     left: var(--xstrape-header-side-gap);
     right: var(--xstrape-header-side-gap);
-    max-height: calc(100dvh - var(--xstrape-mobile-panel-top, var(--xstrape-header-mobile-top-gap)) - var(--xstrape-header-mobile-top-gap));
-    overflow: auto;
+    height: var(--xstrape-mobile-panel-closed-height, var(--xstrape-header-bar-real-height, var(--xstrape-header-mobile-height)));
+    max-height: var(--xstrape-mobile-panel-open-height, calc(100dvh - var(--xstrape-mobile-panel-top, var(--xstrape-header-mobile-top-gap)) - var(--xstrape-header-mobile-top-gap)));
+    overflow: hidden;
     overscroll-behavior: contain;
     padding: calc(var(--xstrape-header-bar-real-height, var(--xstrape-header-mobile-height)) + var(--xstrape-mobile-menu-top-spacing)) var(--xstrape-mobile-menu-padding-x) var(--xstrape-mobile-menu-padding-bottom);
     border-radius: var(--xstrape-header-panel-radius);
-    background: var(--xstrape-header-panel-bg);
+    background: #f9f9f9;
     box-shadow: 0 22px 50px rgb(0 0 0 / 0.25);
-    transform: translateY(-22px);
     opacity: 0;
-    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
+    transition:
+      height 0.4s ease-in-out,
+      opacity 0.15s ease-out,
+      background-color 0.3s ease-in-out,
+      box-shadow 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) 0.08s;
     scrollbar-width: thin;
     scrollbar-color: rgb(0 0 0 / 0.28) transparent;
+    will-change: height, opacity;
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-panel.is-open {
@@ -597,8 +602,24 @@
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-panel.is-open .xstrape-header__mobile-surface {
-    transform: translateY(0);
+    height: var(--xstrape-mobile-panel-open-height, calc(100dvh - var(--xstrape-mobile-panel-top, var(--xstrape-header-mobile-top-gap)) - var(--xstrape-header-mobile-top-gap)));
+    overflow: auto;
+    background: var(--xstrape-header-panel-bg);
     opacity: 1;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-level {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition:
+      opacity 0.28s ease-in-out 0.1s,
+      transform 0.3s ease-in-out 0.08s;
+    will-change: opacity, transform;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-panel.is-open .xstrape-header__mobile-level:not([hidden]) {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-list {
@@ -1450,8 +1471,15 @@
     const updateMetrics = () => {
       if (!bar) return;
       const rect = bar.getBoundingClientRect();
+      const sectionStyle = window.getComputedStyle(section);
+      const bottomGap = Number.parseFloat(sectionStyle.getPropertyValue('--xstrape-header-mobile-top-gap')) || 0;
+      const viewportHeight = window.visualViewport?.height || window.innerHeight || document.documentElement.clientHeight;
+      const panelOpenHeight = Math.max(rect.height, Math.round(viewportHeight - rect.top - bottomGap));
+
       section.style.setProperty('--xstrape-header-bar-real-height', `${Math.round(rect.height)}px`);
       section.style.setProperty('--xstrape-mobile-panel-top', `${Math.round(rect.top)}px`);
+      section.style.setProperty('--xstrape-mobile-panel-closed-height', `${Math.round(rect.height)}px`);
+      section.style.setProperty('--xstrape-mobile-panel-open-height', `${panelOpenHeight}px`);
       document.documentElement.style.setProperty('--header-height', `${Math.round(section.clientHeight)}px`);
     };
 
@@ -1520,7 +1548,7 @@
         resetMobileSubmenus();
         closeTimer = window.setTimeout(() => {
           panel.hidden = true;
-        }, 280);
+        }, 430);
       }
     };
 
@@ -1567,6 +1595,7 @@
 
     updateMetrics();
     window.addEventListener('resize', updateMetrics, { passive: true });
+    window.visualViewport?.addEventListener('resize', updateMetrics, { passive: true });
 
     if (desktopQuery.addEventListener) {
       desktopQuery.addEventListener('change', onDesktopChange);
