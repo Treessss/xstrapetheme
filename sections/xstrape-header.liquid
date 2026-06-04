@@ -15,6 +15,26 @@
     --xstrape-header-mobile-height: {{ section.settings.mobile_height }}px;
     --xstrape-header-radius: {{ section.settings.bar_radius }}px;
     --xstrape-header-panel-radius: {{ section.settings.mobile_panel_radius }}px;
+    --xstrape-header-mobile-side-gap: {{ section.settings.mobile_side_gap | default: 10 }}px;
+    --xstrape-header-mobile-bar-radius: {{ section.settings.mobile_bar_radius | default: 24 }}px;
+    --xstrape-header-mobile-logo-left-padding: {{ section.settings.mobile_logo_left_padding | default: 25 }}px;
+    --xstrape-header-mobile-logo-height-gap: {{ section.settings.mobile_logo_height_gap | default: 27 }}px;
+    --xstrape-header-mobile-icon-width: {{ section.settings.mobile_icon_width | default: 45 }}px;
+    --xstrape-header-mobile-menu-icon-width: {{ section.settings.mobile_menu_icon_width | default: 52 }}px;
+    --xstrape-mobile-menu-top-spacing: {{ section.settings.mobile_menu_top_spacing | default: 5 }}px;
+    --xstrape-mobile-menu-padding-x: {{ section.settings.mobile_menu_padding_x | default: 15 }}px;
+    --xstrape-mobile-menu-padding-bottom: {{ section.settings.mobile_menu_padding_bottom | default: 15 }}px;
+    --xstrape-mobile-menu-gap: {{ section.settings.mobile_menu_gap | default: 10 }}px;
+    --xstrape-mobile-card-height: {{ section.settings.mobile_card_height | default: 82 }}px;
+    --xstrape-mobile-card-padding: {{ section.settings.mobile_card_padding | default: 4 }}px;
+    --xstrape-mobile-card-radius: {{ section.settings.mobile_card_radius | default: 16 }}px;
+    --xstrape-mobile-card-image-size: {{ section.settings.mobile_card_image_size | default: 74 }}px;
+    --xstrape-mobile-card-image-radius: {{ section.settings.mobile_card_image_radius | default: 11 }}px;
+    --xstrape-mobile-card-content-gap: {{ section.settings.mobile_card_content_gap | default: 10 }}px;
+    --xstrape-mobile-title-font-size: {{ section.settings.mobile_title_font_size | default: 16 }}px;
+    --xstrape-mobile-subtitle-font-size: {{ section.settings.mobile_subtitle_font_size | default: 11 }}px;
+    --xstrape-mobile-badge-font-size: {{ section.settings.mobile_badge_font_size | default: 11 }}px;
+    --xstrape-mobile-arrow-size: {{ section.settings.mobile_arrow_size | default: 23 }}px;
     --xstrape-header-bg: {{ section.settings.bar_background }};
     --xstrape-header-text: {{ section.settings.text_color }};
     --xstrape-header-accent: {{ section.settings.accent_color }};
@@ -557,7 +577,7 @@
     max-height: calc(100dvh - var(--xstrape-mobile-panel-top, var(--xstrape-header-mobile-top-gap)) - var(--xstrape-header-mobile-top-gap));
     overflow: auto;
     overscroll-behavior: contain;
-    padding: calc(var(--xstrape-header-bar-real-height, var(--xstrape-header-mobile-height)) + 5px) 15px 15px;
+    padding: calc(var(--xstrape-header-bar-real-height, var(--xstrape-header-mobile-height)) + var(--xstrape-mobile-menu-top-spacing)) var(--xstrape-mobile-menu-padding-x) var(--xstrape-mobile-menu-padding-bottom);
     border-radius: var(--xstrape-header-panel-radius);
     background: var(--xstrape-header-panel-bg);
     box-shadow: 0 22px 50px rgb(0 0 0 / 0.25);
@@ -583,20 +603,20 @@
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-list {
     display: grid;
-    gap: 10px;
+    gap: var(--xstrape-mobile-menu-gap);
     padding-top: 1px;
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-card {
     display: grid;
-    grid-template-columns: 74px minmax(0, 1fr) 23px;
-    gap: 10px;
+    grid-template-columns: var(--xstrape-mobile-card-image-size) minmax(0, 1fr) var(--xstrape-mobile-arrow-size);
+    gap: var(--xstrape-mobile-card-content-gap);
     align-items: center;
-    height: 82px;
-    min-height: 82px;
+    height: var(--xstrape-mobile-card-height);
+    min-height: var(--xstrape-mobile-card-height);
     overflow: hidden;
-    padding: 4px;
-    border-radius: 16px;
+    padding: var(--xstrape-mobile-card-padding);
+    border-radius: var(--xstrape-mobile-card-radius);
     background: #fff;
     color: #000;
     text-decoration: none;
@@ -608,15 +628,15 @@
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb {
-    width: 74px;
-    height: 74px;
-    border-radius: 11px;
+    width: var(--xstrape-mobile-card-image-size);
+    height: var(--xstrape-mobile-card-image-size);
+    border-radius: var(--xstrape-mobile-card-image-radius);
     background: #f3f3f3;
     box-shadow: none;
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb img {
-    border-radius: 11px;
+    border-radius: var(--xstrape-mobile-card-image-radius);
     object-fit: cover;
   }
 
@@ -628,30 +648,30 @@
   #shopify-section-{{ section.id }} .xstrape-header__mobile-title {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: var(--xstrape-mobile-card-content-gap);
     margin: 0;
     color: #000;
-    font-size: 16px;
+    font-size: var(--xstrape-mobile-title-font-size);
     font-weight: 900;
-    line-height: 16px;
+    line-height: var(--xstrape-mobile-title-font-size);
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-text {
     display: block;
     margin-top: 5px;
     color: #000;
-    font-size: 11px;
+    font-size: var(--xstrape-mobile-subtitle-font-size);
     font-weight: 400;
-    line-height: 11px;
+    line-height: var(--xstrape-mobile-subtitle-font-size);
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-title .xstrape-header__badge {
-    min-height: 21px;
+    min-height: calc(var(--xstrape-mobile-badge-font-size) + 10px);
     padding: 5px 6px 4px;
     border-radius: 10px;
-    font-size: 11px;
+    font-size: var(--xstrape-mobile-badge-font-size);
     font-weight: 900;
-    line-height: 12px;
+    line-height: calc(var(--xstrape-mobile-badge-font-size) + 1px);
     box-shadow:
       0 1.8px 3.2px rgb(0 0 0 / 0.1),
       0 1.7px 10.3px rgb(0 0 0 / 0.07),
@@ -664,8 +684,8 @@
     display: grid;
     place-items: center;
     justify-self: end;
-    width: 23px;
-    height: 23px;
+    width: var(--xstrape-mobile-arrow-size);
+    height: var(--xstrape-mobile-arrow-size);
     color: #000;
     font-size: 0;
     line-height: 0;
@@ -686,7 +706,7 @@
     }
 
     #shopify-section-{{ section.id }} {
-      --xstrape-header-side-gap: 10px;
+      --xstrape-header-side-gap: var(--xstrape-header-mobile-side-gap);
     }
 
     #shopify-section-{{ section.id }} .xstrape-header {
@@ -713,7 +733,7 @@
       min-height: var(--xstrape-header-mobile-height);
       padding: 0;
       gap: 0;
-      border-radius: 24px;
+      border-radius: var(--xstrape-header-mobile-bar-radius);
       box-shadow:
         0 0 0 1px rgb(0 0 0 / 0.06),
         0 1px 1px -0.5px rgb(0 0 0 / 0.06),
@@ -725,7 +745,7 @@
 
     #shopify-section-{{ section.id }} .xstrape-header__logo-image {
       max-width: min({{ section.settings.logo_mobile_width }}px, 45vw);
-      max-height: calc(var(--xstrape-header-mobile-height) - 27px);
+      max-height: calc(var(--xstrape-header-mobile-height) - var(--xstrape-header-mobile-logo-height-gap));
       transform: translateY(var(--xstrape-logo-mobile-y-offset));
     }
 
@@ -737,7 +757,7 @@
 
     #shopify-section-{{ section.id }} .xstrape-header__logo-link {
       height: var(--xstrape-header-mobile-height);
-      padding-left: 25px;
+      padding-left: var(--xstrape-header-mobile-logo-left-padding);
       align-items: center;
       justify-content: flex-start;
     }
@@ -759,7 +779,7 @@
     }
 
     #shopify-section-{{ section.id }} .xstrape-header__icon {
-      width: 45px;
+      width: var(--xstrape-header-mobile-icon-width);
       height: var(--xstrape-header-mobile-height);
       display: flex;
       align-items: center;
@@ -767,7 +787,7 @@
     }
 
     #shopify-section-{{ section.id }} [data-xstrape-mobile-menu-toggle] {
-      width: 52px;
+      width: var(--xstrape-header-mobile-menu-icon-width);
     }
   }
 
@@ -780,13 +800,13 @@
 
   @media screen and (max-width: 430px) {
     #shopify-section-{{ section.id }} .xstrape-header__mobile-card {
-      grid-template-columns: 74px minmax(0, 1fr) 23px;
-      min-height: 82px;
+      grid-template-columns: var(--xstrape-mobile-card-image-size) minmax(0, 1fr) var(--xstrape-mobile-arrow-size);
+      min-height: var(--xstrape-mobile-card-height);
     }
 
     #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb {
-      width: 74px;
-      height: 74px;
+      width: var(--xstrape-mobile-card-image-size);
+      height: var(--xstrape-mobile-card-image-size);
     }
   }
 </style>
@@ -1470,6 +1490,70 @@
       "default": 72
     },
     {
+      "type": "header",
+      "content": "移动端导航"
+    },
+    {
+      "type": "range",
+      "id": "mobile_side_gap",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "移动端左右边距",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_bar_radius",
+      "min": 0,
+      "max": 42,
+      "step": 1,
+      "unit": "px",
+      "label": "移动端导航圆角",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_left_padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "移动端标志左侧间距",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_height_gap",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "移动端标志高度留白",
+      "default": 27
+    },
+    {
+      "type": "range",
+      "id": "mobile_icon_width",
+      "min": 32,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "移动端图标按钮宽度",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "mobile_menu_icon_width",
+      "min": 32,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "label": "移动端菜单按钮宽度",
+      "default": 52
+    },
+    {
       "type": "range",
       "id": "bar_radius",
       "min": 18,
@@ -1488,6 +1572,150 @@
       "unit": "px",
       "label": "移动端面板圆角",
       "default": 30
+    },
+    {
+      "type": "header",
+      "content": "移动端展开菜单"
+    },
+    {
+      "type": "range",
+      "id": "mobile_menu_top_spacing",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "菜单顶部间距",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "mobile_menu_padding_x",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "菜单左右内边距",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_menu_padding_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "菜单底部内边距",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_menu_gap",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "菜单卡片间距",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_height",
+      "min": 60,
+      "max": 140,
+      "step": 1,
+      "unit": "px",
+      "label": "卡片高度",
+      "default": 82
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_padding",
+      "min": 0,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "卡片内边距",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_radius",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "卡片圆角",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_image_size",
+      "min": 44,
+      "max": 110,
+      "step": 1,
+      "unit": "px",
+      "label": "卡片图片大小",
+      "default": 74
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_image_radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "卡片图片圆角",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_content_gap",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "卡片内容间距",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "卡片标题字号",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_subtitle_font_size",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "卡片副标题字号",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "mobile_badge_font_size",
+      "min": 8,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "标签字号",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "mobile_arrow_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "箭头区域大小",
+      "default": 23
     },
     {
       "type": "header",

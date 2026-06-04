@@ -293,6 +293,7 @@
             "title": "Cases",
             "subtitle": "iPhone 17 & More",
             "link": "/collections/all",
+            "image_asset": "xstrape-menu-cases.jpg",
             "badge": "NEW",
             "badge_style": "new"
           }
@@ -303,6 +304,7 @@
             "title": "Watch Bands",
             "subtitle": "Apple Watch, Garmin & More",
             "link": "/collections/all",
+            "image_asset": "xstrape-menu-watch-bands.jpg",
             "badge": "NEW",
             "badge_style": "new"
           }
@@ -313,6 +315,7 @@
             "title": "Find My® Tracking",
             "subtitle": "Never Lose Your Wallet Again",
             "link": "/collections/all",
+            "image_asset": "xstrape-menu-find-my.jpg",
             "badge": "HOT",
             "badge_style": "hot"
           }
@@ -323,6 +326,7 @@
             "title": "Charging",
             "subtitle": "Power Your Essentials",
             "link": "/collections/all",
+            "image_asset": "xstrape-menu-charging.jpg",
             "badge": "",
             "badge_style": "new"
           }
@@ -333,6 +337,7 @@
             "title": "Wallets",
             "subtitle": "Upgrade Your EDC",
             "link": "/collections/all",
+            "image_asset": "xstrape-menu-wallets.jpg",
             "badge": "",
             "badge_style": "new"
           }
@@ -343,6 +348,7 @@
             "title": "Lifestyle Gear",
             "subtitle": "",
             "link": "/collections/all",
+            "image_asset": "xstrape-menu-lifestyle.jpg",
             "badge": "",
             "badge_style": "new"
           }
@@ -353,6 +359,7 @@
             "title": "Tracking",
             "subtitle": "",
             "link": "/collections/all",
+            "image_asset": "xstrape-menu-tracking.jpg",
             "badge": "NEW",
             "badge_style": "new"
           }
@@ -363,6 +370,7 @@
             "title": "Sale",
             "subtitle": "Featured Discounts",
             "link": "/collections/all",
+            "image_asset": "xstrape-menu-sale.png",
             "badge": "FEATURED",
             "badge_style": "sale"
           }
@@ -400,8 +408,8 @@
         "nav_font_size": 16,
         "show_announcement": true,
         "announcement_text": "Free Shipping on U.S. Orders $50+",
-        "announcement_link_text": "Shop Now",
         "announcement_link": "",
+        "announcement_link_text": "Shop Now",
         "show_announcement_info_icon": true,
         "announcement_background": "#111111",
         "announcement_text_color": "#ffffff",
@@ -418,8 +426,28 @@
         "mobile_top_gap": 7,
         "desktop_height": 80,
         "mobile_height": 52,
+        "mobile_side_gap": 10,
+        "mobile_bar_radius": 24,
+        "mobile_logo_left_padding": 25,
+        "mobile_logo_height_gap": 27,
+        "mobile_icon_width": 45,
+        "mobile_menu_icon_width": 52,
         "bar_radius": 60,
         "mobile_panel_radius": 30,
+        "mobile_menu_top_spacing": 5,
+        "mobile_menu_padding_x": 15,
+        "mobile_menu_padding_bottom": 15,
+        "mobile_menu_gap": 10,
+        "mobile_card_height": 82,
+        "mobile_card_padding": 4,
+        "mobile_card_radius": 16,
+        "mobile_card_image_size": 74,
+        "mobile_card_image_radius": 11,
+        "mobile_card_content_gap": 10,
+        "mobile_title_font_size": 16,
+        "mobile_subtitle_font_size": 11,
+        "mobile_badge_font_size": 11,
+        "mobile_arrow_size": 23,
         "bar_background": "#ffffff",
         "panel_background": "#f5f5f5",
         "card_background": "#f5f5f5",
