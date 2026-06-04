@@ -1156,6 +1156,19 @@
                   endif
                 endif
 
+                assign mobile_card_title_handle = block.settings.title | handleize
+                assign mobile_card_submenu_handle = block.settings.submenu_title | handleize
+                for submenu_block in section.blocks
+                  if submenu_block.type == 'mobile_submenu_item'
+                    assign submenu_parent_handle = submenu_block.settings.parent_title | handleize
+                    if submenu_block.settings.title != blank and submenu_parent_handle == mobile_card_title_handle
+                      assign has_submenu = true
+                    elsif submenu_block.settings.title != blank and mobile_card_submenu_handle != blank and submenu_parent_handle == mobile_card_submenu_handle
+                      assign has_submenu = true
+                    endif
+                  endif
+                endfor
+
                 assign mobile_image_asset = block.settings.image_asset | strip
                 if mobile_image_asset == blank
                   case block.settings.title
@@ -1254,6 +1267,19 @@
                 assign has_submenu = true
               endif
             endif
+
+            assign mobile_card_title_handle = block.settings.title | handleize
+            assign mobile_card_submenu_handle = block.settings.submenu_title | handleize
+            for submenu_block in section.blocks
+              if submenu_block.type == 'mobile_submenu_item'
+                assign submenu_parent_handle = submenu_block.settings.parent_title | handleize
+                if submenu_block.settings.title != blank and submenu_parent_handle == mobile_card_title_handle
+                  assign has_submenu = true
+                elsif submenu_block.settings.title != blank and mobile_card_submenu_handle != blank and submenu_parent_handle == mobile_card_submenu_handle
+                  assign has_submenu = true
+                endif
+              endif
+            endfor
           -%}
 
           {%- if has_submenu -%}
@@ -1263,29 +1289,44 @@
                 <p class="xstrape-header__mobile-subheading">{{ block.settings.submenu_title | default: block.settings.title | escape }}</p>
               </div>
               <ul class="xstrape-header__mobile-list xstrape-header__mobile-sublist" role="list">
-                {%- for index in (1..6) -%}
+                {%- liquid
+                  assign has_submenu_item_blocks = false
+                  assign mobile_card_title_handle = block.settings.title | handleize
+                  assign mobile_card_submenu_handle = block.settings.submenu_title | handleize
+                -%}
+
+                {%- for submenu_block in section.blocks -%}
                   {%- liquid
-                    assign child_title_key = 'child_' | append: index | append: '_title'
-                    assign child_link_key = 'child_' | append: index | append: '_link'
-                    assign child_image_key = 'child_' | append: index | append: '_image'
-                    assign child_image_asset_key = 'child_' | append: index | append: '_image_asset'
-                    assign child_badge_key = 'child_' | append: index | append: '_badge'
-                    assign child_title = block.settings[child_title_key]
-                    assign child_link = block.settings[child_link_key] | default: block.settings.link | default: '#'
-                    assign child_image = block.settings[child_image_key]
-                    assign child_image_asset = block.settings[child_image_asset_key] | strip
-                    assign child_badge = block.settings[child_badge_key]
-                    assign child_badge_normalized = child_badge | upcase
-                    assign child_badge_style = 'new'
-                    if child_badge_normalized contains 'HOT'
-                      assign child_badge_style = 'hot'
-                    elsif child_badge_normalized contains 'SALE' or child_badge_normalized contains 'FEATURED'
-                      assign child_badge_style = 'sale'
+                    assign is_matching_submenu_item = false
+                    assign submenu_parent_handle = submenu_block.settings.parent_title | handleize
+                    if submenu_block.type == 'mobile_submenu_item' and submenu_block.settings.title != blank
+                      if submenu_parent_handle == mobile_card_title_handle
+                        assign is_matching_submenu_item = true
+                      elsif mobile_card_submenu_handle != blank and submenu_parent_handle == mobile_card_submenu_handle
+                        assign is_matching_submenu_item = true
+                      endif
                     endif
+
+                    assign submenu_item_style = submenu_block.settings.item_style | default: 'card'
                   -%}
 
-                  {%- if child_title != blank -%}
-                    <li>
+                  {%- if is_matching_submenu_item and submenu_item_style != 'button' -%}
+                    {%- liquid
+                      assign has_submenu_item_blocks = true
+                      assign child_title = submenu_block.settings.title
+                      assign child_link = submenu_block.settings.link | default: '#'
+                      assign child_image = submenu_block.settings.image
+                      assign child_image_asset = submenu_block.settings.image_asset | strip
+                      assign child_badge = submenu_block.settings.badge
+                      assign child_badge_normalized = child_badge | upcase
+                      assign child_badge_style = 'new'
+                      if child_badge_normalized contains 'HOT'
+                        assign child_badge_style = 'hot'
+                      elsif child_badge_normalized contains 'SALE' or child_badge_normalized contains 'FEATURED'
+                        assign child_badge_style = 'sale'
+                      endif
+                    -%}
+                    <li {{ submenu_block.shopify_attributes }}>
                       <a class="xstrape-header__mobile-card" href="{{ child_link }}">
                         <span class="xstrape-header__mobile-thumb {% if child_image == blank and child_image_asset == blank %}xstrape-header__mobile-thumb--placeholder{% endif %}">
                           {%- if child_image != blank -%}
@@ -1308,11 +1349,81 @@
                   {%- endif -%}
                 {%- endfor -%}
 
-                {%- if block.settings.submenu_all_label != blank and block.settings.submenu_all_link != blank -%}
-                  <li>
-                    <a class="xstrape-header__mobile-all-link" href="{{ block.settings.submenu_all_link }}">{{ block.settings.submenu_all_label | escape }}</a>
-                  </li>
-                {%- endif -%}
+                {%- for submenu_block in section.blocks -%}
+                  {%- liquid
+                    assign is_matching_submenu_item = false
+                    assign submenu_parent_handle = submenu_block.settings.parent_title | handleize
+                    if submenu_block.type == 'mobile_submenu_item' and submenu_block.settings.title != blank
+                      if submenu_parent_handle == mobile_card_title_handle
+                        assign is_matching_submenu_item = true
+                      elsif mobile_card_submenu_handle != blank and submenu_parent_handle == mobile_card_submenu_handle
+                        assign is_matching_submenu_item = true
+                      endif
+                    endif
+
+                    assign submenu_item_style = submenu_block.settings.item_style | default: 'card'
+                  -%}
+
+                  {%- if is_matching_submenu_item and submenu_item_style == 'button' -%}
+                    {%- assign has_submenu_item_blocks = true -%}
+                    <li {{ submenu_block.shopify_attributes }}>
+                      <a class="xstrape-header__mobile-all-link" href="{{ submenu_block.settings.link | default: '#' }}">{{ submenu_block.settings.title | escape }}</a>
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+
+                {%- unless has_submenu_item_blocks -%}
+                  {%- for index in (1..6) -%}
+                    {%- liquid
+                      assign child_title_key = 'child_' | append: index | append: '_title'
+                      assign child_link_key = 'child_' | append: index | append: '_link'
+                      assign child_image_key = 'child_' | append: index | append: '_image'
+                      assign child_image_asset_key = 'child_' | append: index | append: '_image_asset'
+                      assign child_badge_key = 'child_' | append: index | append: '_badge'
+                      assign child_title = block.settings[child_title_key]
+                      assign child_link = block.settings[child_link_key] | default: block.settings.link | default: '#'
+                      assign child_image = block.settings[child_image_key]
+                      assign child_image_asset = block.settings[child_image_asset_key] | strip
+                      assign child_badge = block.settings[child_badge_key]
+                      assign child_badge_normalized = child_badge | upcase
+                      assign child_badge_style = 'new'
+                      if child_badge_normalized contains 'HOT'
+                        assign child_badge_style = 'hot'
+                      elsif child_badge_normalized contains 'SALE' or child_badge_normalized contains 'FEATURED'
+                        assign child_badge_style = 'sale'
+                      endif
+                    -%}
+
+                    {%- if child_title != blank -%}
+                      <li>
+                        <a class="xstrape-header__mobile-card" href="{{ child_link }}">
+                          <span class="xstrape-header__mobile-thumb {% if child_image == blank and child_image_asset == blank %}xstrape-header__mobile-thumb--placeholder{% endif %}">
+                            {%- if child_image != blank -%}
+                              {{ child_image | image_url: width: 320 | image_tag: loading: 'lazy', sizes: '74px' }}
+                            {%- elsif child_image_asset != blank -%}
+                              <img src="{{ child_image_asset | asset_url }}" alt="" loading="lazy">
+                            {%- endif -%}
+                          </span>
+                          <span class="xstrape-header__mobile-body">
+                            <span class="xstrape-header__mobile-title">
+                              {{ child_title | escape }}
+                              {%- if child_badge != blank -%}
+                                <span class="xstrape-header__badge xstrape-header__badge--{{ child_badge_style }}">{{ child_badge | escape }}</span>
+                              {%- endif -%}
+                            </span>
+                          </span>
+                          <span class="xstrape-header__mobile-arrow" aria-hidden="true">&rsaquo;</span>
+                        </a>
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  {%- if block.settings.submenu_all_label != blank and block.settings.submenu_all_link != blank -%}
+                    <li>
+                      <a class="xstrape-header__mobile-all-link" href="{{ block.settings.submenu_all_link }}">{{ block.settings.submenu_all_label | escape }}</a>
+                    </li>
+                  {%- endif -%}
+                {%- endunless -%}
               </ul>
             </div>
           {%- endif -%}
@@ -2506,6 +2617,62 @@
           "type": "text",
           "id": "child_6_badge",
           "label": "标签"
+        }
+      ]
+    },
+    {
+      "type": "mobile_submenu_item",
+      "name": "移动二级菜单项",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "标题",
+          "default": "Submenu item"
+        },
+        {
+          "type": "text",
+          "id": "parent_title",
+          "label": "所属一级菜单标题",
+          "info": "必须和一级移动菜单卡片标题完全一致，例如 Cases、Power、Mounts。"
+        },
+        {
+          "type": "select",
+          "id": "item_style",
+          "label": "显示样式",
+          "options": [
+            {
+              "value": "card",
+              "label": "卡片"
+            },
+            {
+              "value": "button",
+              "label": "底部按钮"
+            }
+          ],
+          "default": "card"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "image_asset",
+          "label": "主题资产图片文件名",
+          "info": "例如 xstrape-submenu-iphone-cases.jpg。优先使用上方选择的图片。"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "标签",
+          "info": "填写 HOT 会显示红色；填写 SALE 或 FEATURED 会显示促销红色；其他默认蓝色。"
         }
       ]
     }
