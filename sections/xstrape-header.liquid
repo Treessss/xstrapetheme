@@ -607,6 +607,58 @@
     padding-top: 1px;
   }
 
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-level[hidden] {
+    display: none !important;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-subhead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 40px;
+    margin: -1px 0 5px;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-back {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 37px;
+    border: 0;
+    border-radius: 50px;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+    box-shadow:
+      0 6px 6px -3px rgb(0 0 0 / 0.08),
+      0 3px 3px -1.5px rgb(0 0 0 / 0.08),
+      0 1px 1px -0.5px rgb(0 0 0 / 0.08),
+      0 0 0 1px rgb(0 0 0 / 0.06);
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-back::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-bottom: 4px solid currentColor;
+    border-left: 4px solid currentColor;
+    transform: rotate(45deg);
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-subheading {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 40px;
+    margin: 0;
+    color: #000;
+    font-size: var(--xstrape-mobile-title-font-size);
+    font-weight: 900;
+    line-height: 1;
+    text-align: right;
+  }
+
   #shopify-section-{{ section.id }} .xstrape-header__mobile-card {
     display: grid;
     grid-template-columns: var(--xstrape-mobile-card-image-size) minmax(0, 1fr) var(--xstrape-mobile-arrow-size);
@@ -627,17 +679,53 @@
       0 0 0 1px rgb(0 0 0 / 0.06);
   }
 
+  #shopify-section-{{ section.id }} button.xstrape-header__mobile-card {
+    width: 100%;
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+    text-align: left;
+  }
+
   #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb {
     width: var(--xstrape-mobile-card-image-size);
     height: var(--xstrape-mobile-card-image-size);
     border-radius: var(--xstrape-mobile-card-image-radius);
     background: #f3f3f3;
-    box-shadow: none;
+    box-shadow: none !important;
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-thumb img {
+    display: block;
     border-radius: var(--xstrape-mobile-card-image-radius);
+    box-shadow: none !important;
+    filter: none !important;
     object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-sublist {
+    padding-top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-header__mobile-all-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 53px;
+    padding: 0 18px;
+    border-radius: var(--xstrape-mobile-card-radius);
+    background: #fff;
+    color: #000;
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    box-shadow:
+      0 6px 6px -3px rgb(0 0 0 / 0.06),
+      0 3px 3px -1.5px rgb(0 0 0 / 0.06),
+      0 1px 1px -0.5px rgb(0 0 0 / 0.06),
+      0 0 0 1px rgb(0 0 0 / 0.06);
   }
 
   #shopify-section-{{ section.id }} .xstrape-header__mobile-body {
@@ -1047,34 +1135,53 @@
   <div id="xstrape-mobile-panel-{{ section.id }}" class="xstrape-header__mobile-panel" hidden>
     <button class="xstrape-header__mobile-scrim" type="button" aria-label="{{ 'general.accessibility.close' | t | escape }}" data-xstrape-mobile-menu-close></button>
     <div class="xstrape-header__mobile-surface" role="dialog" aria-modal="true" aria-label="{{ 'header.general.menu' | t | escape }}" tabindex="-1">
-      <ul class="xstrape-header__mobile-list" role="list">
-        {%- assign has_mobile_cards = false -%}
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'mobile_card' -%}
-            {%- assign has_mobile_cards = true -%}
-            {%- assign mobile_image_asset = block.settings.image_asset | strip -%}
-            {%- if mobile_image_asset == blank -%}
-              {%- case block.settings.title -%}
-                {%- when 'Cases' -%}
-                  {%- assign mobile_image_asset = 'xstrape-menu-cases.jpg' -%}
-                {%- when 'Watch Bands' -%}
-                  {%- assign mobile_image_asset = 'xstrape-menu-watch-bands.jpg' -%}
-                {%- when 'Find My® Tracking' -%}
-                  {%- assign mobile_image_asset = 'xstrape-menu-find-my.jpg' -%}
-                {%- when 'Charging' -%}
-                  {%- assign mobile_image_asset = 'xstrape-menu-charging.jpg' -%}
-                {%- when 'Wallets' -%}
-                  {%- assign mobile_image_asset = 'xstrape-menu-wallets.jpg' -%}
-                {%- when 'Lifestyle Gear' -%}
-                  {%- assign mobile_image_asset = 'xstrape-menu-lifestyle.jpg' -%}
-                {%- when 'Tracking' -%}
-                  {%- assign mobile_image_asset = 'xstrape-menu-tracking.jpg' -%}
-                {%- when 'Sale' -%}
-                  {%- assign mobile_image_asset = 'xstrape-menu-sale.png' -%}
-              {%- endcase -%}
-            {%- endif -%}
-            <li {{ block.shopify_attributes }}>
-              <a class="xstrape-header__mobile-card" href="{{ block.settings.link | default: '#' }}">
+      <div class="xstrape-header__mobile-level" data-xstrape-mobile-main>
+        <ul class="xstrape-header__mobile-list" role="list">
+          {%- assign has_mobile_cards = false -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'mobile_card' -%}
+              {%- assign has_mobile_cards = true -%}
+              {%- liquid
+                assign has_submenu = false
+                if block.settings.enable_submenu
+                  for index in (1..6)
+                    assign child_title_key = 'child_' | append: index | append: '_title'
+                    if block.settings[child_title_key] != blank
+                      assign has_submenu = true
+                    endif
+                  endfor
+
+                  if block.settings.submenu_all_label != blank and block.settings.submenu_all_link != blank
+                    assign has_submenu = true
+                  endif
+                endif
+
+                assign mobile_image_asset = block.settings.image_asset | strip
+                if mobile_image_asset == blank
+                  case block.settings.title
+                    when 'Cases'
+                      assign mobile_image_asset = 'xstrape-menu-cases.jpg'
+                    when 'Watch Bands'
+                      assign mobile_image_asset = 'xstrape-menu-watch-bands.jpg'
+                    when 'Find My® Tracking'
+                      assign mobile_image_asset = 'xstrape-menu-find-my.jpg'
+                    when 'Charging'
+                      assign mobile_image_asset = 'xstrape-menu-charging.jpg'
+                    when 'Wallets'
+                      assign mobile_image_asset = 'xstrape-menu-wallets.jpg'
+                    when 'Lifestyle Gear'
+                      assign mobile_image_asset = 'xstrape-menu-lifestyle.jpg'
+                    when 'Tracking'
+                      assign mobile_image_asset = 'xstrape-menu-tracking.jpg'
+                    when 'AirTag Accessories'
+                      assign mobile_image_asset = 'xstrape-menu-tracking.jpg'
+                    when 'Sale'
+                      assign mobile_image_asset = 'xstrape-menu-sale.png'
+                  endcase
+                endif
+              -%}
+
+              {%- capture mobile_card_inner -%}
                 <span class="xstrape-header__mobile-thumb {% if block.settings.image == blank and mobile_image_asset == blank %}xstrape-header__mobile-thumb--placeholder{% endif %}">
                   {%- if block.settings.image != blank -%}
                     {{ block.settings.image | image_url: width: 320 | image_tag: loading: 'lazy', sizes: '74px' }}
@@ -1094,30 +1201,123 @@
                   {%- endif -%}
                 </span>
                 <span class="xstrape-header__mobile-arrow" aria-hidden="true">&rsaquo;</span>
-              </a>
-            </li>
-          {%- endif -%}
-        {%- endfor -%}
+              {%- endcapture -%}
 
-        {%- unless has_mobile_cards -%}
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'desktop_item' -%}
-              <li>
-                <a class="xstrape-header__mobile-card" href="{{ block.settings.link | default: '#' }}">
-                  <span class="xstrape-header__mobile-thumb xstrape-header__mobile-thumb--placeholder"></span>
-                  <span class="xstrape-header__mobile-body">
-                    <span class="xstrape-header__mobile-title">{{ block.settings.title | escape }}</span>
-                    {%- if block.settings.card_1_text != blank -%}
-                      <span class="xstrape-header__mobile-text">{{ block.settings.card_1_text | escape }}</span>
-                    {%- endif -%}
-                  </span>
-                  <span class="xstrape-header__mobile-arrow" aria-hidden="true">&rsaquo;</span>
-                </a>
+              <li {{ block.shopify_attributes }}>
+                {%- if has_submenu -%}
+                  <button class="xstrape-header__mobile-card" type="button" aria-controls="xstrape-mobile-submenu-{{ section.id }}-{{ block.id }}" data-xstrape-mobile-submenu-open="{{ block.id }}">
+                    {{ mobile_card_inner }}
+                  </button>
+                {%- else -%}
+                  <a class="xstrape-header__mobile-card" href="{{ block.settings.link | default: '#' }}">
+                    {{ mobile_card_inner }}
+                  </a>
+                {%- endif -%}
               </li>
             {%- endif -%}
           {%- endfor -%}
-        {%- endunless -%}
-      </ul>
+
+          {%- unless has_mobile_cards -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'desktop_item' -%}
+                <li>
+                  <a class="xstrape-header__mobile-card" href="{{ block.settings.link | default: '#' }}">
+                    <span class="xstrape-header__mobile-thumb xstrape-header__mobile-thumb--placeholder"></span>
+                    <span class="xstrape-header__mobile-body">
+                      <span class="xstrape-header__mobile-title">{{ block.settings.title | escape }}</span>
+                      {%- if block.settings.card_1_text != blank -%}
+                        <span class="xstrape-header__mobile-text">{{ block.settings.card_1_text | escape }}</span>
+                      {%- endif -%}
+                    </span>
+                    <span class="xstrape-header__mobile-arrow" aria-hidden="true">&rsaquo;</span>
+                  </a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endunless -%}
+        </ul>
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'mobile_card' -%}
+          {%- liquid
+            assign has_submenu = false
+            if block.settings.enable_submenu
+              for index in (1..6)
+                assign child_title_key = 'child_' | append: index | append: '_title'
+                if block.settings[child_title_key] != blank
+                  assign has_submenu = true
+                endif
+              endfor
+
+              if block.settings.submenu_all_label != blank and block.settings.submenu_all_link != blank
+                assign has_submenu = true
+              endif
+            endif
+          -%}
+
+          {%- if has_submenu -%}
+            <div id="xstrape-mobile-submenu-{{ section.id }}-{{ block.id }}" class="xstrape-header__mobile-level" data-xstrape-mobile-submenu="{{ block.id }}" hidden>
+              <div class="xstrape-header__mobile-subhead">
+                <button class="xstrape-header__mobile-back" type="button" aria-label="返回上一级菜单" data-xstrape-mobile-submenu-back></button>
+                <p class="xstrape-header__mobile-subheading">{{ block.settings.submenu_title | default: block.settings.title | escape }}</p>
+              </div>
+              <ul class="xstrape-header__mobile-list xstrape-header__mobile-sublist" role="list">
+                {%- for index in (1..6) -%}
+                  {%- liquid
+                    assign child_title_key = 'child_' | append: index | append: '_title'
+                    assign child_link_key = 'child_' | append: index | append: '_link'
+                    assign child_image_key = 'child_' | append: index | append: '_image'
+                    assign child_image_asset_key = 'child_' | append: index | append: '_image_asset'
+                    assign child_badge_key = 'child_' | append: index | append: '_badge'
+                    assign child_title = block.settings[child_title_key]
+                    assign child_link = block.settings[child_link_key] | default: block.settings.link | default: '#'
+                    assign child_image = block.settings[child_image_key]
+                    assign child_image_asset = block.settings[child_image_asset_key] | strip
+                    assign child_badge = block.settings[child_badge_key]
+                    assign child_badge_normalized = child_badge | upcase
+                    assign child_badge_style = 'new'
+                    if child_badge_normalized contains 'HOT'
+                      assign child_badge_style = 'hot'
+                    elsif child_badge_normalized contains 'SALE' or child_badge_normalized contains 'FEATURED'
+                      assign child_badge_style = 'sale'
+                    endif
+                  -%}
+
+                  {%- if child_title != blank -%}
+                    <li>
+                      <a class="xstrape-header__mobile-card" href="{{ child_link }}">
+                        <span class="xstrape-header__mobile-thumb {% if child_image == blank and child_image_asset == blank %}xstrape-header__mobile-thumb--placeholder{% endif %}">
+                          {%- if child_image != blank -%}
+                            {{ child_image | image_url: width: 320 | image_tag: loading: 'lazy', sizes: '74px' }}
+                          {%- elsif child_image_asset != blank -%}
+                            <img src="{{ child_image_asset | asset_url }}" alt="" loading="lazy">
+                          {%- endif -%}
+                        </span>
+                        <span class="xstrape-header__mobile-body">
+                          <span class="xstrape-header__mobile-title">
+                            {{ child_title | escape }}
+                            {%- if child_badge != blank -%}
+                              <span class="xstrape-header__badge xstrape-header__badge--{{ child_badge_style }}">{{ child_badge | escape }}</span>
+                            {%- endif -%}
+                          </span>
+                        </span>
+                        <span class="xstrape-header__mobile-arrow" aria-hidden="true">&rsaquo;</span>
+                      </a>
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+
+                {%- if block.settings.submenu_all_label != blank and block.settings.submenu_all_link != blank -%}
+                  <li>
+                    <a class="xstrape-header__mobile-all-link" href="{{ block.settings.submenu_all_link }}">{{ block.settings.submenu_all_label | escape }}</a>
+                  </li>
+                {%- endif -%}
+              </ul>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   </div>
 </div>
@@ -1129,6 +1329,9 @@
 
     const bar = section.querySelector('[data-xstrape-header-bar]');
     const panel = section.querySelector('#xstrape-mobile-panel-{{ section.id }}');
+    const mobileSurface = panel?.querySelector('.xstrape-header__mobile-surface');
+    const mobileMain = panel?.querySelector('[data-xstrape-mobile-main]');
+    const mobileSubmenus = panel?.querySelectorAll('[data-xstrape-mobile-submenu]');
     const toggles = section.querySelectorAll('[data-xstrape-mobile-menu-toggle]');
     const desktopQuery = window.matchMedia('(min-width: 1150px)');
     let closeTimer;
@@ -1165,6 +1368,25 @@
       });
     });
 
+    const resetMobileSubmenus = () => {
+      if (mobileMain) mobileMain.hidden = false;
+      mobileSubmenus?.forEach((submenu) => {
+        submenu.hidden = true;
+      });
+      mobileSurface?.scrollTo({ top: 0, behavior: 'auto' });
+    };
+
+    const openMobileSubmenu = (id) => {
+      const submenu = Array.from(mobileSubmenus || []).find((item) => item.getAttribute('data-xstrape-mobile-submenu') === id);
+      if (!submenu || !mobileMain) return;
+
+      mobileMain.hidden = true;
+      mobileSubmenus?.forEach((item) => {
+        item.hidden = item !== submenu;
+      });
+      mobileSurface?.scrollTo({ top: 0, behavior: 'auto' });
+    };
+
     const setOpen = (open) => {
       if (!panel || toggles.length === 0) return;
       window.clearTimeout(closeTimer);
@@ -1177,12 +1399,14 @@
 
       if (open) {
         updateMetrics();
+        resetMobileSubmenus();
         panel.hidden = false;
         panel.offsetHeight;
         panel.classList.add('is-open');
         panel.querySelector('.xstrape-header__mobile-surface')?.focus({ preventScroll: true });
       } else {
         panel.classList.remove('is-open');
+        resetMobileSubmenus();
         closeTimer = window.setTimeout(() => {
           panel.hidden = true;
         }, 280);
@@ -1199,6 +1423,21 @@
     });
 
     panel?.addEventListener('click', (event) => {
+      const submenuTrigger = event.target.closest('[data-xstrape-mobile-submenu-open]');
+      if (submenuTrigger) {
+        event.preventDefault();
+        event.stopPropagation();
+        openMobileSubmenu(submenuTrigger.getAttribute('data-xstrape-mobile-submenu-open'));
+        return;
+      }
+
+      if (event.target.closest('[data-xstrape-mobile-submenu-back]')) {
+        event.preventDefault();
+        event.stopPropagation();
+        resetMobileSubmenus();
+        return;
+      }
+
       if (event.target.closest('[data-xstrape-mobile-menu-close]') || event.target.closest('a')) {
         setOpen(false);
       }
@@ -2067,6 +2306,206 @@
             }
           ],
           "default": "new"
+        },
+        {
+          "type": "header",
+          "content": "二级菜单"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_submenu",
+          "label": "点击后进入二级菜单",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "submenu_title",
+          "label": "二级菜单标题"
+        },
+        {
+          "type": "text",
+          "id": "submenu_all_label",
+          "label": "底部按钮文字",
+          "default": "Shop All"
+        },
+        {
+          "type": "url",
+          "id": "submenu_all_link",
+          "label": "底部按钮链接"
+        },
+        {
+          "type": "header",
+          "content": "二级菜单项 1"
+        },
+        {
+          "type": "text",
+          "id": "child_1_title",
+          "label": "标题"
+        },
+        {
+          "type": "url",
+          "id": "child_1_link",
+          "label": "链接"
+        },
+        {
+          "type": "image_picker",
+          "id": "child_1_image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "child_1_image_asset",
+          "label": "主题资产图片文件名"
+        },
+        {
+          "type": "text",
+          "id": "child_1_badge",
+          "label": "标签"
+        },
+        {
+          "type": "header",
+          "content": "二级菜单项 2"
+        },
+        {
+          "type": "text",
+          "id": "child_2_title",
+          "label": "标题"
+        },
+        {
+          "type": "url",
+          "id": "child_2_link",
+          "label": "链接"
+        },
+        {
+          "type": "image_picker",
+          "id": "child_2_image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "child_2_image_asset",
+          "label": "主题资产图片文件名"
+        },
+        {
+          "type": "text",
+          "id": "child_2_badge",
+          "label": "标签"
+        },
+        {
+          "type": "header",
+          "content": "二级菜单项 3"
+        },
+        {
+          "type": "text",
+          "id": "child_3_title",
+          "label": "标题"
+        },
+        {
+          "type": "url",
+          "id": "child_3_link",
+          "label": "链接"
+        },
+        {
+          "type": "image_picker",
+          "id": "child_3_image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "child_3_image_asset",
+          "label": "主题资产图片文件名"
+        },
+        {
+          "type": "text",
+          "id": "child_3_badge",
+          "label": "标签"
+        },
+        {
+          "type": "header",
+          "content": "二级菜单项 4"
+        },
+        {
+          "type": "text",
+          "id": "child_4_title",
+          "label": "标题"
+        },
+        {
+          "type": "url",
+          "id": "child_4_link",
+          "label": "链接"
+        },
+        {
+          "type": "image_picker",
+          "id": "child_4_image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "child_4_image_asset",
+          "label": "主题资产图片文件名"
+        },
+        {
+          "type": "text",
+          "id": "child_4_badge",
+          "label": "标签"
+        },
+        {
+          "type": "header",
+          "content": "二级菜单项 5"
+        },
+        {
+          "type": "text",
+          "id": "child_5_title",
+          "label": "标题"
+        },
+        {
+          "type": "url",
+          "id": "child_5_link",
+          "label": "链接"
+        },
+        {
+          "type": "image_picker",
+          "id": "child_5_image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "child_5_image_asset",
+          "label": "主题资产图片文件名"
+        },
+        {
+          "type": "text",
+          "id": "child_5_badge",
+          "label": "标签"
+        },
+        {
+          "type": "header",
+          "content": "二级菜单项 6"
+        },
+        {
+          "type": "text",
+          "id": "child_6_title",
+          "label": "标题"
+        },
+        {
+          "type": "url",
+          "id": "child_6_link",
+          "label": "链接"
+        },
+        {
+          "type": "image_picker",
+          "id": "child_6_image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "child_6_image_asset",
+          "label": "主题资产图片文件名"
+        },
+        {
+          "type": "text",
+          "id": "child_6_badge",
+          "label": "标签"
         }
       ]
     }
