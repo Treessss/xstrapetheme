@@ -13,6 +13,10 @@
       "type": "xstrape-home-hero",
       "name": "首页主视觉",
       "settings": {
+        "enable_autoplay": true,
+        "autoplay_interval": 5,
+        "show_dots": true,
+        "show_arrows": false,
         "hero_image": "shopify://shop_images/ChatGPT_Image_2026_6_3_00_42_03.png",
         "hero_mobile_image": "shopify://shop_images/ChatGPT_Image_2026_6_3_00_43_18.png",
         "hero_kicker": "Built for Starlink Mini",
@@ -22,7 +26,26 @@
         "hero_button_link": "shopify://collections/for-starlink-mini",
         "hero_text_color": "#ffffff",
         "hero_overlay_opacity": 0
-      }
+      },
+      "blocks": {
+        "hero_slide_1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_2026_6_3_00_42_03.png",
+            "mobile_image": "shopify://shop_images/ChatGPT_Image_2026_6_3_00_43_18.png",
+            "kicker": "Built for Starlink Mini",
+            "heading": "Gear That Goes The Distance",
+            "subheading": "",
+            "button_text": "Shop Travel Gear",
+            "button_link": "shopify://collections/for-starlink-mini",
+            "text_color": "#ffffff",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "hero_slide_1"
+      ]
     },
     "xstrape_home_favorites": {
       "type": "xstrape-home-favorites",
@@ -125,7 +148,7 @@
       "type": "xstrape-home-review-banner",
       "name": "评价横幅",
       "settings": {
-        "review_image": "shopify://shop_images/ChatGPT_Image_2026_6_3_00_42_03.png",
+        "review_image": "shopify://shop_images/9998219356186943-c59322fb-0938-430a-b5bd-26d09004c0b5-video_task_01KTBA8MC0SPXS25M3FX2DMN3S_0.png",
         "review_stars": "★★★★★",
         "review_title": "Trusted Daily by Starlink Travelers",
         "review_text": "Reliable mounts, smart power, and rugged protection for road trips, remote work, and off-grid weekends.",

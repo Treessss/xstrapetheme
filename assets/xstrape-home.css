@@ -94,13 +94,33 @@ main:has(.xstrape-home-scope) {
 .xstrape-home-scope.xh-hero {
   position: relative;
   min-height: min(80vh, 720px);
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
   overflow: hidden;
   isolation: isolate;
   background: #111;
   box-shadow: var(--xh-card-shadow);
+}
+
+.xstrape-home-scope .xh-hero__slides,
+.xstrape-home-scope .xh-hero__slide {
+  position: absolute;
+  inset: 0;
+  min-height: inherit;
+}
+
+.xstrape-home-scope .xh-hero__slide {
+  display: flex;
+  min-height: inherit;
+  align-items: stretch;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.72s ease, visibility 0.72s ease;
+}
+
+.xstrape-home-scope .xh-hero__slide.is-active {
+  z-index: 2;
+  opacity: 1;
+  visibility: visible;
 }
 
 .xstrape-home-scope .xh-hero__media,
@@ -117,7 +137,7 @@ main:has(.xstrape-home-scope) {
   object-fit: cover;
 }
 
-.xstrape-home-scope.xh-hero::after {
+.xstrape-home-scope .xh-hero__slide::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -128,7 +148,8 @@ main:has(.xstrape-home-scope) {
   pointer-events: none;
 }
 
-.xstrape-home-scope.xh-hero.xh-hero--no-overlay::after {
+.xstrape-home-scope.xh-hero.xh-hero--no-overlay .xh-hero__slide::after,
+.xstrape-home-scope .xh-hero__slide.xh-hero__slide--no-overlay::after {
   content: none;
 }
 
@@ -182,6 +203,77 @@ main:has(.xstrape-home-scope) {
   justify-content: center;
   gap: 0.75rem;
   margin-top: 4px;
+}
+
+.xstrape-home-scope .xh-hero__controls {
+  position: absolute;
+  inset: auto 0 24px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  pointer-events: none;
+}
+
+.xstrape-home-scope .xh-hero__dots {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 0.18);
+  backdrop-filter: blur(12px);
+  pointer-events: auto;
+}
+
+.xstrape-home-scope .xh-hero__dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.45);
+  cursor: pointer;
+  transition: width 0.22s ease, background 0.22s ease;
+}
+
+.xstrape-home-scope .xh-hero__dot.is-active {
+  width: 22px;
+  background: #fff;
+}
+
+.xstrape-home-scope .xh-hero__arrow {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.92);
+  color: #111;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: var(--xh-card-shadow);
+}
+
+.xstrape-home-scope .xh-hero__arrow::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid currentColor;
+  border-right: 3px solid currentColor;
+}
+
+.xstrape-home-scope .xh-hero__arrow--prev::before {
+  transform: translate(-35%, -50%) rotate(-135deg);
+}
+
+.xstrape-home-scope .xh-hero__arrow--next::before {
+  transform: translate(-65%, -50%) rotate(45deg);
 }
 
 .xstrape-home-scope .xh-product-list {
