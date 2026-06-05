@@ -1,3 +1,27 @@
+@font-face {
+  font-display: swap;
+  font-family: "Gotham-Bold";
+  font-style: normal;
+  font-weight: 400;
+  src: url("Gotham-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Gotham-Bold";
+  font-style: normal;
+  font-weight: 700;
+  src: url("Gotham-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Gotham-Book";
+  font-style: normal;
+  font-weight: 400;
+  src: url("Gotham-Book.otf") format("opentype");
+}
+
 .xstrape-home-scope {
   --xh-page-bg: #f3f3f3;
   --xh-text: #111111;
@@ -698,6 +722,7 @@ main:has(.xstrape-home-scope) {
   display: block;
   margin: 0;
   color: var(--xh-review-text, #ffffff);
+  font-family: "Gotham-Bold", sans-serif;
   font-size: 56px;
   font-weight: 400;
   letter-spacing: -2.24px;
@@ -706,6 +731,7 @@ main:has(.xstrape-home-scope) {
 
 .xstrape-home-scope .xh-review-banner .xh-media-card__title {
   color: var(--xh-review-text, #ffffff);
+  font-family: "Gotham-Bold", sans-serif;
   font-size: 56px;
   font-weight: 400;
   letter-spacing: -2.24px;
@@ -717,6 +743,7 @@ main:has(.xstrape-home-scope) {
   margin: 8px 0 0;
   padding: 0 0 10px;
   color: var(--xh-review-muted, #ffffff);
+  font-family: "Gotham-Book", sans-serif;
   font-size: 23px;
   font-weight: 400;
   letter-spacing: -0.92px;
@@ -730,6 +757,7 @@ main:has(.xstrape-home-scope) {
   padding: 14px 24px;
   background: #fff;
   color: #000;
+  font-family: "Gotham-Bold", sans-serif;
   font-size: 16px;
   font-weight: 400;
   letter-spacing: -0.32px;
