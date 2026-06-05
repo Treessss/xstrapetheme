@@ -5965,7 +5965,7 @@ product-rerender {
 .collection--xstrape-nomad-cards .product-card__figure > a {
   width: 100%;
   height: 100%;
-  padding: 7px;
+  padding: 0;
   border-radius: inherit;
   background: var(--xstrape-collection-media-bg, #f3f3f3);
   display: grid;
@@ -5975,7 +5975,7 @@ product-rerender {
 .collection--xstrape-nomad-cards .product-card__image {
   width: 100%;
   height: 100%;
-  border-radius: 10px !important;
+  border-radius: inherit !important;
   object-fit: contain !important;
   object-position: center !important;
 }
@@ -6088,11 +6088,11 @@ product-rerender {
   }
 
   .collection--xstrape-nomad-cards .product-card__figure > a {
-    padding: 10px;
+    padding: 0;
   }
 
   .collection--xstrape-nomad-cards .product-card__image {
-    border-radius: 11px !important;
+    border-radius: inherit !important;
   }
 
   .collection--xstrape-nomad-cards .product-card__info {
