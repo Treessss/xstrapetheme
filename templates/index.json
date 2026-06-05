@@ -11,6 +11,40 @@
   "sections": {
     "xstrape_home_hero": {
       "type": "xstrape-home-hero",
+      "blocks": {
+        "hero_slide_1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_2026_6_3_00_42_03.png",
+            "mobile_image": "shopify://shop_images/ChatGPT_Image_2026_6_3_00_43_18.png",
+            "kicker": "Built for Starlink Mini",
+            "heading": "Gear That Goes The Distance",
+            "subheading": "",
+            "button_text": "Shop Travel Gear",
+            "button_link": "shopify://collections/for-starlink-mini",
+            "text_color": "#ffffff",
+            "overlay_opacity": 0
+          }
+        },
+        "slide_tKwctr": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/9998219441928900-18fc9ae8-84ce-400f-903a-752f32fd14b0-gpt_image_2_backup_task_01KT8RG19TGVV86145BFVRF0Y7_0.png",
+            "mobile_image": "shopify://shop_images/9998219441792454-4d9ffc21-5bf2-4039-90c5-63775e0dd8ce-gpt_image_2_backup_task_01KT8RM6HRB1QF5M324SGC73AW_0.png",
+            "kicker": "Built for Starlink Mini",
+            "heading": "Gear That Goes The Distance",
+            "subheading": "",
+            "button_text": "Shop Travel Gear",
+            "button_link": "shopify://collections/for-starlink-mini",
+            "text_color": "#ffffff",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "hero_slide_1",
+        "slide_tKwctr"
+      ],
       "name": "首页主视觉",
       "settings": {
         "enable_autoplay": true,
@@ -26,26 +60,7 @@
         "hero_button_link": "shopify://collections/for-starlink-mini",
         "hero_text_color": "#ffffff",
         "hero_overlay_opacity": 0
-      },
-      "blocks": {
-        "hero_slide_1": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_2026_6_3_00_42_03.png",
-            "mobile_image": "shopify://shop_images/ChatGPT_Image_2026_6_3_00_43_18.png",
-            "kicker": "Built for Starlink Mini",
-            "heading": "Gear That Goes The Distance",
-            "subheading": "",
-            "button_text": "Shop Travel Gear",
-            "button_link": "shopify://collections/for-starlink-mini",
-            "text_color": "#ffffff",
-            "overlay_opacity": 0
-          }
-        }
-      },
-      "block_order": [
-        "hero_slide_1"
-      ]
+      }
     },
     "xstrape_home_favorites": {
       "type": "xstrape-home-favorites",
@@ -166,8 +181,9 @@
           "type": "category",
           "settings": {
             "badge": "",
-            "title": "Best Sellers",
+            "title": "Popular",
             "text": "",
+            "image": "shopify://shop_images/ChatGPT_Image_2026_6_5_16_58_06_1.png",
             "image_position_x": 50,
             "image_position_y": 50,
             "asset_image": "xstrape-category-best-sellers.jpg",
@@ -178,8 +194,9 @@
           "type": "category",
           "settings": {
             "badge": "",
-            "title": "Power",
+            "title": "Women",
             "text": "",
+            "image": "shopify://shop_images/ChatGPT_Image_2026_6_5_16_58_06_2.png",
             "image_position_x": 50,
             "image_position_y": 50,
             "asset_image": "xstrape-category-power.jpg",
@@ -190,8 +207,9 @@
           "type": "category",
           "settings": {
             "badge": "",
-            "title": "Accessories",
+            "title": "Silicone",
             "text": "",
+            "image": "shopify://shop_images/ChatGPT_Image_2026_6_5_16_58_07_4.png",
             "image_position_x": 50,
             "image_position_y": 50,
             "asset_image": "xstrape-category-accessories.jpg",
@@ -202,8 +220,9 @@
           "type": "category",
           "settings": {
             "badge": "",
-            "title": "Bands",
+            "title": "Leather",
             "text": "",
+            "image": "shopify://shop_images/ChatGPT_Image_2026_6_5_16_58_06_3.png",
             "image_position_x": 50,
             "image_position_y": 50,
             "asset_image": "xstrape-category-bands.jpg",
@@ -213,12 +232,13 @@
         "feature_leather_case": {
           "type": "feature_banner",
           "settings": {
+            "image": "shopify://shop_images/9998219445436972-f9840246-10b2-445d-94ec-86871fb272ce-gpt_image_2_backup_task_01KT8N4ZEJW5KB723NYF374GAS_0.png",
             "asset_image": "xstrape-category-feature-leather-case.jpg",
             "image_side": "right",
             "image_position_x": 50,
             "image_position_y": 50,
-            "kicker": "Elevate Your iPhone",
-            "heading": "Traditional Leather Case",
+            "kicker": "Premium Apple Watch Bands",
+            "heading": "Stylish & Comfortable",
             "button_text": "Shop Now",
             "link": "shopify://collections/all"
           }
@@ -237,6 +257,7 @@
         "categories_title": "Shop by Category",
         "show_feature_banner": true,
         "feature_asset_image": "xstrape-category-feature-leather-case.jpg",
+        "feature_image_side": "right",
         "feature_kicker": "Elevate Your iPhone",
         "feature_heading": "Traditional Leather Case",
         "feature_button_text": "Shop Now",
@@ -245,6 +266,29 @@
         "text_color": "#000000",
         "muted_text_color": "#6c6c6c",
         "card_text_color": "#ffffff"
+      }
+    },
+    "xstrape_home_series_carousel": {
+      "type": "xstrape-home-collection-carousel",
+      "name": "系列产品轮播",
+      "settings": {
+        "kicker": "",
+        "heading": "Shop the Collection",
+        "collection": "shopify://collections/all",
+        "products_count": 8,
+        "products_per_row_mobile": "1",
+        "products_per_row_desktop": 5,
+        "link_text": "Shop All",
+        "link_url": "shopify://collections/all",
+        "enable_quick_buy": true,
+        "show_badges": true,
+        "show_rating": false,
+        "show_secondary_image": true,
+        "page_background": "#f3f3f3",
+        "text_color": "#000000",
+        "muted_text_color": "#6c6c6c",
+        "card_background": "#f3f3f3",
+        "card_text_color": "#000000"
       }
     },
     "xstrape_home_promos": {
@@ -491,6 +535,7 @@
     "xstrape_home_favorites",
     "xstrape_home_review",
     "xstrape_home_categories",
+    "xstrape_home_series_carousel",
     "xstrape_home_promos",
     "xstrape_home_quote",
     "xstrape_home_community",
