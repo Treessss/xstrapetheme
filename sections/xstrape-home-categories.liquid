@@ -18,6 +18,10 @@
 
     <div class="xh-card-grid">
       {% for block in section.blocks %}
+        {% unless block.type == 'category' %}
+          {% continue %}
+        {% endunless %}
+
         {% liquid
           assign category_asset = block.settings.asset_image
 
@@ -70,62 +74,141 @@
     </div>
 
     {% liquid
-      assign feature_asset = section.settings.feature_asset_image
-      if feature_asset == blank
-        assign feature_asset = 'xstrape-category-feature-leather-case.jpg'
-      endif
-
-      assign feature_alt = section.settings.feature_heading
-      if feature_alt == blank
-        assign feature_alt = section.settings.feature_kicker
-      endif
+      assign has_feature_blocks = false
+      for block in section.blocks
+        if block.type == 'feature_banner'
+          assign has_feature_blocks = true
+          break
+        endif
+      endfor
     %}
 
-    {% if section.settings.show_feature_banner %}
-      <a
-        class="xh-category-feature"
-        {% if section.settings.feature_link != blank %}
-          href="{{ section.settings.feature_link }}"
-        {% endif %}
-      >
-        <span class="xh-category-feature__media">
-          {% if section.settings.feature_image != blank %}
-            {{
-              section.settings.feature_image
-              | image_url: width: 2200
-              | image_tag:
-                loading: 'lazy',
-                sizes: '(max-width: 699px) calc(100vw - 20px), min(50vw, 800px)',
-                widths: '600,900,1200,1600,1800,2200',
-                alt: feature_alt
-            }}
-          {% elsif feature_asset != blank %}
-            <img
-              src="{{ feature_asset | asset_url }}"
-              alt="{{ feature_alt | escape }}"
-              loading="lazy"
-              width="2200"
-              height="1052"
-            >
-          {% else %}
-            {{ 'lifestyle-1' | placeholder_svg_tag: 'xh-category-feature__placeholder' }}
-          {% endif %}
-        </span>
+    {% if has_feature_blocks or section.settings.show_feature_banner %}
+      <div class="xh-category-features">
+        {% if has_feature_blocks %}
+          {% for block in section.blocks %}
+            {% unless block.type == 'feature_banner' %}
+              {% continue %}
+            {% endunless %}
 
-        <span class="xh-category-feature__content">
-          <span class="xh-category-feature__text">
-            {% if section.settings.feature_kicker != blank %}
-              <span class="xh-category-feature__kicker">{{ section.settings.feature_kicker | escape }}</span>
+            {% liquid
+              assign feature_asset = block.settings.asset_image
+              if feature_asset == blank
+                assign feature_asset = 'xstrape-category-feature-leather-case.jpg'
+              endif
+
+              assign feature_alt = block.settings.heading
+              if feature_alt == blank
+                assign feature_alt = block.settings.kicker
+              endif
+            %}
+
+            <a
+              class="xh-category-feature xh-category-feature--image-{{ block.settings.image_side | default: 'right' }}"
+              style="--xh-feature-image-x: {{ block.settings.image_position_x | default: 50 }}%; --xh-feature-image-y: {{ block.settings.image_position_y | default: 50 }}%;"
+              {% if block.settings.link != blank %}
+                href="{{ block.settings.link }}"
+              {% endif %}
+              {{ block.shopify_attributes }}
+            >
+              <span class="xh-category-feature__media">
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 2200
+                    | image_tag:
+                      loading: 'lazy',
+                      sizes: '(max-width: 699px) calc(100vw - 20px), min(50vw, 800px)',
+                      widths: '600,900,1200,1600,1800,2200',
+                      alt: feature_alt
+                  }}
+                {% elsif feature_asset != blank %}
+                  <img
+                    src="{{ feature_asset | asset_url }}"
+                    alt="{{ feature_alt | escape }}"
+                    loading="lazy"
+                    width="2200"
+                    height="1052"
+                  >
+                {% else %}
+                  {{ 'lifestyle-1' | placeholder_svg_tag: 'xh-category-feature__placeholder' }}
+                {% endif %}
+              </span>
+
+              <span class="xh-category-feature__content">
+                <span class="xh-category-feature__text">
+                  {% if block.settings.kicker != blank %}
+                    <span class="xh-category-feature__kicker">{{ block.settings.kicker | escape }}</span>
+                  {% endif %}
+                  {% if block.settings.heading != blank %}
+                    <span class="xh-category-feature__heading">{{ block.settings.heading | escape }}</span>
+                  {% endif %}
+                  {% if block.settings.button_text != blank %}
+                    <span class="xh-category-feature__button">{{ block.settings.button_text | escape }}</span>
+                  {% endif %}
+                </span>
+              </span>
+            </a>
+          {% endfor %}
+        {% elsif section.settings.show_feature_banner %}
+          {% liquid
+            assign feature_asset = section.settings.feature_asset_image
+            if feature_asset == blank
+              assign feature_asset = 'xstrape-category-feature-leather-case.jpg'
+            endif
+
+            assign feature_alt = section.settings.feature_heading
+            if feature_alt == blank
+              assign feature_alt = section.settings.feature_kicker
+            endif
+          %}
+
+          <a
+            class="xh-category-feature xh-category-feature--image-{{ section.settings.feature_image_side | default: 'right' }}"
+            {% if section.settings.feature_link != blank %}
+              href="{{ section.settings.feature_link }}"
             {% endif %}
-            {% if section.settings.feature_heading != blank %}
-              <span class="xh-category-feature__heading">{{ section.settings.feature_heading | escape }}</span>
-            {% endif %}
-            {% if section.settings.feature_button_text != blank %}
-              <span class="xh-category-feature__button">{{ section.settings.feature_button_text | escape }}</span>
-            {% endif %}
-          </span>
-        </span>
-      </a>
+          >
+            <span class="xh-category-feature__media">
+              {% if section.settings.feature_image != blank %}
+                {{
+                  section.settings.feature_image
+                  | image_url: width: 2200
+                  | image_tag:
+                    loading: 'lazy',
+                    sizes: '(max-width: 699px) calc(100vw - 20px), min(50vw, 800px)',
+                    widths: '600,900,1200,1600,1800,2200',
+                    alt: feature_alt
+                }}
+              {% elsif feature_asset != blank %}
+                <img
+                  src="{{ feature_asset | asset_url }}"
+                  alt="{{ feature_alt | escape }}"
+                  loading="lazy"
+                  width="2200"
+                  height="1052"
+                >
+              {% else %}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'xh-category-feature__placeholder' }}
+              {% endif %}
+            </span>
+
+            <span class="xh-category-feature__content">
+              <span class="xh-category-feature__text">
+                {% if section.settings.feature_kicker != blank %}
+                  <span class="xh-category-feature__kicker">{{ section.settings.feature_kicker | escape }}</span>
+                {% endif %}
+                {% if section.settings.feature_heading != blank %}
+                  <span class="xh-category-feature__heading">{{ section.settings.feature_heading | escape }}</span>
+                {% endif %}
+                {% if section.settings.feature_button_text != blank %}
+                  <span class="xh-category-feature__button">{{ section.settings.feature_button_text | escape }}</span>
+                {% endif %}
+              </span>
+            </span>
+          </a>
+        {% endif %}
+      </div>
     {% endif %}
   </div>
 </section>
@@ -167,6 +250,22 @@
       "id": "feature_asset_image",
       "label": "默认主题图片文件名",
       "default": "xstrape-category-feature-leather-case.jpg"
+    },
+    {
+      "type": "select",
+      "id": "feature_image_side",
+      "label": "图片位置",
+      "options": [
+        {
+          "value": "right",
+          "label": "右侧"
+        },
+        {
+          "value": "left",
+          "label": "左侧"
+        }
+      ],
+      "default": "right"
     },
     {
       "type": "text",
@@ -270,6 +369,82 @@
           "type": "text",
           "id": "asset_image",
           "label": "默认主题图片文件名"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接"
+        }
+      ]
+    },
+    {
+      "type": "feature_banner",
+      "name": "底部大图卡片",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "自定义图片"
+        },
+        {
+          "type": "text",
+          "id": "asset_image",
+          "label": "默认主题图片文件名",
+          "default": "xstrape-category-feature-leather-case.jpg"
+        },
+        {
+          "type": "select",
+          "id": "image_side",
+          "label": "图片位置",
+          "options": [
+            {
+              "value": "right",
+              "label": "右侧"
+            },
+            {
+              "value": "left",
+              "label": "左侧"
+            }
+          ],
+          "default": "right"
+        },
+        {
+          "type": "range",
+          "id": "image_position_x",
+          "label": "图片水平位置",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "image_position_y",
+          "label": "图片垂直位置",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "text",
+          "id": "kicker",
+          "label": "小标题",
+          "default": "Elevate Your iPhone"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "标题",
+          "default": "Traditional Leather Case"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "按钮文字",
+          "default": "Shop Now"
         },
         {
           "type": "url",

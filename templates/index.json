@@ -209,13 +209,27 @@
             "asset_image": "xstrape-category-bands.jpg",
             "link": "shopify://collections/mini-for-camping"
           }
+        },
+        "feature_leather_case": {
+          "type": "feature_banner",
+          "settings": {
+            "asset_image": "xstrape-category-feature-leather-case.jpg",
+            "image_side": "right",
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "kicker": "Elevate Your iPhone",
+            "heading": "Traditional Leather Case",
+            "button_text": "Shop Now",
+            "link": "shopify://collections/all"
+          }
         }
       },
       "block_order": [
         "category_mini",
         "category_camping",
         "category_protection",
-        "category_home"
+        "category_home",
+        "feature_leather_case"
       ],
       "name": "分类入口",
       "settings": {
