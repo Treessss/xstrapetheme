@@ -71,15 +71,17 @@ main:has(.xstrape-home-scope) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 0.85rem 1.2rem;
-  border: 1px solid rgb(255 255 255 / 0.34);
-  border-radius: 999px;
-  background: rgb(255 255 255 / 0.92);
+  width: fit-content;
+  min-width: 256px;
+  min-height: 48px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 40px;
+  background: #fff;
   color: #111;
-  font-size: 0.92rem;
-  font-weight: 700;
-  line-height: 1;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 17.76px;
   transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
 }
 
@@ -91,9 +93,10 @@ main:has(.xstrape-home-scope) {
 
 .xstrape-home-scope.xh-hero {
   position: relative;
-  min-height: clamp(540px, 76vh, 820px);
-  display: grid;
-  align-items: end;
+  min-height: min(80vh, 720px);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
   overflow: hidden;
   isolation: isolate;
   background: #111;
@@ -132,27 +135,53 @@ main:has(.xstrape-home-scope) {
 .xstrape-home-scope .xh-hero__content {
   position: relative;
   z-index: 2;
-  width: min(760px, calc(100vw - 32px));
+  display: flex;
+  width: min(879px, calc(100vw - 40px));
+  min-height: inherit;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
-  padding: 0 0 clamp(42px, 8vw, 92px);
+  padding: clamp(104px, 9vw, 132px) 0 0;
   color: var(--xh-hero-text, #ffffff);
   text-align: center;
 }
 
+.xstrape-home-scope .xh-hero__content .xh-eyebrow {
+  margin: 0;
+  color: var(--xh-hero-text, #ffffff);
+  font-size: clamp(33px, 2.3vw, 33px);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 0.95;
+  text-transform: none;
+}
+
 .xstrape-home-scope .xh-hero__content .xh-heading {
-  font-size: clamp(3rem, 7vw, 7.5rem);
+  margin: 0;
+  color: var(--xh-hero-text, #ffffff);
+  font-size: clamp(64px, 5.35vw, 77px);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 0.95;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .xstrape-home-scope .xh-hero__content .xh-subheading {
-  margin: 1rem auto 0;
-  color: rgb(255 255 255 / 0.84);
+  max-width: 680px;
+  margin: 14px auto 0;
+  color: rgb(255 255 255 / 0.92);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 .xstrape-home-scope .xh-hero__actions {
   display: flex;
   justify-content: center;
   gap: 0.75rem;
-  margin-top: 1.35rem;
+  margin-top: 4px;
 }
 
 .xstrape-home-scope .xh-product-list {
@@ -996,16 +1025,40 @@ main:has(.xstrape-home-scope) {
   }
 
   .xstrape-home-scope.xh-hero {
-    min-height: 640px;
-    align-items: end;
+    min-height: 700px;
+    align-items: stretch;
   }
 
   .xstrape-home-scope .xh-hero__content {
-    padding-bottom: 44px;
+    width: min(361px, calc(100vw - 40px));
+    min-height: 700px;
+    padding: 102px 0 0;
+  }
+
+  .xstrape-home-scope .xh-hero__content .xh-eyebrow {
+    font-size: 22px;
+    line-height: 20.9px;
   }
 
   .xstrape-home-scope .xh-hero__content .xh-heading {
-    font-size: clamp(3rem, 15vw, 5.6rem);
+    font-size: 47px;
+    line-height: 44.65px;
+  }
+
+  .xstrape-home-scope .xh-hero__content .xh-subheading {
+    max-width: 330px;
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  .xstrape-home-scope .xh-hero__actions {
+    margin-top: 4px;
+  }
+
+  .xstrape-home-scope .xh-hero__actions .xh-pill-button {
+    min-width: 256px;
+    min-height: 48px;
   }
 
   .xstrape-home-scope .xh-product-list {

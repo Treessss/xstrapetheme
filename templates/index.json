@@ -17,7 +17,7 @@
         "hero_mobile_image": "shopify://shop_images/ChatGPT_Image_2026_6_3_00_43_18.png",
         "hero_kicker": "Built for Starlink Mini",
         "hero_heading": "Gear That Goes The Distance",
-        "hero_subheading": "Power, mount, and protect your Starlink Mini from the driveway to the backcountry.",
+        "hero_subheading": "",
         "hero_button_text": "Shop Travel Gear",
         "hero_button_link": "shopify://collections/for-starlink-mini",
         "hero_text_color": "#ffffff",
@@ -30,46 +30,79 @@
         "favorite_mount": {
           "type": "favorite",
           "settings": {
-            "title": "Suction Cup Car Mount",
-            "text": "Secure Starlink Mini on windshields, vans, and RVs.",
+            "title": "Leather Bands",
+            "text": "Timeless Quality, Everyday Comfort",
             "price": "Shop now",
-            "image": "shopify://shop_images/Image_2.png",
-            "link": "shopify://products/starlink-mini-suction-cup-car-mount"
+            "image": "shopify://shop_images/Image_10.webp",
+            "link": "shopify://collections/leather"
+          }
+        },
+        "favorite_XDVJfj": {
+          "type": "favorite",
+          "settings": {
+            "title": "Colorful Transparent Bands",
+            "text": "Stand Out with Style",
+            "price": "Shop now",
+            "image": "shopify://shop_images/Image_11.webp",
+            "link": "shopify://collections/colorful-transparent"
+          }
+        },
+        "favorite_cRqLyN": {
+          "type": "favorite",
+          "settings": {
+            "title": "Men’s Business Bands",
+            "text": "Professional Everyday Wear",
+            "price": "Shop now",
+            "image": "shopify://shop_images/Image_12.webp",
+            "link": "shopify://collections/mens-business"
+          }
+        },
+        "favorite_hCfJ8a": {
+          "type": "favorite",
+          "settings": {
+            "title": "Silicone Bands",
+            "text": "Soft, Sporty & Sweat-Ready",
+            "price": "Shop now",
+            "image": "shopify://shop_images/Image_13.webp",
+            "link": "shopify://collections/silicone"
           }
         },
         "favorite_cable": {
           "type": "favorite",
           "settings": {
-            "title": "DC Power Cable",
-            "text": "A simple road-ready cable for Starlink Mini power.",
+            "title": "Women’s Bands",
+            "text": "Elegant Design for Her",
             "price": "Shop now",
-            "image": "shopify://shop_images/9372035845_1.webp",
-            "link": "shopify://products/10ft-cigarette-lighter-to-dc-power-cable-for-starlink-mini"
+            "image": "shopify://shop_images/Image_14.webp",
+            "link": "shopify://collections/women"
           }
         },
         "favorite_adapter": {
           "type": "favorite",
           "settings": {
-            "title": "30V Step-Up Adapter",
-            "text": "More stable vehicle power with a built-in USB-C port.",
+            "title": "Stainless Steel Bands",
+            "text": "Sleek & Durable",
             "price": "Shop now",
-            "image": "shopify://shop_images/8904431353_1.webp",
-            "link": "shopify://products/starlink-mini-30v-step-up-car-adapter-with-usb-c-port"
+            "image": "shopify://shop_images/Image_15.webp",
+            "link": "shopify://collections/stainless-steel"
           }
         },
         "favorite_mini": {
           "type": "favorite",
           "settings": {
-            "title": "Mini Travel Kit",
-            "text": "Built for remote work, overlanding, and weekends away.",
-            "price": "Explore",
-            "image": "shopify://shop_images/8858554266_1.webp",
-            "link": "shopify://collections/mini-for-car-travel"
+            "title": "Woven Magnetic Bands",
+            "text": "Fast Fit, All-Day Comfort",
+            "price": "Shop Now",
+            "image": "shopify://shop_images/Image_16.webp",
+            "link": "shopify://collections/woven-magnetic"
           }
         }
       },
       "block_order": [
         "favorite_mount",
+        "favorite_XDVJfj",
+        "favorite_cRqLyN",
+        "favorite_hCfJ8a",
         "favorite_cable",
         "favorite_adapter",
         "favorite_mini"
