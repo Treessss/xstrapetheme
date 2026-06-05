@@ -3,15 +3,21 @@
 {%- liquid
   assign carousel_id = 'xstrape-series-carousel-' | append: section.id
   assign products = section.settings.products
+  assign fallback_product_handles = section.settings.fallback_product_handles | newline_to_br | split: '<br />'
+  assign mobile_card_width = 'minmax(282px, 78vw)'
 
   if products == blank and section.settings.collection != blank
     assign products = section.settings.collection.products
+  endif
+
+  if section.settings.products_per_row_mobile == '2'
+    assign mobile_card_width = 'minmax(0, calc((100vw - 48px) / 2))'
   endif
 -%}
 
 <section
   class="xstrape-home-scope xh-section xh-series-carousel"
-  style="--xh-page-bg: {{ section.settings.page_background | default: '#f3f3f3' }}; --xh-text: {{ section.settings.text_color | default: '#000000' }}; --xh-muted: {{ section.settings.muted_text_color | default: '#6c6c6c' }}; --xh-card-bg: {{ section.settings.card_background | default: '#f3f3f3' }};"
+  style="--xh-page-bg: {{ section.settings.page_background | default: '#f3f3f3' }}; --xh-text: {{ section.settings.text_color | default: '#000000' }}; --xh-muted: {{ section.settings.muted_text_color | default: '#6c6c6c' }}; --xh-card-bg: {{ section.settings.card_background | default: '#f3f3f3' }}; --xh-series-columns: {{ section.settings.products_per_row_desktop | default: 5 }}; --xh-series-mobile-card: {{ mobile_card_width }};"
 >
   <div class="xh-container">
     <div class="xh-series-carousel__header">
@@ -61,18 +67,49 @@
             </div>
           {% endfor %}
         {% else %}
-          {% for i in (1..section.settings.products_count) %}
-            <div class="xh-series-carousel__item">
-              {% capture placeholder_image %}product-{% cycle '1', '2', '3', '4', '5', '6' %}{% endcapture %}
-              {% render 'product-card-placeholder',
-                placeholder_image: placeholder_image,
-                stacked: false,
-                background: section.settings.card_background,
-                text_color: section.settings.card_text_color,
-                text_alignment: 'left'
-              %}
-            </div>
+          {% assign fallback_products_rendered = 0 %}
+
+          {% for fallback_product_handle in fallback_product_handles %}
+            {% assign fallback_product_handle = fallback_product_handle | strip | split: '?' | first | split: '/products/' | last | split: '/' | last %}
+            {% assign fallback_product = all_products[fallback_product_handle] %}
+
+            {% if fallback_product != blank %}
+              {% assign fallback_products_rendered = fallback_products_rendered | plus: 1 %}
+              <div class="xh-series-carousel__item">
+                {% render 'product-card',
+                  product: fallback_product,
+                  stacked: false,
+                  position: fallback_products_rendered,
+                  background: section.settings.card_background,
+                  text_color: section.settings.card_text_color,
+                  show_badges: section.settings.show_badges,
+                  show_quick_buy: section.settings.enable_quick_buy,
+                  show_rating: section.settings.show_rating,
+                  show_vendor: false,
+                  show_secondary_image: section.settings.show_secondary_image
+                %}
+              </div>
+            {% endif %}
+
+            {% if fallback_products_rendered >= section.settings.products_count %}
+              {% break %}
+            {% endif %}
           {% endfor %}
+
+          {% if fallback_products_rendered == 0 %}
+            {% for i in (1..section.settings.products_count) %}
+              <div class="xh-series-carousel__item">
+                {% capture placeholder_image %}product-{% cycle '1', '2', '3', '4', '5', '6' %}{% endcapture %}
+                {% render 'product-card-placeholder',
+                  placeholder_image: placeholder_image,
+                  stacked: false,
+                  background: section.settings.card_background,
+                  text_color: section.settings.card_text_color,
+                  text_alignment: 'left'
+                %}
+              </div>
+            {% endfor %}
+          {% endif %}
         {% endif %}
       </div>
 
@@ -146,6 +183,12 @@
       "id": "products",
       "label": "手动选择商品",
       "info": "选择后会覆盖上面的商品系列。"
+    },
+    {
+      "type": "textarea",
+      "id": "fallback_product_handles",
+      "label": "默认商品 Handle 列表",
+      "info": "每行一个商品 handle。未选择商品或系列为空时，会用这里的商品兜底显示。"
     },
     {
       "type": "range",

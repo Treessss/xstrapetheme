@@ -543,7 +543,7 @@ main:has(.xstrape-home-scope) {
 .xstrape-home-scope .xh-series-carousel__track {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: clamp(280px, calc((100vw - 204px) / 5), 353px);
+  grid-auto-columns: clamp(280px, calc((100vw - 204px) / var(--xh-series-columns, 5)), 353px);
   gap: 20px;
   width: 100vw;
   margin-inline: calc(50% - 50vw);
@@ -1630,7 +1630,7 @@ main:has(.xstrape-home-scope) {
   }
 
   .xstrape-home-scope .xh-series-carousel__track {
-    grid-auto-columns: minmax(282px, 78vw);
+    grid-auto-columns: var(--xh-series-mobile-card, minmax(282px, 78vw));
     gap: 16px;
     padding-inline: 16px;
     scroll-padding-inline: 16px;
