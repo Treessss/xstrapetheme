@@ -724,7 +724,7 @@ main:has(.xstrape-home-scope) {
 }
 
 .xstrape-home-scope .xh-review-banner .xh-pill-button {
-  min-width: 0;
+  min-width: 186px;
   min-height: 47.75px;
   margin-top: 4px !important;
   padding: 14px 24px;
