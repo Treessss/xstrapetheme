@@ -221,6 +221,12 @@
       "settings": {
         "categories_kicker": "",
         "categories_title": "Shop by Category",
+        "show_feature_banner": true,
+        "feature_asset_image": "xstrape-category-feature-leather-case.jpg",
+        "feature_kicker": "Elevate Your iPhone",
+        "feature_heading": "Traditional Leather Case",
+        "feature_button_text": "Shop Now",
+        "feature_link": "shopify://collections/all",
         "page_background": "#f3f3f3",
         "text_color": "#000000",
         "muted_text_color": "#6c6c6c",
