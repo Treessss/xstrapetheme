@@ -18,9 +18,22 @@
 
     <div class="xh-community-list">
       {% for block in section.blocks %}
-        <a class="xh-community-card {% if block.settings.image == blank %}xh-community-card--text{% endif %}" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+        <a class="xh-community-card {% if block.settings.video == blank and block.settings.image == blank %}xh-community-card--text{% endif %}" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
           <span class="xh-community-card__media">
-            {% if block.settings.image != blank %}
+            {% if block.settings.video != blank %}
+              {{
+                block.settings.video
+                | video_tag:
+                  autoplay: true,
+                  playsinline: true,
+                  muted: true,
+                  loop: true,
+                  controls: false,
+                  preload: 'metadata',
+                  image_size: '1200x',
+                  class: 'xh-community-card__video'
+              }}
+            {% elsif block.settings.image != blank %}
               {{
                 block.settings.image
                 | image_url: width: 1200
@@ -90,6 +103,15 @@
           "id": "label",
           "label": "标签文字",
           "default": "Road setup"
+        },
+        {
+          "type": "paragraph",
+          "content": "选择视频后会优先显示视频；未选择视频时显示图片。"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "视频"
         },
         {
           "type": "image_picker",

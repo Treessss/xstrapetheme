@@ -1232,12 +1232,14 @@ main:has(.xstrape-home-scope) {
 }
 
 .xstrape-home-scope .xh-community-card img,
-.xstrape-home-scope .xh-community-card svg {
+.xstrape-home-scope .xh-community-card svg,
+.xstrape-home-scope .xh-community-card video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .xstrape-home-scope .xh-community-card::after {
@@ -1328,12 +1330,14 @@ main:has(.xstrape-home-scope) {
 }
 
 .xstrape-home-scope.xh-community .xh-community-card__media img,
-.xstrape-home-scope.xh-community .xh-community-card__media svg {
+.xstrape-home-scope.xh-community .xh-community-card__media svg,
+.xstrape-home-scope.xh-community .xh-community-card__media video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .xstrape-home-scope.xh-community .xh-community-card::after {
