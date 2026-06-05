@@ -567,6 +567,7 @@ main:has(.xstrape-home-scope) {
 .xstrape-home-scope.xh-series-carousel product-card {
   display: block;
   padding: 0 !important;
+  border: 0 !important;
   background: transparent !important;
   color: var(--xh-text) !important;
   box-shadow: none !important;
