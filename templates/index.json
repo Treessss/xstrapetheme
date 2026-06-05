@@ -150,13 +150,13 @@
       "settings": {
         "review_image": "shopify://shop_images/9998219356186943-c59322fb-0938-430a-b5bd-26d09004c0b5-video_task_01KTBA8MC0SPXS25M3FX2DMN3S_0.png",
         "review_stars": "★★★★★",
-        "review_title": "Trusted Daily by Starlink Travelers",
-        "review_text": "Reliable mounts, smart power, and rugged protection for road trips, remote work, and off-grid weekends.",
+        "review_title": "17,000+ 5 Star Reviews",
+        "review_text": "Trusted Daily by Nomads Like You",
         "review_button_text": "Shop Best Sellers",
         "review_link": "shopify://collections/for-starlink-mini",
         "page_background": "#f3f3f3",
-        "text_color": "#111111",
-        "muted_text_color": "#6c6c6c"
+        "text_color": "#ffffff",
+        "muted_text_color": "#ffffff"
       }
     },
     "xstrape_home_categories": {

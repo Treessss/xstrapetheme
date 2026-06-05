@@ -1,8 +1,8 @@
 {{ 'xstrape-home.css' | asset_url | stylesheet_tag }}
 
 <section
-  class="xstrape-home-scope xh-section"
-  style="--xh-page-bg: {{ section.settings.page_background | default: '#f3f3f3' }}; --xh-text: {{ section.settings.text_color | default: '#111111' }}; --xh-muted: {{ section.settings.muted_text_color | default: '#6c6c6c' }};"
+  class="xstrape-home-scope xh-section xh-review-section"
+  style="--xh-page-bg: {{ section.settings.page_background | default: '#f3f3f3' }}; --xh-review-text: {{ section.settings.text_color | default: '#ffffff' }}; --xh-review-muted: {{ section.settings.muted_text_color | default: '#ffffff' }};"
 >
   <div class="xh-container">
     <a class="xh-media-card xh-review-banner" {% if section.settings.review_link != blank %}href="{{ section.settings.review_link }}"{% endif %}>
@@ -56,13 +56,13 @@
       "type": "text",
       "id": "review_title",
       "label": "标题",
-      "default": "Trusted Daily by Starlink Travelers"
+      "default": "17,000+ 5 Star Reviews"
     },
     {
       "type": "text",
       "id": "review_text",
       "label": "文字",
-      "default": "Reliable mounts, smart power, and rugged protection for real trips, remote work, and off-grid weekends."
+      "default": "Trusted Daily by Nomads Like You"
     },
     {
       "type": "text",
@@ -89,13 +89,13 @@
       "type": "color",
       "id": "text_color",
       "label": "文字",
-      "default": "#111111"
+      "default": "#ffffff"
     },
     {
       "type": "color",
       "id": "muted_text_color",
       "label": "次要文字",
-      "default": "#6c6c6c"
+      "default": "#ffffff"
     }
   ],
   "presets": [
