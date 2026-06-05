@@ -10,13 +10,13 @@
     assign products = section.settings.collection.products
   endif
 
-  if section.settings.products_per_row_mobile == '2'
-    assign mobile_card_width = 'minmax(0, calc((100vw - 48px) / 2))'
-  endif
+	  if section.settings.products_per_row_mobile == '2'
+	    assign mobile_card_width = 'calc(50vw - 24px)'
+	  endif
 -%}
 
 <section
-  class="xstrape-home-scope xh-section xh-series-carousel"
+  class="xstrape-home-scope xh-section xh-series-carousel xh-series-carousel--mobile-{{ section.settings.products_per_row_mobile }}"
   style="--xh-page-bg: {{ section.settings.page_background | default: '#f3f3f3' }}; --xh-text: {{ section.settings.text_color | default: '#000000' }}; --xh-muted: {{ section.settings.muted_text_color | default: '#6c6c6c' }}; --xh-card-bg: {{ section.settings.card_background | default: '#f3f3f3' }}; --xh-series-columns: {{ section.settings.products_per_row_desktop | default: 5 }}; --xh-series-mobile-card: {{ mobile_card_width }};"
 >
   <div class="xh-container">
@@ -56,9 +56,9 @@
                 product: product,
                 stacked: false,
                 position: forloop.index,
-                background: section.settings.card_background,
-                text_color: section.settings.card_text_color,
-                show_badges: section.settings.show_badges,
+	                background: section.settings.card_background,
+	                text_color: section.settings.card_text_color,
+	                show_badges: section.settings.show_badges,
 	                show_quick_buy: section.settings.enable_quick_buy,
 	                show_rating: false,
 	                show_vendor: false,
@@ -81,9 +81,9 @@
                   product: fallback_product,
                   stacked: false,
                   position: fallback_products_rendered,
-                  background: section.settings.card_background,
-                  text_color: section.settings.card_text_color,
-                  show_badges: section.settings.show_badges,
+	                  background: section.settings.card_background,
+	                  text_color: section.settings.card_text_color,
+	                  show_badges: section.settings.show_badges,
 	                  show_quick_buy: section.settings.enable_quick_buy,
 	                  show_rating: false,
 	                  show_vendor: false,
