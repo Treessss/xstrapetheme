@@ -24,14 +24,19 @@
     {%- assign card_blends = true -%}
   {%- endunless -%}
 
-  #shopify-section-{{ section.id }} {
-    --product-list-gap: {% if section.settings.products_per_row_mobile == '2' %}{% if card_blends %}var(--product-list-row-gap){% endif %} var(--spacing-1){% else %}var(--product-list-row-gap) var(--product-list-column-gap){% endif %};
-    --product-list-items-per-row: {{ section.settings.products_per_row_mobile | times: 1 }};
-    --product-list-grid: auto-flow dense / repeat(var(--product-list-items-per-row), minmax(0, 1fr));
-    --product-list-promo-grid-column: span {{ section.settings.products_per_row_mobile }};
+	  #shopify-section-{{ section.id }} {
+	    --product-list-gap: {% if section.settings.products_per_row_mobile == '2' %}{% if card_blends %}var(--product-list-row-gap){% endif %} var(--spacing-1){% else %}var(--product-list-row-gap) var(--product-list-column-gap){% endif %};
+	    --product-list-items-per-row: {{ section.settings.products_per_row_mobile | times: 1 }};
+	    --product-list-grid: auto-flow dense / repeat(var(--product-list-items-per-row), minmax(0, 1fr));
+	    --product-list-promo-grid-column: span {{ section.settings.products_per_row_mobile }};
+	    --xstrape-collection-page-bg: #f3f3f3;
+	    --xstrape-collection-card-bg: #ffffff;
+	    --xstrape-collection-media-bg: #f3f3f3;
+	    --xstrape-collection-card-shadow: 0 0 0 1px rgb(0 0 0 / 6%), 0 1px 1px -0.5px rgb(0 0 0 / 6%), 0 3px 3px -1.5px rgb(0 0 0 / 6%), 0 6px 6px -3px rgb(0 0 0 / 6%), 0 12px 12px -6px rgb(0 0 0 / 6%), 0 24px 24px -12px rgb(0 0 0 / 6%);
+	    background: var(--xstrape-collection-page-bg);
 
-    --content-over-media-gap: var(--spacing-8);
-  }
+	    --content-over-media-gap: var(--spacing-8);
+	  }
 
   @media screen and (min-width: 700px) {
     #shopify-section-{{ section.id }} {
@@ -88,7 +93,7 @@
     </div>
   {%- else -%}
     {%- if has_custom_subcollections -%}
-      <div class="collection collection-subcollections">
+	      <div class="collection collection-subcollections collection--xstrape-nomad-cards">
         <div class="collection-subcollections__layout">
           <div class="collection-subcollections__mobile">
             <button type="button" class="collection-subcollections__mobile-toggle" aria-controls="subcollections-drawer" aria-expanded="false">
@@ -163,11 +168,11 @@
                       {%- if item.products != blank -%}
                         {%- for product in item.products -%}
                           {%- assign position = position | plus: 1 -%}
-                          {%- render 'product-card', product: product, stacked: true, position: position, show_badges: true -%}
+	                          {%- render 'product-card', product: product, stacked: true, position: position, show_badges: true, show_rating: false, show_vendor: false, show_secondary_image: false, show_swatches: false, show_quick_buy: false -%}
                         {%- endfor -%}
                       {%- else -%}
                         {%- assign position = position | plus: 1 -%}
-                        {%- render 'product-card', product: item, stacked: true, position: position, show_badges: true -%}
+	                        {%- render 'product-card', product: item, stacked: true, position: position, show_badges: true, show_rating: false, show_vendor: false, show_secondary_image: false, show_swatches: false, show_quick_buy: false -%}
                       {%- endif -%}
                     {%- endfor -%}
                   </product-list>
@@ -225,7 +230,7 @@
       -%}
 
       {%- paginate collection.products by section.settings.products_per_page -%}
-        <div class="collection {% if show_filters %}collection--filters-{{ section.settings.filter_layout | escape }}{% endif %}">
+	        <div class="collection collection--xstrape-nomad-cards {% if show_filters %}collection--filters-{{ section.settings.filter_layout | escape }}{% endif %}">
           {%- if show_filters or section.settings.show_sort_by -%}
             <facet-drawer header-bordered id="facets-drawer" class="facets-drawer drawer" open-from="left">
               <p class="h5" slot="header">{{ 'collection.faceting.filters' | t }}</p>
@@ -293,7 +298,7 @@
                 <reveal-items selector=".product-list > *">
                   <product-list class="product-list" role="region" aria-live="polite">
                     {%- for product in collection.products -%}
-                      {%- render 'product-card', product: product, stacked: true, position: forloop.index, show_badges: true -%}
+	                      {%- render 'product-card', product: product, stacked: true, position: forloop.index, show_badges: true, show_rating: false, show_vendor: false, show_secondary_image: false, show_swatches: false, show_quick_buy: false -%}
                     {%- endfor -%}
                   </product-list>
                 </reveal-items>
