@@ -1341,37 +1341,12 @@ main:has(.xstrape-home-scope) {
 }
 
 .xstrape-home-scope.xh-community .xh-community-card__icon {
-  position: absolute;
-  top: 23px;
-  right: 23px;
-  z-index: 1;
-  width: 16px;
-  height: 16px;
+  display: none !important;
 }
 
 .xstrape-home-scope.xh-community .xh-community-card__icon::before,
 .xstrape-home-scope.xh-community .xh-community-card__icon::after {
-  content: "";
-  position: absolute;
-  background: #000;
-}
-
-.xstrape-home-scope.xh-community .xh-community-card__icon::before {
-  top: 1px;
-  right: 0;
-  width: 9px;
-  height: 2px;
-  transform: rotate(45deg);
-  transform-origin: right center;
-}
-
-.xstrape-home-scope.xh-community .xh-community-card__icon::after {
-  right: 0;
-  bottom: 1px;
-  width: 2px;
-  height: 12px;
-  transform: rotate(45deg);
-  transform-origin: bottom center;
+  content: none;
 }
 
 .xstrape-home-scope.xh-community .xh-community-card__label {
@@ -1961,11 +1936,6 @@ main:has(.xstrape-home-scope) {
     padding: 15px 0 0;
     font-size: 14px;
     line-height: 21px;
-  }
-
-  .xstrape-home-scope.xh-community .xh-community-card__icon {
-    top: 18px;
-    right: 18px;
   }
 
   .xstrape-home-scope.xh-nomad-heading {
