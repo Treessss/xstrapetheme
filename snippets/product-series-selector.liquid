@@ -21,13 +21,20 @@
 
 {%- liquid
   assign series_products = product.metafields.custom.product_series.value
+  assign related_series_value = blank
 
   if series_products == blank
     assign series_products = product.metafields.custom.related_series_products.value
   endif
 
   if series_products == blank
-    assign series_products = product.metafields.custom.related_series.value
+    assign related_series_value = product.metafields.custom.related_series.value
+
+    if related_series_value.products != blank
+      assign series_products = related_series_value.products
+    else
+      assign series_products = related_series_value
+    endif
   endif
 
   if series_products == blank
