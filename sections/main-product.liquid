@@ -941,6 +941,15 @@ padding:10px;
     display: block;
   }
 
+  #shopify-section-{{ section.id }} .product-info__series-label {
+    display: -webkit-box;
+    max-width: 100%;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow-wrap: anywhere;
+  }
+
   #shopify-section-{{ section.id }} .product-info__series-tile:hover .product-info__series-image {
     transform: translateY(-1px);
   }
