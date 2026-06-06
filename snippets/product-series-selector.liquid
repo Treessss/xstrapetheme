@@ -1,0 +1,78 @@
+{%- comment -%}
+  Product series selector driven by product metafields.
+
+  Required metafield:
+  - custom.product_series: list.product_reference
+
+  Optional metafields:
+  - custom.series_label: single_line_text_field
+  - custom.series_image: file_reference
+  - custom.series_option_name: single_line_text_field
+{%- endcomment -%}
+
+{%- assign series_products = product.metafields.custom.product_series.value -%}
+
+{%- if series_products != blank -%}
+  {%- liquid
+    assign current_series_label = product.metafields.custom.series_label.value | default: product.metafields.custom.color.value | default: product.title
+    assign series_option_name = product.metafields.custom.series_option_name.value | default: 'Color'
+    assign current_product_in_series = false
+
+    for series_product in series_products
+      if series_product.id == product.id
+        assign current_product_in_series = true
+        break
+      endif
+    endfor
+  -%}
+
+  <div class="product-info__series-selector" data-product-series-selector>
+    <div class="product-info__series-heading">
+      {{- series_option_name | escape -}}: <span>{{ current_series_label | escape }}</span>
+    </div>
+
+    <div class="product-info__series-list" role="list">
+      {%- unless current_product_in_series -%}
+        {%- liquid
+          assign tile_image = product.metafields.custom.series_image.value | default: product.featured_media
+          assign tile_label = current_series_label
+        -%}
+
+        <a class="product-info__series-tile is-selected" href="{{ product.url }}" aria-current="page" role="listitem">
+          <span class="product-info__series-image">
+            {%- if tile_image != blank -%}
+              {{- tile_image | image_url: width: 360 | image_tag: loading: 'lazy', widths: '120,180,240,360', sizes: '(max-width: 699px) 72px, 84px', alt: tile_label -}}
+            {%- endif -%}
+          </span>
+          <span class="product-info__series-label">{{ tile_label | escape }}</span>
+        </a>
+      {%- endunless -%}
+
+      {%- for series_product in series_products -%}
+        {%- liquid
+          assign tile_label = series_product.metafields.custom.series_label.value | default: series_product.metafields.custom.color.value | default: series_product.title
+          assign tile_image = series_product.metafields.custom.series_image.value | default: series_product.featured_media
+          assign is_current_series_product = false
+
+          if series_product.id == product.id
+            assign is_current_series_product = true
+          endif
+        -%}
+
+        <a
+          class="product-info__series-tile{% if is_current_series_product %} is-selected{% endif %}"
+          href="{{ series_product.url }}"
+          {% if is_current_series_product %}aria-current="page"{% endif %}
+          role="listitem"
+        >
+          <span class="product-info__series-image">
+            {%- if tile_image != blank -%}
+              {{- tile_image | image_url: width: 360 | image_tag: loading: 'lazy', widths: '120,180,240,360', sizes: '(max-width: 699px) 72px, 84px', alt: tile_label -}}
+            {%- endif -%}
+          </span>
+          <span class="product-info__series-label">{{ tile_label | escape }}</span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
