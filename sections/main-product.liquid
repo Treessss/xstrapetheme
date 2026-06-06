@@ -902,8 +902,9 @@ padding:10px;
 
   #shopify-section-{{ section.id }} .product-info__series-list {
     display: grid;
-    grid-template-columns: repeat(5, 85px);
+    grid-template-columns: repeat(auto-fit, minmax(72px, 85px));
     justify-content: start;
+    max-width: 100%;
     gap: 14px 8px;
   }
 
@@ -911,7 +912,8 @@ padding:10px;
     display: grid;
     gap: 7px;
     justify-items: center;
-    width: 85px;
+    width: min(85px, 100%);
+    min-width: 0;
     color: #000;
     font-family: "Gotham-Bold", var(--heading-font-family), sans-serif;
     text-align: center;
@@ -1535,6 +1537,7 @@ padding:10px;
     }
 
     #shopify-section-{{ section.id }} .product-info__series-tile {
+      width: auto;
       font-size: 12px;
       line-height: 1.08;
     }

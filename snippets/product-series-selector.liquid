@@ -1,20 +1,72 @@
 {%- comment -%}
   Product series selector driven by product metafields.
 
-  Required metafield:
+  Supported product list metafields:
   - custom.product_series: list.product_reference
+  - custom.related_series_products: list.product_reference
+  - custom.related_series: list.product_reference
+  - custom.related_products: list.product_reference
+  - custom.associated_products: list.product_reference
+  - custom.color_series: list.product_reference
+  - custom.series_products: list.product_reference
+
+  Supported collection reference metafields:
+  - custom.series_collection: collection_reference
+  - custom.related_collection: collection_reference
 
   Optional metafields:
   - custom.series_label: single_line_text_field
-  - custom.series_image: file_reference
   - custom.series_option_name: single_line_text_field
 {%- endcomment -%}
 
-{%- assign series_products = product.metafields.custom.product_series.value -%}
+{%- liquid
+  assign series_products = product.metafields.custom.product_series.value
+
+  if series_products == blank
+    assign series_products = product.metafields.custom.related_series_products.value
+  endif
+
+  if series_products == blank
+    assign series_products = product.metafields.custom.related_series.value
+  endif
+
+  if series_products == blank
+    assign series_products = product.metafields.custom.related_products.value
+  endif
+
+  if series_products == blank
+    assign series_products = product.metafields.custom.associated_products.value
+  endif
+
+  if series_products == blank
+    assign series_products = product.metafields.custom.color_series.value
+  endif
+
+  if series_products == blank
+    assign series_products = product.metafields.custom.series_products.value
+  endif
+
+  if series_products == blank
+    assign series_collection = product.metafields.custom.series_collection.value
+
+    if series_collection == blank
+      assign series_collection = product.metafields.custom.related_collection.value
+    endif
+
+    if series_collection != blank
+      assign series_products = series_collection.products
+    endif
+  endif
+-%}
 
 {%- if series_products != blank -%}
   {%- liquid
-    assign current_series_label = product.metafields.custom.series_label.value | default: product.metafields.custom.color.value | default: product.title
+    assign current_series_label = product.metafields.custom.series_label.value | default: product.metafields.custom.color.value | default: product.selected_or_first_available_variant.option1 | default: product.title
+
+    if current_series_label == blank or current_series_label == 'Default Title'
+      assign current_series_label = product.title
+    endif
+
     assign series_option_name = product.metafields.custom.series_option_name.value | default: 'Color'
     assign current_product_in_series = false
 
@@ -34,11 +86,11 @@
     <div class="product-info__series-list" role="list">
       {%- unless current_product_in_series -%}
         {%- liquid
-          assign tile_image = product.metafields.custom.series_image.value | default: product.featured_media
+          assign tile_image = product.featured_media
           assign tile_label = current_series_label
         -%}
 
-        <a class="product-info__series-tile is-selected" href="{{ product.url }}" aria-current="page" role="listitem">
+        <a class="product-info__series-tile is-selected" href="{{ product.url }}" aria-current="page" role="listitem" data-instant>
           <span class="product-info__series-image">
             {%- if tile_image != blank -%}
               {{- tile_image | image_url: width: 360 | image_tag: loading: 'lazy', widths: '120,180,240,360', sizes: '(max-width: 699px) 72px, 84px', alt: tile_label -}}
@@ -50,9 +102,13 @@
 
       {%- for series_product in series_products -%}
         {%- liquid
-          assign tile_label = series_product.metafields.custom.series_label.value | default: series_product.metafields.custom.color.value | default: series_product.title
-          assign tile_image = series_product.metafields.custom.series_image.value | default: series_product.featured_media
+          assign tile_label = series_product.metafields.custom.series_label.value | default: series_product.metafields.custom.color.value | default: series_product.selected_or_first_available_variant.option1 | default: series_product.title
+          assign tile_image = series_product.featured_media
           assign is_current_series_product = false
+
+          if tile_label == blank or tile_label == 'Default Title'
+            assign tile_label = series_product.title
+          endif
 
           if series_product.id == product.id
             assign is_current_series_product = true
@@ -64,6 +120,7 @@
           href="{{ series_product.url }}"
           {% if is_current_series_product %}aria-current="page"{% endif %}
           role="listitem"
+          data-instant
         >
           <span class="product-info__series-image">
             {%- if tile_image != blank -%}
