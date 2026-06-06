@@ -648,9 +648,13 @@ padding:10px;
 
   #shopify-section-{{ section.id }} .product-info-column {
     gap: 20px;
+    min-width: 0;
+    max-width: 100%;
   }
 
   #shopify-section-{{ section.id }} .product-info-panel {
+    width: 100%;
+    max-width: 100%;
     border: 0;
     border-radius: 25px;
     background: #fff;
@@ -1022,8 +1026,8 @@ padding:10px;
 
   @media screen and (min-width: 1000px) {
     #shopify-section-{{ section.id }} .product-info-column {
-      position: sticky;
-      top: calc(var(--sticky-area-height, 0px) + 20px);
+      position: static !important;
+      top: auto !important;
       align-self: start;
     }
 
@@ -1114,6 +1118,167 @@ padding:10px;
     overflow: hidden;
   }
 
+  #shopify-section-{{ section.id }} .product-info-panel--overview {
+    border-radius: 30px;
+    background: #fff;
+    box-shadow: 0 10px 26px rgb(0 0 0 / 12%);
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__overview-disclosure {
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__overview-summary {
+    display: flex;
+    min-height: 84px;
+    align-items: center;
+    gap: 22px;
+    padding: 0 34px;
+    color: #000;
+    cursor: pointer;
+    list-style: none;
+    font-family: "Gotham-Bold", var(--heading-font-family), sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__overview-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__overview-caret {
+    width: 0;
+    height: 0;
+    border-inline: 9px solid transparent;
+    border-top: 12px solid #000;
+    transition: transform 0.18s ease;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__overview-disclosure[open] .product-info__overview-caret {
+    transform: rotate(180deg);
+  }
+
+  #shopify-section-{{ section.id }} .product-info__overview-body {
+    padding: 0 34px 28px 65px;
+    color: #000;
+    font-family: Aleo, var(--text-font-family), serif;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__also-bought {
+    margin-top: 36px;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__also-bought-title {
+    margin: 0 0 22px;
+    color: #000;
+    text-align: center;
+    font-family: "Gotham-Bold", var(--heading-font-family), sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.1;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__also-bought-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__also-bought-card {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: 96px minmax(0, 1fr) 58px;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid rgb(0 0 0 / 10%);
+    border-radius: 24px;
+    background: #fff;
+    color: #000;
+    box-shadow: 0 8px 18px rgb(0 0 0 / 10%);
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__also-bought-image {
+    width: 96px;
+    height: 96px;
+    border-radius: 18px;
+    background: #f2f2f2;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__also-bought-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__also-bought-text {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__also-bought-name {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    color: #000;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-family: "Gotham-Bold", var(--heading-font-family), sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.05;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__also-bought-subtitle {
+    margin: 2px 0 0;
+    overflow: hidden;
+    color: #000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__also-bought-price {
+    margin: 16px 0 0;
+    font-family: "Gotham-Bold", var(--heading-font-family), sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__also-bought-compare {
+    margin-right: 8px;
+    color: #999;
+    text-decoration: line-through;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__also-bought-form {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .product-info__also-bought-add {
+    display: grid;
+    width: 58px;
+    height: 40px;
+    place-items: center;
+    border: 1px solid rgb(0 0 0 / 12%);
+    border-radius: 999px;
+    background: #f8f8f8;
+    color: #000;
+    box-shadow: inset 0 -2px 4px rgb(0 0 0 / 6%);
+    font-family: "Gotham-Bold", var(--heading-font-family), sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;
+  }
+
   #shopify-section-{{ section.id }} .product-pm-overview__title {
     margin: 0;
     padding: 17px 34px;
@@ -1131,7 +1296,7 @@ padding:10px;
     line-height: 1.45;
   }
 
-  @media screen and (min-width: 1320px) {
+  @media screen and (min-width: 1520px) {
     #shopify-section-{{ section.id }} .section {
       padding-inline: 20px !important;
     }
@@ -1187,7 +1352,7 @@ padding:10px;
 
   @media screen and (min-width: 1000px) and (max-width: 1319px) {
     #shopify-section-{{ section.id }} .product {
-      grid-template-columns: minmax(0, 1.16fr) minmax(380px, 0.84fr);
+      grid-template-columns: minmax(0, 1fr) minmax(420px, 45%);
     }
 
     #shopify-section-{{ section.id }} .product-info-column {
@@ -1215,6 +1380,46 @@ padding:10px;
     #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail img {
       width: 72px;
       height: 72px;
+    }
+  }
+
+  @media screen and (min-width: 1320px) and (max-width: 1519px) {
+    #shopify-section-{{ section.id }} .section {
+      padding-inline: 20px !important;
+    }
+
+    #shopify-section-{{ section.id }} .product {
+      grid-template-columns: minmax(0, 1fr) minmax(500px, 42%);
+    }
+
+    #shopify-section-{{ section.id }} .product-info-column {
+      padding-top: 10px;
+    }
+
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left {
+      grid-template-columns: 90px minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail-list {
+      grid-auto-rows: 90px;
+      grid-auto-columns: 90px;
+      grid-template-columns: 90px !important;
+      gap: 48px;
+      max-height: 700px;
+      overflow: hidden;
+    }
+
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail,
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail img {
+      width: 90px;
+      height: 90px;
+    }
+
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__media,
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__media > * {
+      min-height: min(576px, calc((100vw - 40px - 20px) * 0.52));
+      height: min(576px, calc((100vw - 40px - 20px) * 0.52));
     }
   }
 
@@ -1347,6 +1552,30 @@ padding:10px;
     #shopify-section-{{ section.id }} .product-info__nomad-trust {
       font-size: 13px;
     }
+
+    #shopify-section-{{ section.id }} .product-info__overview-summary {
+      min-height: 68px;
+      padding-inline: 24px;
+      gap: 16px;
+      font-size: 24px;
+    }
+
+    #shopify-section-{{ section.id }} .product-info__overview-body {
+      padding: 0 24px 22px 52px;
+      font-size: 14px;
+    }
+
+    #shopify-section-{{ section.id }} .product-info__also-bought {
+      margin-top: 28px;
+    }
+
+    #shopify-section-{{ section.id }} .product-info__also-bought-title {
+      font-size: 25px;
+    }
+
+    #shopify-section-{{ section.id }} .product-info__also-bought-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 
@@ -1369,72 +1598,92 @@ padding:10px;
           -%}
         </div>
 
-        {%- assign pm_over_view = product.metafields.custom.pm_over_view.value -%}
-        {%- if pm_over_view != blank -%}
-          <div class="product-info-panel">
-            <p class="product-pm-overview__title">Overview</p>
+        {%- assign pm_over_view = product.metafields.custom.pm_over_view.value | default: product.metafields.custom.pm_over_view -%}
+        <div class="product-info-panel product-info-panel--overview">
+          <details class="product-info__overview-disclosure">
+            <summary class="product-info__overview-summary">
+              <span class="product-info__overview-caret" aria-hidden="true"></span>
+              <span>Overview</span>
+            </summary>
 
-            <ul class="product-info__pm-overview-list" role="list" id="pm-product-overview-list-{{ section.id }}">
-              {%- assign pm_over_view_lines = pm_over_view | newline_to_br | split: '<br />' -%}
-              {%- for line in pm_over_view_lines -%}
-                {%- assign cleaned = line | strip | remove_first: '•' | remove_first: '-' | strip -%}
-                {%- if cleaned != blank -%}
-                  <li>{{ cleaned }}</li>
+            <div class="product-info__overview-body">
+              {%- if pm_over_view != blank -%}
+                <ul class="product-info__pm-overview-list" role="list">
+                  {%- assign pm_over_view_lines = pm_over_view | newline_to_br | split: '<br />' -%}
+                  {%- for line in pm_over_view_lines -%}
+                    {%- assign cleaned = line | strip | remove_first: '•' | remove_first: '-' | strip -%}
+                    {%- if cleaned != blank -%}
+                      <li>{{ cleaned }}</li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+              {%- elsif product.description != blank -%}
+                <div class="prose">{{ product.description }}</div>
+              {%- endif -%}
+            </div>
+          </details>
+        </div>
+
+        {%- liquid
+          assign also_bought_products = product.metafields.custom.also_bought_products.value
+          if also_bought_products == blank
+            assign fallback_collection = product.collections | first
+            assign also_bought_products = fallback_collection.products
+          endif
+
+          assign also_bought_count = 0
+        -%}
+
+        {%- capture also_bought_cards -%}
+          {%- for recommended_product in also_bought_products -%}
+            {%- if recommended_product.id == product.id -%}
+              {%- continue -%}
+            {%- endif -%}
+
+            {%- assign recommended_variant = recommended_product.selected_or_first_available_variant -%}
+            {%- assign recommended_subtitle = recommended_product.metafields.custom.card_subtitle.value | default: recommended_product.metafields.custom.subtitle.value | default: recommended_product.type -%}
+            {%- assign also_bought_count = also_bought_count | plus: 1 -%}
+
+            <div class="product-info__also-bought-card">
+              <a href="{{ recommended_product.url }}" class="product-info__also-bought-image" aria-label="{{ recommended_product.title | escape }}">
+                {%- if recommended_product.featured_media != blank -%}
+                  {{- recommended_product.featured_media | image_url: width: 260 | image_tag: loading: 'lazy', widths: '140,200,260', sizes: '96px', alt: recommended_product.title -}}
                 {%- endif -%}
-              {%- endfor -%}
-            </ul>
+              </a>
 
-            <script type="application/json" data-pm-product-overview-json="pm-product-overview-{{ section.id }}">
-              {{- pm_over_view | strip | json -}}
-            </script>
+              <a href="{{ recommended_product.url }}" class="product-info__also-bought-text">
+                <p class="product-info__also-bought-name">{{ recommended_product.title }}</p>
+                {%- if recommended_subtitle != blank -%}
+                  <p class="product-info__also-bought-subtitle">{{ recommended_subtitle }}</p>
+                {%- endif -%}
+                <p class="product-info__also-bought-price">
+                  {%- if recommended_variant.compare_at_price != blank and recommended_variant.compare_at_price > recommended_variant.price -%}
+                    <span class="product-info__also-bought-compare">{{ recommended_variant.compare_at_price | money_without_trailing_zeros }}</span>
+                  {%- endif -%}
+                  <span>{{ recommended_variant.price | money_without_trailing_zeros }}</span>
+                </p>
+              </a>
 
-            <script>
-              (() => {
-                const key = "pm-product-overview-{{ section.id }}";
-                const sc = document.querySelector(`script[type="application/json"][data-pm-product-overview-json="${key}"]`);
-                const ul = document.getElementById("pm-product-overview-list-{{ section.id }}");
-                if (!sc || !ul) return;
+              {%- form 'product', recommended_product, class: 'product-info__also-bought-form' -%}
+                <input type="hidden" name="id" value="{{ recommended_variant.id }}">
+                <button type="submit" class="product-info__also-bought-add" aria-label="Add {{ recommended_product.title | escape }} to cart">+</button>
+              {%- endform -%}
+            </div>
 
-                const escapeHtml = (s) =>
-                  String(s ?? '')
-                    .replaceAll('&', '&amp;')
-                    .replaceAll('<', '&lt;')
-                    .replaceAll('>', '&gt;')
-                    .replaceAll('"', '&quot;')
-                    .replaceAll("'", '&#39;');
+            {%- if also_bought_count == 2 -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endcapture -%}
 
-                const parseMaybeDoubleJson = (txt) => {
-                  let data = JSON.parse(txt || 'null');
-                  if (typeof data === 'string') data = JSON.parse(data);
-                  return data;
-                };
-
-                let data;
-                try {
-                  data = parseMaybeDoubleJson(sc.textContent || '');
-                } catch {
-                  return; // keep Liquid-rendered fallback list
-                }
-
-                const items = Array.isArray(data?.overview) ? data.overview : null;
-                if (!items) return; // keep fallback
-
-                ul.innerHTML = items.map((t) => `<li>${escapeHtml(t)}</li>`).join('');
-              })();
-            </script>
+        {%- if also_bought_count > 0 -%}
+          <div class="product-info__also-bought">
+            <h2 class="product-info__also-bought-title">Others Like You Also Bought:</h2>
+            <div class="product-info__also-bought-grid">
+              {{- also_bought_cards -}}
+            </div>
           </div>
         {%- endif -%}
-
-        <div class="product-info-panel pm-side-reco" id="pm-side-reco-{{ section.id }}">
-          
-
-          <div
-            class="pm-side-reco__content  pm-side-recocontent_aaa"
-            id="pm-side-reco-slot-{{ section.id }}"
-            data-app-slot="side-recommended"
-          ></div>
-        </div>
-        
       </div>
 
       <div class="product-description-below">
