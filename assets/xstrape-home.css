@@ -1420,7 +1420,8 @@ main:has(.xstrape-home-scope) {
   gap: 20px;
 }
 
-.xstrape-home-scope.xh-nomad-split--single .xh-nomad-split__grid {
+.xstrape-home-scope.xh-nomad-split--single .xh-nomad-split__grid,
+.xstrape-home-scope.xh-nomad-split .xh-nomad-split__grid:has(> .xh-nomad-tile:only-child) {
   grid-template-columns: minmax(0, 1fr);
 }
 
