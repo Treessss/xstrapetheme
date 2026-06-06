@@ -18,6 +18,7 @@ Supported variables
 <safe-sticky class="product-info">
   {%- assign inside_block_group_context = false -%}
   {%- assign current_block_group_name = '' -%}
+  {%- assign series_selector_rendered = false -%}
 
   {%- for block in section.blocks -%}
     {%- if context == 'main_product' and block.type == 'description' -%}
@@ -195,6 +196,9 @@ Supported variables
             -%}
           </div>
 
+          {%- render 'product-series-selector', product: product -%}
+          {%- assign series_selector_rendered = true -%}
+
         {%- when 'product_variations' -%}
           {%- assign contains_product = false -%}
 
@@ -255,6 +259,11 @@ Supported variables
               </div>
             </div>
           {%- endif -%}
+
+          {%- unless series_selector_rendered -%}
+            {%- render 'product-series-selector', product: product -%}
+            {%- assign series_selector_rendered = true -%}
+          {%- endunless -%}
 
         {%- when 'line_item_property' -%}
           {%- if block.settings.label != blank -%}
@@ -325,7 +334,16 @@ Supported variables
           {%- assign main_form_exists = true -%}
 
           {%- if request.page_type != 'password' -%}
+            {%- unless series_selector_rendered -%}
+              {%- render 'product-series-selector', product: product -%}
+              {%- assign series_selector_rendered = true -%}
+            {%- endunless -%}
+
             <div class="product-info__buy-buttons">
+              {%- assign product_nomad_duty_badge = product.metafields.custom.duties_badge.value | default: product.metafields.custom.product_trust_badge.value | default: 'Duties and Taxes Paid' -%}
+              {%- if product_nomad_duty_badge != blank -%}
+                <p class="product-info__nomad-duty-badge">{{ product_nomad_duty_badge | escape }}</p>
+              {%- endif -%}
               {%- render 'buy-buttons', product: product, form_id: product_form_id, show_payment_button: block.settings.show_payment_button, show_gift_card_recipient: block.settings.show_gift_card_recipient, atc_button_background: block.settings.atc_button_background, atc_button_text_color: block.settings.atc_button_text_color, payment_button_background: block.settings.payment_button_background, payment_button_text_color: block.settings.payment_button_text_color -%}
               <p class="product-info__nomad-trust">Free Shipping $50+ | 2 Year Extended Warranty</p>
             </div>

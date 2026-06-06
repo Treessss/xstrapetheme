@@ -70,7 +70,11 @@ Supported variables
     {%- if display_mode == 'count' -%}
       <span class="text-sm rating__count">{{- 'product.rating_count' | t: count: rating_count -}}</span>
     {%- elsif display_mode == 'stars_count' -%}
-      <span class="text-sm rating__count">({{ rating_count }})</span>
+      {%- if request.page_type == 'product' -%}
+        <span class="text-sm rating__count">{{ rating_count }} Reviews</span>
+      {%- else -%}
+        <span class="text-sm rating__count">({{ rating_count }})</span>
+      {%- endif -%}
     {%- else -%}
       <span class="text-sm rating__value">{{ rating_value }}</span>
     {%- endif -%}
