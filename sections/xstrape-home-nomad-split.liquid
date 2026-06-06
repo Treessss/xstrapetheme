@@ -1,7 +1,16 @@
 {{ 'xstrape-home.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  assign split_block_count = section.blocks.size
+  assign split_image_sizes = '(max-width: 699px) 100vw, 50vw'
+
+  if split_block_count == 1
+    assign split_image_sizes = '(max-width: 699px) 100vw, calc(100vw - 40px)'
+  endif
+-%}
+
 <section
-  class="xstrape-home-scope xh-nomad-split"
+  class="xstrape-home-scope xh-nomad-split {% if split_block_count == 1 %}xh-nomad-split--single{% endif %}"
   style="--xh-page-bg: {{ section.settings.page_background | default: '#f3f3f3' }}; --xh-card-height: {{ section.settings.card_height }}px; --xh-card-height-mobile: {{ section.settings.card_height_mobile }}px;"
 >
   <div class="xh-nomad-split__grid">
@@ -17,7 +26,7 @@
             {{
               block.settings.image
               | image_url: width: 1800
-              | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 100vw, 50vw', widths: '600,900,1200,1500,1800'
+              | image_tag: loading: 'lazy', sizes: split_image_sizes, widths: '600,900,1200,1500,1800'
             }}
           {% else %}
             {{ 'lifestyle-1' | placeholder_svg_tag }}

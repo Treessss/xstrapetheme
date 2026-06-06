@@ -1420,6 +1420,10 @@ main:has(.xstrape-home-scope) {
   gap: 20px;
 }
 
+.xstrape-home-scope.xh-nomad-split--single .xh-nomad-split__grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .xstrape-home-scope.xh-nomad-split .xh-nomad-tile {
   position: relative;
   min-height: var(--xh-card-height, 650px);
