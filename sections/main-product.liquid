@@ -1028,27 +1028,79 @@ padding:10px;
     }
 
     #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left {
+      display: grid !important;
+      grid-template-columns: 90px minmax(0, 1fr);
+      grid-template-rows: auto;
+      gap: 10px;
       align-items: start;
     }
 
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__ar-wrapper {
+      grid-column: 2;
+      grid-row: 1;
+      min-width: 0;
+      width: 100%;
+    }
+
     #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail-list-wrapper {
+      grid-column: 1;
+      grid-row: 1;
+      order: initial;
       position: sticky;
       top: calc(var(--sticky-area-height, 0px) + 40px);
       align-self: start;
+      display: block;
+      width: 90px;
+      overflow: hidden;
+    }
+
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail-list {
+      display: grid !important;
+      grid-auto-flow: row !important;
+      grid-auto-columns: initial !important;
+      grid-template-columns: 90px !important;
+      align-items: start;
+      justify-content: start;
+      width: 90px;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden;
+    }
+
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail-list-wrapper > button {
+      display: none !important;
     }
 
     #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__media-list-wrapper {
-      overflow: visible !important;
+      width: 100%;
+      min-width: 0;
+      min-height: clamp(420px, 42vw, 576px);
+      overflow: hidden !important;
     }
 
     #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__media-list {
       display: grid !important;
-      grid-auto-flow: row !important;
-      grid-auto-columns: initial !important;
-      grid-template-columns: 1fr !important;
-      gap: 3px !important;
-      overflow: visible !important;
-      transform: none !important;
+      grid: auto / auto-flow 100% !important;
+      grid-auto-flow: column !important;
+      grid-auto-columns: 100% !important;
+      grid-template-columns: none !important;
+      gap: 0 !important;
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: auto hidden !important;
+      scroll-snap-type: x mandatory;
+    }
+
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__media {
+      width: 100% !important;
+      min-width: 100%;
+      min-height: clamp(420px, 42vw, 576px);
+      scroll-snap-align: start;
+    }
+
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__media > * {
+      min-height: clamp(420px, 42vw, 576px);
     }
 
     #shopify-section-{{ section.id }} .product-gallery__cursor,
@@ -1097,9 +1149,14 @@ padding:10px;
       gap: 10px;
     }
 
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__ar-wrapper {
+      width: 738px;
+    }
+
     #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail-list {
       grid-auto-rows: 90px;
       grid-auto-columns: 90px;
+      grid-template-columns: 90px !important;
       gap: 48px;
       max-height: 700px;
       overflow: hidden;
@@ -1118,7 +1175,7 @@ padding:10px;
     }
 
     #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__media-list {
-      grid-auto-columns: initial;
+      grid-auto-columns: 738px !important;
     }
 
     #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__media,
@@ -1142,10 +1199,16 @@ padding:10px;
       gap: 10px;
     }
 
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail-list-wrapper {
+      width: 72px;
+    }
+
     #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail-list {
       grid-auto-rows: 72px;
       grid-auto-columns: 72px;
+      grid-template-columns: 72px !important;
       gap: 24px;
+      width: 72px;
     }
 
     #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail,
