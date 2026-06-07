@@ -344,7 +344,7 @@ Supported variables
               {%- if product_nomad_duty_badge != blank -%}
                 <p class="product-info__nomad-duty-badge">{{ product_nomad_duty_badge | escape }}</p>
               {%- endif -%}
-              {%- render 'buy-buttons', product: product, form_id: product_form_id, show_payment_button: block.settings.show_payment_button, show_gift_card_recipient: block.settings.show_gift_card_recipient, atc_button_background: block.settings.atc_button_background, atc_button_text_color: block.settings.atc_button_text_color, payment_button_background: block.settings.payment_button_background, payment_button_text_color: block.settings.payment_button_text_color -%}
+              {%- render 'buy-buttons', product: product, form_id: product_form_id, show_payment_button: true, show_gift_card_recipient: block.settings.show_gift_card_recipient, atc_button_background: block.settings.atc_button_background, atc_button_text_color: block.settings.atc_button_text_color, payment_button_background: block.settings.payment_button_background, payment_button_text_color: block.settings.payment_button_text_color -%}
               <p class="product-info__nomad-trust">Free Shipping $50+ | 2 Year Extended Warranty</p>
             </div>
           {%- endif -%}
