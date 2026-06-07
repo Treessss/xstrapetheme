@@ -679,8 +679,7 @@ padding:10px;
   #shopify-section-{{ section.id }} .product-info {
     --product-info-block-spacing: 0px;
     display: grid !important;
-    grid-template-columns: minmax(0, 1fr) max-content;
-    column-gap: 18px;
+    grid-template-columns: minmax(0, 1fr);
     row-gap: 0;
     width: 100%;
   }
@@ -695,16 +694,16 @@ padding:10px;
   }
 
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="title"] {
-    grid-column: 1;
+    grid-column: 1 / -1;
     grid-row: 2;
   }
 
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="price"] {
-    grid-column: 2;
-    grid-row: 2;
-    justify-self: end;
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: start;
     align-self: start;
-    padding-top: 5px;
+    padding-top: 10px;
   }
 
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="badges"],
@@ -760,21 +759,18 @@ padding:10px;
     font-weight: 400;
     line-height: 1.11;
     letter-spacing: 0;
-    max-width: 390px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   #shopify-section-{{ section.id }} .product-info__nomad-subtitle {
-    max-width: 414px;
-    margin-top: 0;
-    color: #000;
-    font-family: Aleo, var(--text-font-family), serif;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 21px;
+    display: none;
   }
 
   #shopify-section-{{ section.id }} .product-info__price .rating-with-text {
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 8px;
   }
 
@@ -1625,25 +1621,21 @@ padding:10px;
     }
 
     #shopify-section-{{ section.id }} .product-info {
-      grid-template-columns: minmax(0, 1fr) max-content;
-      column-gap: 12px;
+      grid-template-columns: minmax(0, 1fr);
     }
 
     #shopify-section-{{ section.id }} .product-info__title {
       font-size: 28px !important;
       line-height: 1.08;
-      max-width: 245px;
+      max-width: 100%;
     }
 
     #shopify-section-{{ section.id }} .product-info__nomad-subtitle {
-      max-width: 100%;
-      margin-top: 6px;
-      font-size: 13px;
-      line-height: 1.4;
+      display: none;
     }
 
     #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="price"] {
-      padding-top: 4px;
+      padding-top: 8px;
     }
 
     #shopify-section-{{ section.id }} .price-list--lg sale-price,
