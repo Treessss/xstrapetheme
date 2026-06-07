@@ -81,21 +81,9 @@
     endif
 
     assign series_option_name = product.metafields.custom.series_option_name.value | default: 'Color'
-    assign current_product_in_series = false
     assign max_visible_series_tiles = 10
     assign rendered_series_tile_count = 0
     assign hidden_series_tile_count = 0
-
-    for series_product in series_products
-      if series_product.id == product.id
-        assign current_product_in_series = true
-        break
-      endif
-    endfor
-
-    if single_series_product != blank and single_series_product.id == product.id
-      assign current_product_in_series = true
-    endif
   -%}
 
   <div class="product-info__series-selector" data-product-series-selector>
@@ -104,54 +92,36 @@
     </div>
 
     <div class="product-info__series-list" role="list">
-      {%- unless current_product_in_series -%}
-        {%- liquid
-          assign tile_image = product.featured_media
-          assign tile_label = current_series_label
-          assign rendered_series_tile_count = rendered_series_tile_count | plus: 1
-          assign is_hidden_series_tile = false
+      {%- liquid
+        assign tile_image = product.featured_media
+        assign tile_label = current_series_label
+        assign rendered_series_tile_count = rendered_series_tile_count | plus: 1
+      -%}
 
-          if rendered_series_tile_count > max_visible_series_tiles
-            assign is_hidden_series_tile = true
-            assign hidden_series_tile_count = hidden_series_tile_count | plus: 1
-          endif
+      <a
+        class="product-info__series-tile is-selected"
+        href="{{ product.url }}"
+        aria-current="page"
+        role="listitem"
+        data-instant
+      >
+        <span class="product-info__series-image">
+          {%- if tile_image != blank -%}
+            {{- tile_image | image_url: width: 360 | image_tag: loading: 'lazy', widths: '120,180,240,360', sizes: '(max-width: 699px) 72px, 84px', alt: tile_label -}}
+          {%- endif -%}
+        </span>
+        <span class="product-info__series-label">{{ tile_label | escape }}</span>
+      </a>
 
-          if is_current_series_product
-            assign is_hidden_series_tile = false
-          endif
-        -%}
-
-        <a
-          class="product-info__series-tile is-selected{% if is_hidden_series_tile %} product-info__series-tile--hidden{% endif %}"
-          href="{{ product.url }}"
-          aria-current="page"
-          role="listitem"
-          data-instant
-          {% if is_hidden_series_tile %}data-product-series-extra hidden{% endif %}
-        >
-          <span class="product-info__series-image">
-            {%- if tile_image != blank -%}
-              {{- tile_image | image_url: width: 360 | image_tag: loading: 'lazy', widths: '120,180,240,360', sizes: '(max-width: 699px) 72px, 84px', alt: tile_label -}}
-            {%- endif -%}
-          </span>
-          <span class="product-info__series-label">{{ tile_label | escape }}</span>
-        </a>
-      {%- endunless -%}
-
-      {%- if single_series_product != blank -%}
+      {%- if single_series_product != blank and single_series_product.id != product.id -%}
         {%- liquid
           assign tile_label = single_series_product.metafields.custom.series_label.value | default: single_series_product.metafields.custom.color.value | default: single_series_product.selected_or_first_available_variant.option1 | default: single_series_product.title
           assign tile_image = single_series_product.featured_media
-          assign is_current_series_product = false
 
           if tile_label == blank or tile_label == 'Default Title'
             assign tile_label = single_series_product.title
           endif
 
-          if single_series_product.id == product.id
-            assign is_current_series_product = true
-          endif
-
           assign rendered_series_tile_count = rendered_series_tile_count | plus: 1
           assign is_hidden_series_tile = false
 
@@ -159,16 +129,11 @@
             assign is_hidden_series_tile = true
             assign hidden_series_tile_count = hidden_series_tile_count | plus: 1
           endif
-
-          if is_current_series_product
-            assign is_hidden_series_tile = false
-          endif
         -%}
 
         <a
-          class="product-info__series-tile{% if is_current_series_product %} is-selected{% endif %}{% if is_hidden_series_tile %} product-info__series-tile--hidden{% endif %}"
+          class="product-info__series-tile{% if is_hidden_series_tile %} product-info__series-tile--hidden{% endif %}"
           href="{{ single_series_product.url }}"
-          {% if is_current_series_product %}aria-current="page"{% endif %}
           role="listitem"
           data-instant
           {% if is_hidden_series_tile %}data-product-series-extra hidden{% endif %}
@@ -183,17 +148,16 @@
       {%- endif -%}
 
       {%- for series_product in series_products -%}
+        {%- if series_product.id == product.id -%}
+          {%- continue -%}
+        {%- endif -%}
+
         {%- liquid
           assign tile_label = series_product.metafields.custom.series_label.value | default: series_product.metafields.custom.color.value | default: series_product.selected_or_first_available_variant.option1 | default: series_product.title
           assign tile_image = series_product.featured_media
-          assign is_current_series_product = false
 
           if tile_label == blank or tile_label == 'Default Title'
             assign tile_label = series_product.title
-          endif
-
-          if series_product.id == product.id
-            assign is_current_series_product = true
           endif
 
           assign rendered_series_tile_count = rendered_series_tile_count | plus: 1
@@ -206,9 +170,8 @@
         -%}
 
         <a
-          class="product-info__series-tile{% if is_current_series_product %} is-selected{% endif %}{% if is_hidden_series_tile %} product-info__series-tile--hidden{% endif %}"
+          class="product-info__series-tile{% if is_hidden_series_tile %} product-info__series-tile--hidden{% endif %}"
           href="{{ series_product.url }}"
-          {% if is_current_series_product %}aria-current="page"{% endif %}
           role="listitem"
           data-instant
           {% if is_hidden_series_tile %}data-product-series-extra hidden{% endif %}
