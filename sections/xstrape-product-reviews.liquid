@@ -1,0 +1,929 @@
+{%- liquid
+  assign total_reviews = section.settings.review_count | plus: 0
+  assign average_rating = section.settings.average_rating | default: '4.8'
+  assign count_5 = section.settings.level_5_count | plus: 0
+  assign count_4 = section.settings.level_4_count | plus: 0
+  assign count_3 = section.settings.level_3_count | plus: 0
+  assign count_2 = section.settings.level_2_count | plus: 0
+  assign count_1 = section.settings.level_1_count | plus: 0
+  assign level_total = count_5 | plus: count_4 | plus: count_3 | plus: count_2 | plus: count_1
+
+  if level_total == 0
+    assign level_total = total_reviews
+  endif
+
+  if level_total == 0
+    assign level_total = 1
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --xpr-bg: {{ section.settings.background | default: '#f3f3f3' }};
+    --xpr-card-bg: {{ section.settings.card_background | default: '#ffffff' }};
+    --xpr-text: {{ section.settings.text_color | default: '#111111' }};
+    --xpr-muted: {{ section.settings.muted_text_color | default: '#666666' }};
+    --xpr-star: {{ section.settings.star_color | default: '#111111' }};
+    --xpr-border: rgb(17 17 17 / 0.08);
+    --xpr-shadow: 0 18px 42px rgb(0 0 0 / 0.08), 0 2px 8px rgb(0 0 0 / 0.06);
+  }
+
+  #shopify-section-{{ section.id }} .xstrape-product-reviews {
+    background: var(--xpr-bg);
+    color: var(--xpr-text);
+    padding-block: clamp(44px, 6vw, 86px);
+  }
+
+  #shopify-section-{{ section.id }} .xpr-container {
+    width: min(100% - 48px, 1500px);
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-heading {
+    margin: 0 0 30px;
+    text-align: center;
+    font-size: clamp(48px, 5.6vw, 92px);
+    line-height: 0.95;
+    letter-spacing: 0;
+    font-weight: 900;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-summary {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
+    gap: 18px;
+    align-items: stretch;
+    margin-bottom: 22px;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-score,
+  #shopify-section-{{ section.id }} .xpr-breakdown,
+  #shopify-section-{{ section.id }} .xpr-media-strip,
+  #shopify-section-{{ section.id }} .xpr-review-card {
+    background: var(--xpr-card-bg);
+    border: 1px solid var(--xpr-border);
+    border-radius: 30px;
+    box-shadow: var(--xpr-shadow);
+  }
+
+  #shopify-section-{{ section.id }} .xpr-score {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 220px;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-score__value {
+    font-size: clamp(64px, 6vw, 108px);
+    line-height: 0.88;
+    font-weight: 900;
+    letter-spacing: 0;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-stars {
+    display: inline-flex;
+    color: var(--xpr-star);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-score .xpr-stars {
+    margin-top: 12px;
+    font-size: clamp(28px, 3vw, 46px);
+  }
+
+  #shopify-section-{{ section.id }} .xpr-score__count {
+    margin-top: 10px;
+    color: var(--xpr-muted);
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-score__note {
+    margin-top: 18px;
+    color: var(--xpr-muted);
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-breakdown {
+    padding: 28px 30px;
+    display: grid;
+    gap: 10px;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-bar-row {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr) 54px;
+    gap: 14px;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-bar-row__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-bar {
+    height: 13px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #ececec;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-bar__fill {
+    width: var(--xpr-bar-width);
+    height: 100%;
+    border-radius: inherit;
+    background: #111;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-media-strip {
+    padding: 18px;
+    margin-bottom: 22px;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-media-strip__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+    padding-inline: 4px;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-media-strip__title {
+    font-size: 22px;
+    line-height: 1.1;
+    font-weight: 900;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-media-strip__count {
+    color: var(--xpr-muted);
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-media-strip__list {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(116px, 1fr);
+    gap: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-media-strip__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-media-thumb {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 22px;
+    background: #f1f1f1;
+    border: 1px solid var(--xpr-border);
+  }
+
+  #shopify-section-{{ section.id }} .xpr-media-thumb img,
+  #shopify-section-{{ section.id }} .xpr-media-thumb iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border: 0;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin: 28px 0 18px;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-toolbar__title {
+    font-size: clamp(26px, 3vw, 44px);
+    line-height: 1;
+    font-weight: 900;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-toolbar__pill {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 22px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid var(--xpr-border);
+    box-shadow: 0 6px 16px rgb(0 0 0 / 0.08);
+    color: var(--xpr-text);
+    font-size: 16px;
+    font-weight: 850;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-review-card {
+    min-height: 100%;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-review-card[hidden] {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-card-media {
+    display: grid;
+    grid-template-columns: repeat(var(--xpr-media-count, 1), minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-card-media__item {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #f2f2f2;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-card-media__item img,
+  #shopify-section-{{ section.id }} .xpr-card-media__item iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border: 0;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-author {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-author__name {
+    font-size: 20px;
+    line-height: 1.05;
+    font-weight: 900;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-author__verified {
+    margin-top: 6px;
+    color: var(--xpr-muted);
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-review-card .xpr-stars {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-review-title {
+    font-size: 24px;
+    line-height: 1.02;
+    font-weight: 900;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-review-body {
+    color: var(--xpr-muted);
+    font-size: 17px;
+    line-height: 1.34;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-review-body p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-card-foot {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--xpr-muted);
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 11px;
+    border-radius: 999px;
+    background: #f1f1f1;
+    color: #111;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-load-more {
+    margin: 28px auto 0;
+    min-height: 54px;
+    padding: 0 28px;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 900;
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-load-more.is-visible {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #shopify-section-{{ section.id }} .xpr-empty {
+    padding: 36px;
+    border-radius: 30px;
+    background: #fff;
+    text-align: center;
+    color: var(--xpr-muted);
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  @media screen and (max-width: 999px) {
+    #shopify-section-{{ section.id }} .xpr-container {
+      width: min(100% - 26px, 760px);
+    }
+
+    #shopify-section-{{ section.id }} .xpr-heading {
+      margin-bottom: 20px;
+      font-size: clamp(42px, 12vw, 64px);
+    }
+
+    #shopify-section-{{ section.id }} .xpr-summary {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    #shopify-section-{{ section.id }} .xpr-score,
+    #shopify-section-{{ section.id }} .xpr-breakdown,
+    #shopify-section-{{ section.id }} .xpr-media-strip,
+    #shopify-section-{{ section.id }} .xpr-review-card {
+      border-radius: 24px;
+    }
+
+    #shopify-section-{{ section.id }} .xpr-score {
+      min-height: 0;
+      padding: 24px;
+      text-align: center;
+      align-items: center;
+    }
+
+    #shopify-section-{{ section.id }} .xpr-breakdown {
+      padding: 22px;
+    }
+
+    #shopify-section-{{ section.id }} .xpr-list {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    #shopify-section-{{ section.id }} .xpr-toolbar {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    #shopify-section-{{ section.id }} .xpr-media-strip__list {
+      grid-auto-columns: 116px;
+    }
+  }
+</style>
+
+<div
+  id="xstrape-product-reviews-{{ section.id }}"
+  {% render 'section-properties', class: 'xstrape-product-reviews' %}
+  data-xstrape-product-reviews
+>
+  <div class="xpr-container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="xpr-heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    <div class="xpr-summary">
+      <div class="xpr-score">
+        <div class="xpr-score__value">{{ average_rating }}</div>
+        <div class="xpr-stars" aria-label="{{ average_rating }} out of 5 stars" aria-hidden="true">★★★★★</div>
+        <div class="xpr-score__count">{{ total_reviews }} {{ section.settings.review_count_label | escape }}</div>
+        {%- if section.settings.summary_note != blank -%}
+          <div class="xpr-score__note">{{ section.settings.summary_note | escape }}</div>
+        {%- endif -%}
+      </div>
+
+      <div class="xpr-breakdown" aria-label="Review breakdown">
+        {%- liquid
+          assign rows = '5,4,3,2,1' | split: ','
+        -%}
+
+        {%- for row in rows -%}
+          {%- liquid
+            assign row_count = 0
+            case row
+              when '5'
+                assign row_count = count_5
+              when '4'
+                assign row_count = count_4
+              when '3'
+                assign row_count = count_3
+              when '2'
+                assign row_count = count_2
+              when '1'
+                assign row_count = count_1
+            endcase
+
+            assign row_percent = row_count | times: 100.0 | divided_by: level_total
+          -%}
+          <div class="xpr-bar-row">
+            <span class="xpr-bar-row__label">{{ row }} <span aria-hidden="true">★</span></span>
+            <span class="xpr-bar" aria-hidden="true">
+              <span class="xpr-bar__fill" style="--xpr-bar-width: {{ row_percent }}%;"></span>
+            </span>
+            <span>{{ row_count }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- assign media_blocks = section.blocks | where: 'type', 'review' -%}
+    {%- assign output_media = false -%}
+    {%- for block in media_blocks -%}
+      {%- if block.settings.image_1 != blank or block.settings.image_2 != blank or block.settings.image_3 != blank or block.settings.video_url != blank -%}
+        {%- assign output_media = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if output_media and section.settings.show_media_strip -%}
+      <div class="xpr-media-strip">
+        <div class="xpr-media-strip__head">
+          <div class="xpr-media-strip__title">{{ section.settings.media_heading | escape }}</div>
+          <div class="xpr-media-strip__count">{{ section.settings.media_count | escape }}</div>
+        </div>
+        <div class="xpr-media-strip__list">
+          {%- for block in media_blocks limit: section.settings.media_limit -%}
+            {%- if block.settings.image_1 != blank -%}
+              <div class="xpr-media-thumb" {{ block.shopify_attributes }}>
+                {{ block.settings.image_1 | image_url: width: 360 | image_tag: loading: 'lazy', sizes: '140px', widths: '180,240,360,480' }}
+              </div>
+            {%- elsif block.settings.image_2 != blank -%}
+              <div class="xpr-media-thumb" {{ block.shopify_attributes }}>
+                {{ block.settings.image_2 | image_url: width: 360 | image_tag: loading: 'lazy', sizes: '140px', widths: '180,240,360,480' }}
+              </div>
+            {%- elsif block.settings.image_3 != blank -%}
+              <div class="xpr-media-thumb" {{ block.shopify_attributes }}>
+                {{ block.settings.image_3 | image_url: width: 360 | image_tag: loading: 'lazy', sizes: '140px', widths: '180,240,360,480' }}
+              </div>
+            {%- elsif block.settings.video_url != blank -%}
+              <div class="xpr-media-thumb" {{ block.shopify_attributes }}>
+                {{ block.settings.video_url | external_video_tag }}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="xpr-toolbar">
+      <div class="xpr-toolbar__title">{{ section.settings.list_heading | escape }}</div>
+      <div class="xpr-toolbar__pill">{{ section.settings.sort_label | escape }}</div>
+    </div>
+
+    {%- if media_blocks.size > 0 -%}
+      <div class="xpr-list" data-xpr-list>
+        {%- for block in media_blocks -%}
+          {%- liquid
+            assign media_count = 0
+            if block.settings.image_1 != blank
+              assign media_count = media_count | plus: 1
+            endif
+            if block.settings.image_2 != blank
+              assign media_count = media_count | plus: 1
+            endif
+            if block.settings.image_3 != blank
+              assign media_count = media_count | plus: 1
+            endif
+            if block.settings.video_url != blank
+              assign media_count = media_count | plus: 1
+            endif
+            if media_count == 0
+              assign media_count = 1
+            endif
+          -%}
+          <article
+            class="xpr-review-card"
+            data-xpr-card
+            {% if forloop.index > section.settings.initial_visible_reviews %}hidden{% endif %}
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.image_1 != blank or block.settings.image_2 != blank or block.settings.image_3 != blank or block.settings.video_url != blank -%}
+              <div class="xpr-card-media" style="--xpr-media-count: {{ media_count }};">
+                {%- if block.settings.image_1 != blank -%}
+                  <div class="xpr-card-media__item">
+                    {{ block.settings.image_1 | image_url: width: 680 | image_tag: loading: 'lazy', sizes: '(max-width: 999px) 92vw, 32vw', widths: '300,420,560,680,820' }}
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.image_2 != blank -%}
+                  <div class="xpr-card-media__item">
+                    {{ block.settings.image_2 | image_url: width: 680 | image_tag: loading: 'lazy', sizes: '(max-width: 999px) 92vw, 32vw', widths: '300,420,560,680,820' }}
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.image_3 != blank -%}
+                  <div class="xpr-card-media__item">
+                    {{ block.settings.image_3 | image_url: width: 680 | image_tag: loading: 'lazy', sizes: '(max-width: 999px) 92vw, 32vw', widths: '300,420,560,680,820' }}
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.video_url != blank -%}
+                  <div class="xpr-card-media__item">
+                    {{ block.settings.video_url | external_video_tag }}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            <div class="xpr-card-head">
+              <div class="xpr-author">
+                <div class="xpr-author__name">{{ block.settings.author | escape }}</div>
+                {%- if block.settings.verified -%}
+                  <div class="xpr-author__verified">{{ section.settings.verified_label | escape }}</div>
+                {%- endif -%}
+              </div>
+              <div class="xpr-stars" aria-label="{{ block.settings.rating }} out of 5 stars" aria-hidden="true">
+                {%- for i in (1..5) -%}{%- if i <= block.settings.rating -%}★{%- else -%}☆{%- endif -%}{%- endfor -%}
+              </div>
+            </div>
+
+            {%- if block.settings.title != blank -%}
+              <div class="xpr-review-title">{{ block.settings.title | escape }}</div>
+            {%- endif -%}
+
+            {%- if block.settings.body != blank -%}
+              <div class="xpr-review-body">{{ block.settings.body }}</div>
+            {%- endif -%}
+
+            <div class="xpr-card-foot">
+              {%- if block.settings.tag != blank -%}
+                <span class="xpr-tag">{{ block.settings.tag | escape }}</span>
+              {%- endif -%}
+              {%- if block.settings.date != blank -%}
+                <span>{{ block.settings.date | escape }}</span>
+              {%- endif -%}
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+
+      {%- if media_blocks.size > section.settings.initial_visible_reviews -%}
+        <button class="xpr-load-more is-visible" type="button" data-xpr-load-more>
+          {{ section.settings.load_more_text | escape }}
+        </button>
+      {%- endif -%}
+    {%- else -%}
+      <div class="xpr-empty">{{ section.settings.empty_text | escape }}</div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (() => {
+    const root = document.getElementById({{ 'xstrape-product-reviews-' | append: section.id | json }});
+    if (!root) return;
+
+    const scrollToReviews = (event) => {
+      const trigger = event.target.closest('a[href^="#pm-reviews-anchor-"], button[data-anchor^="#pm-reviews-anchor-"]');
+      if (!trigger) return;
+
+      event.preventDefault();
+      root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    document.addEventListener('click', scrollToReviews);
+
+    const loadMore = root.querySelector('[data-xpr-load-more]');
+    if (loadMore) {
+      loadMore.addEventListener('click', () => {
+        root.querySelectorAll('[data-xpr-card][hidden]').forEach((card) => card.removeAttribute('hidden'));
+        loadMore.classList.remove('is-visible');
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "产品评论",
+  "tag": "section",
+  "class": "shopify-section--xstrape-product-reviews",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "全宽显示",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "标题",
+      "default": "Reviews"
+    },
+    {
+      "type": "text",
+      "id": "average_rating",
+      "label": "平均评分",
+      "default": "4.8"
+    },
+    {
+      "type": "number",
+      "id": "review_count",
+      "label": "评论总数",
+      "default": 127
+    },
+    {
+      "type": "text",
+      "id": "review_count_label",
+      "label": "评论数量后缀",
+      "default": "Reviews"
+    },
+    {
+      "type": "text",
+      "id": "summary_note",
+      "label": "摘要说明",
+      "default": "Customers love the secure fit, soft feel, and everyday durability."
+    },
+    {
+      "type": "header",
+      "content": "评分分布"
+    },
+    {
+      "type": "number",
+      "id": "level_5_count",
+      "label": "5星数量",
+      "default": 104
+    },
+    {
+      "type": "number",
+      "id": "level_4_count",
+      "label": "4星数量",
+      "default": 17
+    },
+    {
+      "type": "number",
+      "id": "level_3_count",
+      "label": "3星数量",
+      "default": 4
+    },
+    {
+      "type": "number",
+      "id": "level_2_count",
+      "label": "2星数量",
+      "default": 1
+    },
+    {
+      "type": "number",
+      "id": "level_1_count",
+      "label": "1星数量",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "媒体区域"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_media_strip",
+      "label": "显示评论图片/视频横条",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "media_heading",
+      "label": "媒体区域标题",
+      "default": "Customer photos & videos"
+    },
+    {
+      "type": "text",
+      "id": "media_count",
+      "label": "媒体数量文字",
+      "default": "Add your own review media"
+    },
+    {
+      "type": "range",
+      "id": "media_limit",
+      "label": "媒体最多展示数量",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "评论列表"
+    },
+    {
+      "type": "text",
+      "id": "list_heading",
+      "label": "列表标题",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "text",
+      "id": "sort_label",
+      "label": "排序按钮文字",
+      "default": "Most Recent"
+    },
+    {
+      "type": "range",
+      "id": "initial_visible_reviews",
+      "label": "默认展示评论数",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "text",
+      "id": "load_more_text",
+      "label": "展开按钮文字",
+      "default": "Load More Reviews"
+    },
+    {
+      "type": "text",
+      "id": "verified_label",
+      "label": "已验证文字",
+      "default": "Verified buyer"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "空状态文字",
+      "default": "Add review blocks to show customer reviews here."
+    },
+    {
+      "type": "header",
+      "content": "颜色"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "背景颜色",
+      "default": "#f3f3f3"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "卡片背景",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "文字颜色",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "muted_text_color",
+      "label": "辅助文字颜色",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "星星颜色",
+      "default": "#111111"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "评论",
+      "settings": [
+        {
+          "type": "text",
+          "id": "author",
+          "label": "客户名称",
+          "default": "Alex M."
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "显示已验证",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "星级",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "评论标题",
+          "default": "Secure and comfortable"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "评论内容",
+          "default": "<p>The band feels solid without being stiff, and it stays comfortable through a full day of wear.</p>"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "标签",
+          "default": "Daily wear"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "日期",
+          "default": "Jun 2026"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "图片 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "图片 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "图片 3"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "视频链接",
+          "accept": ["youtube", "vimeo"]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "产品评论",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "author": "Alex M.",
+            "title": "Secure and comfortable",
+            "body": "<p>The band feels solid without being stiff, and it stays comfortable through a full day of wear.</p>",
+            "tag": "Daily wear",
+            "date": "Jun 2026"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "author": "Jordan K.",
+            "title": "Great for workouts",
+            "body": "<p>Lightweight, easy to clean, and the fit feels stable even when moving quickly.</p>",
+            "tag": "Exercise",
+            "date": "May 2026"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "author": "Taylor S.",
+            "title": "Looks sharp",
+            "body": "<p>It has a clean look that works with casual clothes and office days. The material feels premium.</p>",
+            "tag": "Everyday",
+            "date": "May 2026"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

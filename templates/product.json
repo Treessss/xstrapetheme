@@ -139,6 +139,7 @@
     },
     "1776675983775d12c5": {
       "type": "product-app-blocks",
+      "disabled": true,
       "custom_css": [
         "#grid {margin: 0 auto; padding: 0 !important;}"
       ],
@@ -146,6 +147,119 @@
         "full_width": true,
         "default_collapsed": false,
         "title": "Reviews"
+      }
+    },
+    "xstrape_product_reviews": {
+      "type": "xstrape-product-reviews",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "author": "Alex M.",
+            "verified": true,
+            "rating": 5,
+            "title": "Secure and comfortable",
+            "body": "<p>The band feels solid without being stiff, and it stays comfortable through a full day of wear.</p>",
+            "tag": "Daily wear",
+            "date": "Jun 2026"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "author": "Jordan K.",
+            "verified": true,
+            "rating": 5,
+            "title": "Great for workouts",
+            "body": "<p>Lightweight, easy to clean, and the fit feels stable even when moving quickly.</p>",
+            "tag": "Exercise",
+            "date": "May 2026"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "author": "Taylor S.",
+            "verified": true,
+            "rating": 5,
+            "title": "Looks sharp",
+            "body": "<p>It has a clean look that works with casual clothes and office days. The material feels premium.</p>",
+            "tag": "Everyday",
+            "date": "May 2026"
+          }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "author": "Morgan R.",
+            "verified": true,
+            "rating": 5,
+            "title": "Easy to clean",
+            "body": "<p>A quick rinse brings it back to looking new. The clasp feels secure and the texture is smooth.</p>",
+            "tag": "Outdoor",
+            "date": "Apr 2026"
+          }
+        },
+        "review_5": {
+          "type": "review",
+          "settings": {
+            "author": "Chris L.",
+            "verified": true,
+            "rating": 4,
+            "title": "Reliable fit",
+            "body": "<p>The fit is snug in a good way. It does not shift around, even during longer walks.</p>",
+            "tag": "Travel",
+            "date": "Apr 2026"
+          }
+        },
+        "review_6": {
+          "type": "review",
+          "settings": {
+            "author": "Sam P.",
+            "verified": true,
+            "rating": 5,
+            "title": "Exactly what I wanted",
+            "body": "<p>Simple, durable, and low profile. It feels like the kind of accessory you forget about because it just works.</p>",
+            "tag": "Verified",
+            "date": "Mar 2026"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3",
+        "review_4",
+        "review_5",
+        "review_6"
+      ],
+      "settings": {
+        "full_width": true,
+        "heading": "Reviews",
+        "average_rating": "4.8",
+        "review_count": 127,
+        "review_count_label": "Reviews",
+        "summary_note": "Customers love the secure fit, soft feel, and everyday durability.",
+        "level_5_count": 104,
+        "level_4_count": 17,
+        "level_3_count": 4,
+        "level_2_count": 1,
+        "level_1_count": 1,
+        "show_media_strip": true,
+        "media_heading": "Customer photos & videos",
+        "media_count": "Add your own review media",
+        "media_limit": 12,
+        "list_heading": "Customer Reviews",
+        "sort_label": "Most Recent",
+        "initial_visible_reviews": 6,
+        "load_more_text": "Load More Reviews",
+        "verified_label": "Verified buyer",
+        "empty_text": "Add review blocks to show customer reviews here.",
+        "background": "#f3f3f3",
+        "card_background": "#ffffff",
+        "text_color": "#111111",
+        "muted_text_color": "#666666",
+        "star_color": "#111111"
       }
     },
     "service-highlights-row": {
@@ -193,6 +307,7 @@
   "order": [
     "main",
     "related-products",
+    "xstrape_product_reviews",
     "1776675983775d12c5",
     "service-highlights-row"
   ]

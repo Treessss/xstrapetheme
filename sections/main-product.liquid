@@ -1987,6 +1987,13 @@ padding:10px;
             };
 
             const resolveTarget = (sel) => {
+              if (sel === REVIEWS_SEL) {
+                const customReviews = document.querySelector('.shopify-section--xstrape-product-reviews [data-xstrape-product-reviews]');
+                if (customReviews) {
+                  return customReviews.closest('.shopify-section--xstrape-product-reviews') || customReviews;
+                }
+              }
+
               let el = sel ? document.querySelector(sel) : null;
               if (!el && sel === REVIEWS_SEL) {
                 el = Array.from(document.querySelectorAll('.shopify-section--product-app-blocks .pm-app-blocks__title'))
