@@ -1095,6 +1095,7 @@ padding:10px;
     border-radius: 18px;
     background: #fff;
     box-shadow: 0 6px 16px rgb(0 0 0 / 8%);
+    box-sizing: border-box;
     padding: 5px;
     opacity: 0.35;
     transition: border-color 0.16s ease, opacity 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
@@ -1112,6 +1113,9 @@ padding:10px;
   }
 
   #shopify-section-{{ section.id }} .product-gallery__thumbnail img {
+    display: block;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     border-radius: 12px;
     background: #f4f4f4;
@@ -1433,8 +1437,7 @@ padding:10px;
       overflow: hidden;
     }
 
-    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail,
-    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail img {
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail {
       width: 90px;
       height: 90px;
     }
@@ -1489,8 +1492,7 @@ padding:10px;
       width: 72px;
     }
 
-    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail,
-    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail img {
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail {
       width: 72px;
       height: 72px;
     }
@@ -1523,8 +1525,7 @@ padding:10px;
       overflow: hidden;
     }
 
-    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail,
-    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail img {
+    #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left .product-gallery__thumbnail {
       width: 90px;
       height: 90px;
     }
@@ -1582,8 +1583,7 @@ padding:10px;
       justify-content: start;
     }
 
-    #shopify-section-{{ section.id }} .product-gallery__thumbnail,
-    #shopify-section-{{ section.id }} .product-gallery__thumbnail img {
+    #shopify-section-{{ section.id }} .product-gallery__thumbnail {
       width: 56px;
       height: 56px;
     }
