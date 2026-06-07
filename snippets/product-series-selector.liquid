@@ -82,6 +82,9 @@
 
     assign series_option_name = product.metafields.custom.series_option_name.value | default: 'Color'
     assign current_product_in_series = false
+    assign max_visible_series_tiles = 10
+    assign rendered_series_tile_count = 0
+    assign hidden_series_tile_count = 0
 
     for series_product in series_products
       if series_product.id == product.id
@@ -105,9 +108,27 @@
         {%- liquid
           assign tile_image = product.featured_media
           assign tile_label = current_series_label
+          assign rendered_series_tile_count = rendered_series_tile_count | plus: 1
+          assign is_hidden_series_tile = false
+
+          if rendered_series_tile_count > max_visible_series_tiles
+            assign is_hidden_series_tile = true
+            assign hidden_series_tile_count = hidden_series_tile_count | plus: 1
+          endif
+
+          if is_current_series_product
+            assign is_hidden_series_tile = false
+          endif
         -%}
 
-        <a class="product-info__series-tile is-selected" href="{{ product.url }}" aria-current="page" role="listitem" data-instant>
+        <a
+          class="product-info__series-tile is-selected{% if is_hidden_series_tile %} product-info__series-tile--hidden{% endif %}"
+          href="{{ product.url }}"
+          aria-current="page"
+          role="listitem"
+          data-instant
+          {% if is_hidden_series_tile %}data-product-series-extra hidden{% endif %}
+        >
           <span class="product-info__series-image">
             {%- if tile_image != blank -%}
               {{- tile_image | image_url: width: 360 | image_tag: loading: 'lazy', widths: '120,180,240,360', sizes: '(max-width: 699px) 72px, 84px', alt: tile_label -}}
@@ -130,14 +151,27 @@
           if single_series_product.id == product.id
             assign is_current_series_product = true
           endif
+
+          assign rendered_series_tile_count = rendered_series_tile_count | plus: 1
+          assign is_hidden_series_tile = false
+
+          if rendered_series_tile_count > max_visible_series_tiles
+            assign is_hidden_series_tile = true
+            assign hidden_series_tile_count = hidden_series_tile_count | plus: 1
+          endif
+
+          if is_current_series_product
+            assign is_hidden_series_tile = false
+          endif
         -%}
 
         <a
-          class="product-info__series-tile{% if is_current_series_product %} is-selected{% endif %}"
+          class="product-info__series-tile{% if is_current_series_product %} is-selected{% endif %}{% if is_hidden_series_tile %} product-info__series-tile--hidden{% endif %}"
           href="{{ single_series_product.url }}"
           {% if is_current_series_product %}aria-current="page"{% endif %}
           role="listitem"
           data-instant
+          {% if is_hidden_series_tile %}data-product-series-extra hidden{% endif %}
         >
           <span class="product-info__series-image">
             {%- if tile_image != blank -%}
@@ -161,14 +195,23 @@
           if series_product.id == product.id
             assign is_current_series_product = true
           endif
+
+          assign rendered_series_tile_count = rendered_series_tile_count | plus: 1
+          assign is_hidden_series_tile = false
+
+          if rendered_series_tile_count > max_visible_series_tiles
+            assign is_hidden_series_tile = true
+            assign hidden_series_tile_count = hidden_series_tile_count | plus: 1
+          endif
         -%}
 
         <a
-          class="product-info__series-tile{% if is_current_series_product %} is-selected{% endif %}"
+          class="product-info__series-tile{% if is_current_series_product %} is-selected{% endif %}{% if is_hidden_series_tile %} product-info__series-tile--hidden{% endif %}"
           href="{{ series_product.url }}"
           {% if is_current_series_product %}aria-current="page"{% endif %}
           role="listitem"
           data-instant
+          {% if is_hidden_series_tile %}data-product-series-extra hidden{% endif %}
         >
           <span class="product-info__series-image">
             {%- if tile_image != blank -%}
@@ -179,5 +222,38 @@
         </a>
       {%- endfor -%}
     </div>
+
+    {%- if hidden_series_tile_count > 0 -%}
+      <button type="button" class="product-info__series-expand" data-product-series-expand aria-expanded="false">
+        Show More
+      </button>
+
+      <script>
+        (() => {
+          const selectors = document.querySelectorAll('[data-product-series-selector]:not([data-series-ready])');
+
+          selectors.forEach((selector) => {
+            selector.dataset.seriesReady = 'true';
+
+            const button = selector.querySelector('[data-product-series-expand]');
+
+            if (!button) {
+              return;
+            }
+
+            button.addEventListener('click', () => {
+              selector.querySelectorAll('[data-product-series-extra]').forEach((tile) => {
+                tile.hidden = false;
+                tile.classList.remove('product-info__series-tile--hidden');
+              });
+
+              selector.classList.add('is-expanded');
+              button.setAttribute('aria-expanded', 'true');
+              button.remove();
+            });
+          });
+        })();
+      </script>
+    {%- endif -%}
   </div>
 {%- endif -%}
