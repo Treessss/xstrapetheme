@@ -678,9 +678,8 @@ padding:10px;
 
   #shopify-section-{{ section.id }} .product-info {
     --product-info-block-spacing: 0px;
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: 0;
+    display: flex !important;
+    flex-direction: column;
     width: 100%;
   }
 
@@ -691,18 +690,16 @@ padding:10px;
 
   #shopify-section-{{ section.id }} .product-info__block-item {
     min-width: 0;
+    width: 100%;
   }
 
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="title"] {
-    grid-column: 1 / -1;
-    grid-row: 2;
+    order: 10;
   }
 
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="price"] {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    justify-self: start;
     align-self: start;
+    order: 20;
     padding-top: 10px;
   }
 
@@ -719,16 +716,15 @@ padding:10px;
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="liquid"],
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="custom-block"],
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="offer"] {
-    grid-column: 1 / -1;
+    order: 50;
   }
 
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="badges"],
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="rating"] {
-    grid-row: 1;
     align-self: start;
     margin-top: 0 !important;
     margin-bottom: 8px !important;
-    order: initial;
+    order: 0;
   }
 
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="badges"] {
@@ -739,10 +735,12 @@ padding:10px;
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="product-variations"],
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="line-item-property"],
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="inventory"] {
+    order: 30;
     margin-top: 24px !important;
   }
 
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="buy-buttons"] {
+    order: 40;
     margin-top: 16px !important;
   }
 
