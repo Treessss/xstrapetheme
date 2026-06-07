@@ -1070,6 +1070,13 @@ padding:10px;
       align-self: start;
     }
 
+    #shopify-section-{{ section.id }} .product-gallery {
+      position: sticky;
+      top: calc(var(--sticky-area-height, 0px) + 28px);
+      align-self: start;
+      z-index: 1;
+    }
+
     #shopify-section-{{ section.id }} .product-gallery--desktop-thumbnails-left {
       display: grid !important;
       grid-template-columns: 90px minmax(0, 1fr);
@@ -1089,8 +1096,8 @@ padding:10px;
       grid-column: 1;
       grid-row: 1;
       order: initial;
-      position: sticky;
-      top: calc(var(--sticky-area-height, 0px) + 40px);
+      position: static;
+      top: auto;
       align-self: start;
       display: block;
       width: 90px;
